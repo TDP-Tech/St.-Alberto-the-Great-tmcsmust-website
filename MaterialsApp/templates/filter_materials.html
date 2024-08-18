@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+        color: #333;
+    }
+
+    .level {
+        margin-top: 20px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .material {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px; /* Add margin-bottom for space between entries */
+    }
+
+    .icon {
+        margin-right: 10px;
+    }
+
+    .info {
+        flex-grow: 1;
+    }
+
+    .download {
+        display: flex;
+        align-items: center;
+    }
+
+    .download img {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+
+    .top-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .top-button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #09f16d;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 600px) {
+        .container {
+            padding: 10px;
+        }
+        .top-buttons {
+            flex-wrap: wrap;
+        }
+        .top-button {
+            margin-bottom: 10px;
+        }
+    }
+    .download a{
+        text-decoration: none;
+    }
+    .h1-material{
+        text-align: center;
+    }
+</style>    
+    <div class="container">
+
+        <h1 class="text-center mt-3 mb-5">Study Materials for: {{ selected_level }} Level</h1>
+        <p class="text-center"><a href="{% url 'all-materials' %}" class="btn btn-primary">SEE ALL MATERIALS HERE</a></p>
+
+        <div class="materials">
+            {% if materials %}
+                <ul class="list-group">
+                    {% for material in materials %}
+                        <li class="list-group-item">
+                            <div class="d-flex align-items-center">
+                                <div class="icon mr-3">
+                                    <!-- Add icon or image here if needed -->
+                                </div>
+                                <div class="info flex-grow-1">
+                                    <div class="title">
+                                        {{ material.title }}
+                                        {{ material.level }}
+                                        {% if material.year_of_study == 1 %}
+                                            {{ material.year_of_study }}st year
+                                        {% elif material.year_of_study == 2 %}
+                                            {{ material.year_of_study }}nd year
+                                        {% elif material.year_of_study == 3 %}
+                                            {{ material.year_of_study }}rd year
+                                        {% else %}
+                                            {{ material.year_of_study }}th year
+                                        {% endif %}
+                                    </div>
+                                    <div class="info">
+                                        <div class="title">
+                                            <b>Course:</b> {{ material.course }}
+                                        </div>
+                                    </div>
+                                    <div class="date"><b>Posted:</b> {{ material.date_posted }}</div>
+                                </div>
+                                <div class="download">
+                                    <a href="{{ material.document.url }}" class="btn btn-info">Download</a>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-center">No materials found for this level.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,101 @@
+<!-- kwaya.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    /* Adjust font size for smaller screens */
+    @media screen and (max-width: 768px) {
+        .txt-overlay {
+            font-size: 24px; /* Decrease font size for smaller screens */
+        }
+    }
+
+    /* Style for the container of logos */
+    .logo-container {
+        white-space: nowrap; /* Prevent logos from wrapping to new lines */
+        padding: 20px 0; /* Add padding for better aesthetics */
+        overflow: hidden; /* Hide any overflowing content */
+    }
+
+    /* Style for each logo */
+    .logo-item {
+        display: inline-block; /* Display logos in a row */
+        margin-right: 20px; /* Add margin between logos */
+        max-height: 100px; /* Set maximum height for the logos */
+        max-width: 150px; /* Set maximum width for the logos */
+        height: auto; /* Ensure aspect ratio is maintained */
+        animation: slide 10s linear infinite; /* Add animation for sliding */
+    }
+
+    /* Animation for sliding */
+    @keyframes slide {
+        0% {
+            transform: translateX(0); /* Start position */
+        }
+        100% {
+            transform: translateX(-100%); /* End position (slide to the left) */
+        }
+    }
+    /* Increase font size for card text */
+    .card-text {
+        font-size: 16px;
+    }
+
+    /* Set equal height for both cards */
+    .card {
+        height: 100%;
+    }
+    /* Gradient button styles */
+.btn-gradient {
+    background: linear-gradient(to right, #00a2ff, #04f755, #09eaf1);
+    /* background: linear-gradient(to right, #ff6600, #ff0000, #990000); */
+    color: #fff; /* Text color */
+    border: none;
+}
+
+/* Hover effect for gradient buttons */
+.btn-gradient:hover {
+    opacity: 0.9;
+}
+.card-title{
+    font-size: 28px;
+}
+
+</style>
+
+
+<!-- Bootstrap Cards for Praising God and Support Section -->
+<div class="row mt-5 justify-content-center">
+    <!-- Card for Praising God -->
+    <div class="col-md-5 mb-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Sing & Praising God</h5>
+                <p class="card-text font-size">"Let everything that has breath praise the Lord. Praise the Lord!" - Psalm 150:6</p>
+                <p class="card-text font-size">In every note sung and every harmony created, we find our voices lifted in praise to the Almighty. Join us in celebrating His glory through music and song.</p>
+                <a href="#" class="btn btn-gradient mb-3">Join Us in Praise</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card for Support Section -->
+    <div class="col-md-5 mb-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Support Us</h5>
+                <p class="card-text font-size">If you enjoy our content and wish to see it thrive, consider supporting us. Your generosity fuels our mission and helps us spread the joy of music and praise.</p>
+                <p class="card-text mt-4">
+                    <i class="fas fa-sack-dollar fa-2x" style="color: #f59714; margin-right: 10px;"></i>
+                    <i class="fas fa-money-check-alt fa-2x" style="color: #1a9933; margin-right: 10px;"></i>
+                    <i class="fas fa-hand-holding-dollar fa-2x" style="color: #15c121; margin-right: 10px;"></i>
+                </p>
+                <a href="#" class="btn btn-gradient col-md-4">Donate Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+

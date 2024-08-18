@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .dominika-font {
+        font-size: 30px;
+    }
+
+    .card-content {
+        max-height: 300px; /* Adjust as needed */
+        overflow: hidden;
+    }
+
+    .view-details {
+        display: none; /* Initially hide the View Details link */
+    }
+    .heading-center{
+        text-align: center;
+    }
+</style>
+<div class="container mt-5">
+    <h2 class="heading-center">Masomo ya Dominika</h2>
+    {% if user.is_authenticated and user.is_staff %}
+    <a href="{% url 'masomoya-dominika-create' %}" class="btn btn-primary mx-2 mt-2 mb-2">Add Mass Subjects</a>
+    {% endif %}
+    <div class="row">
+        {% for masomoyadominika in masomoyadominika_list %}
+            <div class="col-md-4 mb-4 card-height">
+                <div class="card" id="card-{{ forloop.counter }}">
+                    <div class="card-body">
+                        <p class="card-text"><strong class="dominika-font">{{ masomoyadominika.dominika|safe }}</strong></p>
+                        <div class="card-content">
+                            <p class="card-text">{{ masomoyadominika.somo_la1|safe }}</p>
+                            <p class="card-text">{{ masomoyadominika.somo_la2|safe }}</p>
+                            <p class="card-text">{{ masomoyadominika.injili|safe }}</p>
+                        </div>
+                        <a href="{% url 'masomoya-dominika-detail' masomoyadominika.pk %}" class="btn btn-primary view-details">Read More</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var cards = document.querySelectorAll(".card");
+        cards.forEach(function(card) {
+            var cardContent = card.querySelector(".card-content");
+            var viewDetails = card.querySelector(".view-details");
+
+            if (cardContent.scrollHeight > cardContent.clientHeight) {
+                viewDetails.style.display = "block";
+            }
+        });
+    });
+</script>
+{% endblock content %}

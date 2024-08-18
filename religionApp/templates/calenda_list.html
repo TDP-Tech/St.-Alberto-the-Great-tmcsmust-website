@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container col-md-10 mt-5">
+    {% for pdf_file in pdf_files %}
+        <h3>{{ pdf_file.title }}</h3>
+        <iframe src="{{ pdf_file.pdf.url }}" width="100%" height="500px"></iframe>
+    {% endfor %}
+</div>
+{% endblock content %}
+
+

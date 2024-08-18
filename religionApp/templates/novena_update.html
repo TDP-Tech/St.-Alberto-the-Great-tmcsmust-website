@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container text-center mt-5">
+  {% if user.is_authenticated and user.is_staff %}
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.media }}
+      {{ form.as_p }}
+      <button class="btn btn-primary" type="submit">Update Nove</button>
+    </form>
+    <br>
+    <a class="btn btn-primary" href="{% url 'novena-detail' pk=novena.pk %}">Back to Novena Detail</a>
+    <a class="btn btn-primary" href="{% url 'novena-list' %}">Back to Novena List</a>
+  {% else %}
+    <p>Please log in as Admin to access this page.</p>
+  {% endif %}
+</div>
+{% endblock %}

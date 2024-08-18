@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .card {
+        min-height: 100%;
+        border: 3px solid #007bff;
+        text-decoration: none; /* Ensure no underline on text */
+        color: inherit; /* Inherit text color */
+    }
+    .card-img-top {
+        height: 400px;
+    }
+    .card-title {
+        color: rgb(0, 119, 255);
+    }
+    .card a {
+        text-decoration: none; /* Ensure no underline on text */
+        color: inherit; /* Inherit text color */
+    }
+</style>
+<div class="container mt-5">
+    {% if user.is_mwenyekiti_tawi or user.is_katibu_tawi %}
+    <h2 class="pb-4 text-center"><a class="btn btn-primary" href="{% url 'community-create' %}">Create new Community</a></h2>
+    {% endif %}
+    <h2 class="pb-4 text-center">Jumuiya za Sait Alberto Mkuu TMCS-MUST zimeundwa na kozi zifuatazo</h2>
+    <div class="row">
+        {% for community in communities %}
+            <div class="col-md-4 mb-4">
+                {% if user.is_authenticated %}
+                    {% if user.is_mwenyekiti_tawi or user.is_katibu_tawi %}
+                    <a class="btn btn-info mb-2" href="{% url 'community-detail' community.pk %}">Community detail</a>
+                    {% endif %}
+                {% endif %}
+                {% if community.patron_saint %}
+                    <a href="{% url 'saintlife-detail' community.patron_saint.pk %}" class="card d-flex flex-column h-100">
+                        {% if community.community_image %}
+                            <img src="{{ community.community_image.url }}" class="card-img-top" alt="{{ community.community_name }}">
+                        {% else %}
+                            <img src="{% static 'images/saint alberto the great logo.jpeg' %}" alt="{{ community.community_name }}">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <div>
+                                <h5 class="card-title">{{ community.community_name }}</h5>
+                            </div>
+                            <div>
+                                <p class="card-text">{{ community.description | safe }}</p>
+                            </div>
+                        </div>
+                    </a>
+                {% else %}
+                    <div class="card d-flex flex-column h-100">
+                        {% if community.community_image %}
+                            <img src="{{ community.community_image.url }}" class="card-img-top" alt="{{ community.community_name }}">
+                        {% else %}
+                            <img src="{% static 'images/saint alberto the great logo.jpeg' %}" alt="{{ community.community_name }}">
+                        {% endif %}
+                        <div class="card-body d-flex flex-column">
+                            <div>
+                                <h5 class="card-title">{{ community.community_name }}</h5>
+                            </div>
+                            <div>
+                                <p class="card-text">{{ community.description | safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

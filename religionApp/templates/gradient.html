@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Drops with Interactive Background</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: auto;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        #bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .animated-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, purple, green, yellow);
+            background-size: 200% 100%;
+            animation: gradientAnimation 10s linear infinite;
+        }
+        
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 100% 50%;
+            }
+            50% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="animated-background">
+        <!-- Add stars and cross as CSS pseudo-elements -->
+        <div class="stars"></div>
+        <div class="cross"></div>
+        <!-- Add an image of Holy Mother Mary -->
+        <!-- <img src="path/to/mary_image.jpg" alt="Holy Mother Mary" class="mary-image"> -->
+    </div>
+    <canvas id="bubbles"></canvas>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const canvas = document.getElementById('bubbles');
+            const ctx = canvas.getContext('2d');
+
+            // Set canvas size to window size
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const bubbles = [];
+
+            function createBubble() {
+                return {
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 20 + 5,
+                    speed: Math.random() * 4 + 2,
+                };
+            }
+
+            function drawBubble(bubble) {
+                ctx.beginPath();
+                ctx.arc(bubble.x, bubble.y, bubble.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fill();
+            }
+
+            function updateBubbles() {
+                for (const bubble of bubbles) {
+                    bubble.y -= bubble.speed;
+
+                    if (bubble.y + bubble.radius < 0) {
+                        // Reset bubble if it goes above the canvas
+                        bubble.y = canvas.height + bubble.radius;
+                    }
+
+                    drawBubble(bubble);
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                updateBubbles();
+                requestAnimationFrame(animate);
+            }
+
+            // Initialize bubbles
+            for (let i = 0; i < 50; i++) {
+                bubbles.push(createBubble());
+            }
+
+            // Start animation
+            animate();
+
+            // Event listener for mouseover
+            canvas.addEventListener('mouseover', function () {
+                // You can add code to handle the mouseover event, such as showing a popup or triggering an animation.
+                console.log('Mouseover event!');
+            });
+        });
+    </script>
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container col-md-6">
+    <h1 class="text-center pt-5">Add New Material</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group mb-3">
+            <label for="id_title">Title:</label>
+            {{ form.title }}
+        </div>
+        <div class="form-group mb-3">
+            <label for="id_level">Level:</label>
+            {{ form.level }}
+        </div>
+        <div class="form-group mb-3">
+            <label for="id_course">course:</label>
+            {{ form.course }}
+        </div>
+        <div class="form-group mb-3">
+            <label for="id_year_of_study">Year of Study:</label>
+            {{ form.year_of_study }}
+        </div>
+        <div class="form-group mb-3">
+            <label for="id_date_posted">Date Posted:</label>
+            {{ form.date_posted }}
+        </div>
+        <div class="form-group mb-3">
+            <label for="id_document">Document:</label>
+            {{ form.document }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

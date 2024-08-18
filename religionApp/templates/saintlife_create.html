@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container col-md-7 mt-5 text-center">
+    {% if user.is_authenticated and user.is_staff %}
+    <h2>Create Saint Life</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.media }}
+      {{ form.as_p }}
+      <div class="row">
+        <button class="btn btn-primary mb-2" type="submit">Create Saint Life</button>
+        <a class="btn btn-primary mb-2" href="{% url 'saintlife-list' %}">Back to Saints List</a>
+      </div>
+    </form>
+    {% else %}
+    <p>You do not have permission to create the Saints life.</p>
+    {% endif %}
+</div>
+{% endblock %}

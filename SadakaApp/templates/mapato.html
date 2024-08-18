@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+<style>
+    .address {
+        text-align: center;
+        /* Align content in the center */
+        margin-bottom: 20px;
+    }
+
+    .address p {
+        margin: 5px 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .table tbody tr td {
+        line-height: 18px;
+        padding: 5px;
+        /* Adjust the padding */
+        font-size: 14px;
+        /* Adjust the font size */
+    }
+</style>
+<div class="container col-md-8">
+    <h2 class="text-center mt-5">JUMUIYA YA WANAFUNZI WAKATOLIKI WA VYUO VIKUU NA VYA KATI TANZANIA (TMCS-MUST)</h2>
+    <div class="row mt-4">
+        <div class="col-md-4"> <!-- Changed col-md-4 to col-md-12 for each column -->
+            <div class="address">
+                <p>JIMBO KUU KATOLIKI LA MBEYA,</p>
+                <p>S.L.P 170,</p>
+                <p>MBEYA</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center"> <!-- Changed col-md-4 to col-md-12 -->
+            <img src="{% static 'images/saint alberto the great logo.jpeg' %}" alt="Your Logo" width="100">
+        </div>
+        <div class="col-md-4"> <!-- Changed col-md-4 to col-md-12 -->
+            <div class="address">
+                <p>TMCS TAWI LA MUST,</p>
+                <p>S.L.P 131,</p>
+                <p>MBEYA</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

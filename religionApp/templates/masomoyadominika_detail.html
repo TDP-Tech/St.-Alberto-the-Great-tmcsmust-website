@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container col-md-6 mt-5 mb-2">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text"><strong>{{ masomoyadominika.dominika }} , {{ masomoyadominika.date|date:"F d, Y" }}</strong> </p>
+            <p class="card-text"> {{ masomoyadominika.somo_la1|safe }}</p>
+            <p class="card-text"> {{ masomoyadominika.somo_la2|safe }}</p>
+            <p class="card-text"> {{ masomoyadominika.injili|safe }}</p>
+            <a href="{% url 'masomoya-dominika-list' %}" class="mb-2 btn btn-primary">Back to MasomoyaDominika List</a>
+            {% if user.is_staff %}
+                <a href="{% url 'masomoya-dominika-update' masomoyadominika.pk %}" class="mb-2 btn btn-secondary">Edit</a>
+                <form action="{% url 'masomoya-dominika-delete' masomoyadominika.pk %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="mb-2 btn btn-danger">Delete</button>
+                </form>
+                {% else %}
+                <div class="d-flex justify-content-center">
+                    <div class="alert alert-danger col-md-5" role="alert">
+                      You do not have permission to edit this article.
+                    </div>
+                  </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            {% if user.profile %}
+                {% comment %} Redirect to edit profile page if user has a profile {% endcomment %}
+                {% with user.profile as profile %}
+                    {% url 'profile-update' profile.pk as edit_profile_url %}
+                    <script>window.location.href = "{{ edit_profile_url }}";</script>
+                {% endwith %}
+            {% else %}
+                <h2 class="text-center">Create Profile</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary btn-block mt-3">Submit</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

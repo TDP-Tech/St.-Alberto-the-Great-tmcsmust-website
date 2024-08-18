@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Member Transaction</title>
+</head>
+
+<body>
+    {% if user.is_authenticated and user.is_staff and user.is_mhazini_karismatiki %}
+    <div class="container">
+        <h1>Edit Member Transaction</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Save Changes</button>
+        </form>
+    </div>
+    {% else %}
+    <div class="container">
+        <h2 class="mt-5 text-center">Access Denied. You must be logged in as staff with appropriate permissions.</h2>
+    </div>
+    {% endif %}
+</body>
+
+</html>
+
+{% endblock content %}

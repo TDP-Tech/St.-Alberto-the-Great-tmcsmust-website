@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5 col-md-3">
+    <p class="text-center" style="font-size: 29px;">Committee Member Details</p>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="text-center">{{ committee_member.jina_la_kiongozi }}</h5>
+        </div>
+        <div class="card-body d-flex flex-column align-items-center">
+            <img src="{{ committee_member.picha_ya_kiongozi.url }}" alt="Committee Member Image" class="img-fluid mb-3" style="max-width: 300px;">
+            <div class="text-left">
+                <p class="card-text"><strong>Position:</strong> {{ committee_member.nafasi_ya_uongozi }}</p>
+                <p class="card-text"><strong>Course:</strong> {{ committee_member.kozi_anayosoma }}</p>
+                <p class="card-text"><strong>Phone Number:</strong> +{{ committee_member.phone_number }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

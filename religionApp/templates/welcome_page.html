@@ -1,0 +1,1108 @@
+{% extends 'base.html' %}
+<!-- load bootstrap4 -->
+{% load static %}
+    {% block content %}
+    <style>
+        body, html {
+            overflow-x: hidden;
+        }
+        
+        body {
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            max-width: 100%;
+            font-family: 'Hind', sans-serif;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-align: center;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-get-started {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-services {
+            background-color: #FF5722;
+            color: white;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                visibility: hidden;
+            }
+
+            50% {
+                visibility: visible;
+            }
+        }
+
+        .blink {
+            animation: blink 1s steps(1) infinite;
+        }
+
+        .blink-color {
+            color: #0de27f;
+        }
+
+        .about-hero {
+            margin: 0 auto;
+            background-color: #2268e2;
+            text-align: left;
+        }
+
+        .about-hero-h1 {
+            text-align: center;
+        }
+
+        .p-font {
+            font-size: 25px;
+        }
+
+        .social-feeds {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .post img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .post-content {
+            margin-top: 10px;
+        }
+
+        .post-actions {
+            margin-top: 10px;
+        }
+
+        .card-body {
+            color: black;
+        }
+
+        .rounded-circle {
+            width: 400px;
+            height: 370px;
+        }
+
+        .animate-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: revealText 5s steps(40) forwards;
+        }
+
+        @keyframes revealText {
+            to {
+                width: 100%;
+            }
+        }
+
+        .imagesize {
+            height: 350px;
+            width: 350px;
+        }
+
+        .slides {
+            color: black;
+        }
+
+        .card-img-top {
+            border-radius: 50%;
+            margin: auto;
+            padding-top: 9px;
+            width: 190px;
+            height: 200px;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .paragraph {
+            font-size: 25px;
+        }
+
+        .paragraph-card {
+            font-size: 25px;
+        }
+
+        .video {
+            padding-top: 10px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            max-width: 100%;
+        }
+
+        .vision-card {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(1, 240, 137, 0.3);
+            text-align: left;
+        }
+
+        .vision-card h2 {
+            color: #00d4ff;
+            font-family: Verdana;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .vision-card p {
+            font-size: 25px;
+            color: #2d2f77;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .vision-card p:before {
+            content: " ";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            position: absolute;
+            left: 0px;
+            top: 8px;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .vision-card p:after {
+            content: "→";
+            color: #e2f109;
+            font-size: 15px;
+            position: absolute;
+            left: 2px;
+            top: 6px;
+        }
+
+        .vision-card {
+            position: relative;
+        }
+
+        .team-thumb {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .team-thumb-img {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            margin-top: 1px;
+        }
+
+        .team-thumb>img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .team-thumb .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            content: "";
+            background: rgba(0, 253, 224, 0.7);
+            opacity: 0;
+            transition: all ease-in-out 0.3s;
+        }
+
+        .vision-card:hover .overlay {
+            opacity: 1;
+        }
+
+        .pb20 {
+            padding-bottom: 15px;
+        }
+
+        .pt100 {
+            padding-top: 30px;
+        }
+
+        .pb20 h3 {
+            color: green;
+        }
+
+        .text-grey {
+            color: gray;
+            font-size: 25px;
+        }
+
+        .title-grey {
+            color: green;
+            font-size: 28px;
+        }
+
+
+        .service-mt20 {
+            margin-top: 60px;
+        }
+
+        .img-card-item {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            padding: 0 20px;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            opacity: 0;
+        }
+
+        .img-card-item:hover .item-caption {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .h4-font {
+            font-size: 16px;
+            padding-top: 205px;
+            padding-bottom: 95px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 100px;
+            height: 30px;
+            background-size: 100%;
+        }
+
+        .carousel-control-prev {
+            left: 50px;
+        }
+
+        .carousel-control-next {
+            right: 50px;
+        }
+
+        .pb100 {
+            padding-bottom: 100px;
+        }
+
+        .pt100 {
+            padding-top: 60px;
+        }
+
+        [data-overlay-dark],
+        [data-overlay-light],
+        [data-overlay-color] {
+            position: relative;
+        }
+
+        .parallax {
+            overflow: hidden;
+        }
+
+        .connected-icons {
+            list-style: none;
+            padding: 0;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        ul {
+            display: block;
+            margin-bottom: 10px;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+
+        .connected-icons li {
+            display: inline-block;
+            padding: 10px 26px;
+        }
+
+        li {
+            text-align: -webkit-match-parent;
+        }
+
+        ul li {
+            color: #888;
+            line-height: 32px;
+            font-weight: 300;
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        #footer {
+            color: #888;
+            font-size: 14px;
+            background: #111;
+            padding: 20px 0;
+        }
+
+        #footer .footer-top {
+            padding: 30px 0;
+            background: #1e1e1e;
+        }
+
+        #footer .footer-top h4 {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            padding-bottom: 12px;
+        }
+
+        #footer .footer-top .footer-contact,
+        #footer .footer-top .footer-links {
+            margin-bottom: 30px;
+        }
+
+        #footer .footer-top .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #footer .footer-top .footer-links ul li {
+            padding: 10px 0;
+        }
+
+        #footer .footer-top .footer-links ul i {
+            padding-right: 10px;
+            color: #888;
+        }
+
+        #footer .footer-links ul li a {
+            color: #888;
+        }
+
+        .col-lg-2,
+        .col-md-6 {
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        h4 {
+            letter-spacing: 0px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            line-height: 1.1;
+            display: block;
+            margin-block-start: 1.33em;
+            margin-block-end: 1.33em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Raleway', sans-serif;
+        }
+
+        /* FOOTER */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        footer {
+            background-color: #373636;
+            padding: 20px 0;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            margin-bottom: -20px;
+        }
+
+        .footer-section {
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-section ul li a {
+            color: gray;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            margin-bottom: -20px;
+        }
+
+        .blink-icon {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            display: inline-block;
+            animation: blink-animation 1s infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes blink-animation {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .quote-container {
+            margin-top: 50px;
+            background-color: #a0c5fd;
+            /* Light gray background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .quote {
+            font-size: 24px;
+            font-style: italic;
+            text-align: center;
+            color: #fff;
+            /* Dark text color */
+        }
+
+
+
+        .container-group-together {
+            max-width: 1610px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .card-item {
+            background: #fff;
+            padding: 26px;
+            border-radius: 8px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.04);
+            list-style: none;
+            cursor: pointer;
+            text-decoration: none;
+            border: 2px solid transparent;
+            transition: border 0.5s ease;
+            border-style: dotted;
+        }
+
+        .card-item:hover {
+            border: 2px solid #1e92df;
+        }
+
+        .card-item img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .card-item span {
+            display: inline-block;
+            background: #d1e8ff;
+            margin-top: 32px;
+            padding: 8px 15px;
+            font-size: 0.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .card-item h3 {
+            color: #000;
+            font-size: 1.438rem;
+            margin-top: 28px;
+            font-weight: 300;
+        }
+
+        .card-item .arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-35deg);
+            height: 40px;
+            width: 40px;
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 50%;
+            margin-top: 40px;
+            transition: 0.2s ease;
+        }
+
+        .card-item:hover .arrow {
+            background: #0a7de9;
+            color: #fff;
+            border: 1px solid #0a7de9;
+        }
+
+        @media (max-width: 1200px) {
+            .card-item {
+                padding: 15px;
+            }
+        }
+
+        @media screen and (max-width: 980px) {
+            .container {
+                margin: 0 auto;
+            }
+        }
+
+        /* LIST OF SERVICES */
+        /* Reduce margin/padding of the row to decrease space */
+        .row.text-center.service-mt20 {
+            margin-bottom: 0;
+            /* Remove bottom margin */
+            padding-bottom: 0;
+            /* Remove bottom padding */
+        }
+
+        /* Adjust the top margin of the card list to remove space */
+        .card-list-service {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1310px;
+            margin: 50px auto 0;
+            /* Adjust top margin to reduce space */
+            padding: 50px;
+            /* Adjust padding as needed */
+            gap: 50px;
+        }
+
+        .card-list-service .card-item-service {
+            background: #fff;
+            padding: 20px;
+            /* Reduced padding to decrease card height */
+            border-radius: 8px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.04);
+            list-style: none;
+            cursor: pointer;
+            text-decoration: none;
+            border: 2px solid transparent;
+            transition: border 0.5s ease;
+        }
+
+        .card-list-service .card-item-service:hover {
+            border: 2px solid #deeffa;
+        }
+
+        .card-list-service .card-item-service img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .card-list-service span {
+            display: inline-block;
+            background: #2867a7;
+            margin-top: 24px;
+            /* Reduced margin to decrease card height */
+            padding: 8px 15px;
+            font-size: 0.75rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .card-list-service .uimbaji {
+            background-color: #d6f8d6;
+            color: #205c20;
+        }
+
+        .card-list-service .visakramenti {
+            background-color: #d1e8ff;
+            color: #2968a8;
+        }
+
+        .card-list-service .Mapambo {
+            background-color: #d6f8d6;
+            color: #205c20;
+        }
+
+        .card-list-service .Ususi {
+            background-color: #d1e8ff;
+            color: #2968a8;
+        }
+
+        .card-list-service .Keki {
+            background-color: #d6f8d6;
+            color: #205c20;
+        }
+
+        .card-list-service .Architect {
+            background-color: #d1e8ff;
+            color: #2968a8;
+        }
+
+        .card-item-service h3 {
+            color: #000;
+            font-size: 1.438rem;
+            margin-top: 20px;
+            /* Reduced margin to decrease card height */
+            font-weight: 300;
+        }
+
+        .card-item-service .arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-35deg);
+            height: 40px;
+            width: 40px;
+            color: #000;
+            border: 1px solid #000;
+            border-radius: 50%;
+            margin-top: 30px;
+            /* Reduced margin to decrease card height */
+            transition: 0.2s ease;
+        }
+
+        .card-list-service .card-item-service:hover .arrow {
+            background: #000;
+            color: #fff;
+        }
+
+        @media (max-width: 1200px) {
+            .card-list-service {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .card-list-service .card-item-service {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-list-service {
+                grid-template-columns: 1fr;
+            }
+
+            .card-list-service .card-item-service {
+                padding: 15px;
+            }
+        }
+    </style>
+
+    <div class="fluid-container">
+        <img src="{% static 'images/st alberto.PNG' %}" style="width: 100%; height: 100%;"
+            alt="Slide 2">
+    </div>
+
+    <section id="about-card" class="pt100 about-card">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 text-center pb20">
+                    <h3 class="title-grey" style="font-size: 40px; color: green;"><strong>Who we are ?</strong></h3>
+                    <p class="lead text-grey">
+                        <strong>
+                            We are TMCS - MUST (St. Alberto the Great)
+                        </strong>
+                    </p>
+                    <p class="lead text-grey">
+                        “ Empower students with a transformative education that integrates
+                        Christian values, fostering a commitment to justice,
+                        global collaboration, and personal growth, preparing them to
+                        contribute meaningfully to a diverse and interconnected world.”
+                    </p>
+                    <p class="lead text-grey">
+                        “ A vibrant educational community where students are inspired
+                        to excel academically, grow spiritually, and engage purposefully
+                        in creating positive societal change, guided by the
+                        principles of love,justice, and service.”
+                    </p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 mt-2 mb-2">
+                        <div class="video-container">
+                            <img src="{% static 'images/kwaya.jpg' %}" alt="#" style="width: 100%;">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 mt-2 mb-2">
+                        <div class="video-container">
+                            <img src="{% static 'images/happy social life.PNG' %}" alt="#" style="width: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="row text-center service-mt20">
+        <div class="col-md-10 mx-auto">
+            <h3 class="title-grey" id="title-grey" style="font-size: 40px; color: green;"><strong>Our services</strong></h3>
+            <p class="lead text-grey">
+                We believe that our guiding principles of transparency,
+                accountability, and responsiveness are fundamental to
+                delivering exceptional results. These values drive us
+                to enhance our clients' success, foster innovation,
+                and create lasting, positive impacts on the communities we serve.
+            </p>
+
+        </div>
+    </div>
+
+    <div class="card-list-service">
+        <a href="{% url 'kwaya' %}" class="card-item-service">
+            <img src="{% static 'images/kwaya.jpg' %}" alt="Card Image">
+            <span class="uimbaji">Uimbaji na Uinjilishaji</span>
+            <h3>Kwaya ya "Watakatifu Wote TMCS-MUST" inafanya uinjilishaji kwa njia ya nyimbo kupitia mitandao ya
+                kijamii.</h3>
+            <div class="arrow">
+                <i class="fas fa-arrow-right card-icon"></i>
+            </div>
+        </a>
+        <a href="{% url 'mipango-home' %}" class="card-item-service">
+            <img src="{% static 'images/Visakramenti.jpeg' %}" alt="Card Image">
+            <span class="visakramenti">Visakramenti, T-shirt</span>
+            <h3>Kamati ya "MIPANGO NA FEDHA" TMCS-MUST inawaletea huduma ya Visakramenti na T-shirt karibu nawe.</h3>
+            <div class="arrow">
+                <i class="fas fa-arrow-right card-icon"></i>
+            </div>
+        </a>
+        <a href="{% url 'mapambo' %}" class="card-item-service">
+            <img src="{% static 'images/mapambo.jpg' %}" alt="Card Image">
+            <span class="Mapambo">Mapambo, Sherehe</span>
+            <h3>Kamati ya "USAFI, AFYA na MAPAMBO" inatoa huduma ya Kukodi Vitambaa, Kupamba Kumbi za Sherehe, Mahafali
+                n.k.</h3>
+            <div class="arrow">
+                <i class="fas fa-arrow-right card-icon"></i>
+            </div>
+        </a>
+        <a href="{% url 'saloon' %}" class="card-item-service">
+            <img src="{% static 'images/Ususi.jpg' %}" alt="Card Image">
+            <span class="Ususi">Ususi (Saloon ya Kike)</span>
+            <h3>Kamati ya "MIPANGO NA FEDHA" inatoa huduma ya Kusuka nywele mitindo aina zote kwa watoto wa Kike.</h3>
+            <div class="arrow">
+                <i class="fas fa-arrow-right card-icon"></i>
+            </div>
+        </a>
+        <a href="{% url 'keki' %}" class="card-item-service">
+            <img src="{% static 'images/Keki.jpg' %}" alt="Card Image">
+            <span class="Keki">Utengenezaji wa Keki</span>
+            <h3>Tunatoa huduma za Utengenezaji wa "KEKI" za Birthday, Sherehe na Harusi, weka oda yako mapema.</h3>
+            <div class="arrow">
+                <i class="fas fa-arrow-right card-icon"></i>
+            </div>
+        </a>
+        <a href="{% url 'architecture' %}" class="card-item-service">
+            <img src="{% static 'images/Architect design.jpg' %}" alt="Card Image">
+            <span class="Architect">Architect, Building Design</span>
+            <h3>Tunatoa huduma za Uchoraji wa Ramani ya Majengo "ARCHITECTURAL DESIGNS , BOQ".</h3>
+            <div class="arrow">
+                <i class="fas fa-arrow-right card-icon"></i>
+            </div>
+        </a>
+    </div>
+
+    <div class="container container-group-together mt-2">
+        <h3 style="font-size: 40px; color: green;"><strong>"Readings, Saints life, and Spiritual Practices"</strong>
+        </h3>
+        <div class="card-list">
+            <a href="{% url 'masomoya-dominika-list' %}" class="card-item">
+                <img src="{% static 'images/masomo ya Misa.PNG' %}" alt="Image description">
+                <span class="vitabu-mbalimbali">MASOMO YA MISA TAKATIFU KILA JUMAPILI</span>
+                <h3>Masomo Misa Takatifu, Somo la kwanza, la pili na Injili kila Jumapili</h3>
+                <div class="arrow">
+                    <i class="fas fa-arrow-right card-icon"></i>
+                </div>
+            </a>
+            <a href="{% url 'maswalinamajibu-list' %}" class="card-item">
+                <img src="{% static 'images/maswali&majibu.PNG' %}" alt="Image description">
+                <span class="vitabu-mbalimbali">MASWALI NA MAJIBU KUHUSU IMANI KATOLIKI</span>
+                <h3>Kuza Imani kwa kushiriki Maswali yahusuyo Imani Kanisa Katoliki</h3>
+                <div class="arrow">
+                    <i class="fas fa-arrow-right card-icon"></i>
+                </div>
+            </a>
+            <a href="{% url 'saintlife-list' %}" class="card-item">
+                <img src="{% static 'images/Watakatifu.PNG' %}" alt="Image description">
+                <span class="vitabu-mbalimbali">MAISHA YA WATAKATIFU MBALIMBALI</span>
+                <h3>Tafakari ya Maisha na Mafundisho ya Watakatifu wa kila siku</h3>
+                <div class="arrow">
+                    <i class="fas fa-arrow-right card-icon"></i>
+                </div>
+            </a>
+            <a href="{% url 'rozary-list' %}" class="card-item">
+                <img src="{% static 'images/Rozary.PNG' %}" alt="Image description">
+                <span class="vitabu-mbalimbali">MKUSANYIKO WA ROZARI MBALIMBALI TAKATIFU</span>
+                <h3>Mkusanyiko wa Rozari Takatifu mbalimbali, Tusali kwa Imani</h3>
+                <div class="arrow">
+                    <i class="fas fa-arrow-right card-icon"></i>
+                </div>
+            </a>
+            <a href="{% url 'novena-list' %}" class="card-item">
+                <img src="{% static 'images/rozary.PNG' %}" alt="Image description">
+                <span class="vitabu-mbalimbali">MKUSANYIKO WA NOVENA MBALIMBALI</span>
+                <h3>Mkusanyiko wa Novena Takatifu ya Watakatifu mbali mbali</h3>
+                <div class="arrow">
+                    <i class="fas fa-arrow-right card-icon"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- color: #0de27f -->
+    <div class="container mt-5">
+        <h3 style="font-size: 40px; color: green;"><strong>Latest news and Upcoming events</strong></h3>
+        <div class="row" id="newslist">
+            {% for news_item in news_items %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="news-item">
+                            <div class="blink-icon"></div>
+                            <h5 class="card-title"><i class="fas fa-volume-up" style="color: #63E6BE;"></i> {{ news_item.title }}</h5>
+                            <p class="card-text" id="newsContent">{{ news_item.description }}</p>
+                            <a href="#" class="btn btn-link" data-toggle="collapse"
+                                data-target="#collapseNews{{ news_item.pk }}" aria-expanded="false"
+                                aria-controls="collapseNews{{ news_item.pk }}">Read more</a>
+                            <div class="collapse" id="collapseNews{{ news_item.pk }}">
+                                <p>{{ news_item.extended_description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:3 and not forloop.last %}
+        </div>
+        <div class="row">
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Todays Quotes -->
+    <div class="container col-md-6 mb-3">
+        <div class="row quote-container">
+            <div class="text-center">
+                <h2 class="text-center mb-4">{{ date }} Today's Quote</h2>
+                {% for quote in quotes %}
+                <div class="quote">
+                    <h3>&#x275D;{{ quote.text_quote }}&#x275E;</h3>
+                    <p>- {{ quote.author_of_quote }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- events section -->
+    <div id="quoteCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+            {% for event in events %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="container col-md-12 pt-2 font-fm" style="background-color: #f4f1f1;">
+                    <h1 class="text-center text-info mb-4">&ldquo;Upcoming Events&rdquo;</h1>
+                    <section class="services-section"
+                        style="color: #000000; display: flex; flex-direction: row-reverse;">
+                        <div class="row col-md-12 align-items-center"> <!-- Added align-items-center -->
+                            <div class="col-12 col-md-5">
+                                <div class="card-body">
+                                    <p class="paragraph-cards col-md-8 text-center pb-4"
+                                        style="font-size: 40px; text-align: left; padding-top: 26px; background-color: #00d4ff; color: white; border-radius: 20px;">
+                                        {{ event.event_date }}</p>
+                                    <p class="paragraph-cards"
+                                        style="font-size: 35px; text-align: left; padding-top: 26px;"> "{{ event.title }}" 
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-7">
+                                <div class="team-thumb-img">
+                                    <img src="{{ event.image.url }}" alt="event image"
+                                        style="width: 100%; height: 100%; object-fit: cover; max-width: 350px; max-height: 500px; margin-bottom: 0; ">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#quoteCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#quoteCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <section id="about-card" class="pt100 about-card">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-9 text-center pb20 pb20-main">
+                    <h3 style="font-size: 40px;"><strong>Our main areas of focus</strong></h3>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 mt-2 mb-2">
+                        <div class="video-container">
+                            <p style="color: #00d4ff; font-size: 40px;">Education</p>
+                            <img src="{% static 'images/study.PNG' %}" style="width: 100%; height: 100%;">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 mt-2 mb-2">
+                        <div class="video-container">
+                            <p style="color: #00d4ff; font-size: 40px;">Social Life</p>
+                            <img src="{% static 'images/happy social life.PNG' %}" style="width: 100%; height: 100%;">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 mt-2 mb-2">
+                        <div class="video-container">
+                            <p style="color: #00d4ff; font-size: 40px;">Entertainment</p>
+                            <img src="{% static 'images/entartainment.PNG' %}" style="width: 100%; height: 100%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section data-overlay-dark="6" class="parallax pt100 pb100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-8 mr-auto text-center">
+                    <h2 style="color: green;;"><strong> Achievements &amp; Awards</strong></h2>
+                    <p class="lead"></p>
+                </div>
+                <div class="col-md-12">
+                    <ul class="connected-icons social-icons">
+                        {% for achievement in achievements %}
+                        <li class="connected-icon">
+                            <a target="_blank" href="{{ achievement.link }}">
+                                {% if achievement.position_winning == 1 %}
+                                <i style="color: gold;" class="fa-solid fa-trophy fa-6x"></i>
+                                {% elif achievement.position_winning == 2 %}
+                                <i style="color: #B8860B;" class="fa-solid fa-medal fa-6x"></i>
+                                {% elif achievement.position_winning == 3 %}
+                                <i style="color: #c9c5bc;" class="fa-solid fa-medal fa-6x"></i>
+                                {% else %}
+                                <i class="fa-solid fa-handshake fa-6x" style="color: #8ce8e2;"></i>
+                                {% endif %}
+                                <h5><b>{{ achievement.winner_name }}</b></h5>
+                                <h5>{{ achievement.title }}</h5>
+                                <p>{{ achievement.zone }} ({{ achievement.year }})</p>
+                                <h5>WINNER No: {{ achievement.position_winning }}</h5>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container mb-2">
+        <div class="row justify-content-center">
+            <div class="col-md-8" id="feedbacks">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Your Feedback matters, Tell Us your Opinions, Suggestions and
+                            Recommendations</h3>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ feedback_form.as_p }}
+                            <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+    {% endblock content %}

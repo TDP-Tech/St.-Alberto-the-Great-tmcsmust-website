@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2 class="mt-4 mb-4">Jumla ya Mauzo/Mapato ya Juma</h2>
+            {% if mauzo_zote %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Date</th>
+                            <th>Mauzo Tshirt</th>
+                            <th>Visakramenti</th>
+                            <th>Vipeperushi</th>
+                            <th>Mapato Saloon</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mauzo in mauzo_zote %}
+                        <tr>
+                            <td>{{ mauzo.day }}</td>
+                            <td>{{ mauzo.date }}</td>
+                            <td>{{ mauzo.mauzo_tshirt|intcomma }}</td>
+                            <td>{{ mauzo.mauzo_visakramenti|intcomma }}</td>
+                            <td>{{ mauzo.mauzo_vipeperushi|intcomma }}</td>
+                            <td>{{ mauzo.mapato_saloon|intcomma }}</td>
+                            <td>
+                                <a href="{% url 'mauzo-update' mauzo.pk %}"> <i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
+                                <a href="{% url 'mauzo-delete' mauzo.pk %}" class="delete-mauzo"> <i class="fa-solid fa-trash-can mx-2" style="color: #ec0404;"></i></a>                      
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="text-center">
+                    <p>No Mauzo records found.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    {% if user.is_authenticated and user.is_staff %}
+    <div class="col-md-7 mx-auto">
+        <h2 class="mb-4">Create Rozary</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-primary mb-2" type="submit">Create Rozary</button>
+                <a class="btn btn-secondary" href="{% url 'rozary-list' %}">Back to Rozaries List</a>
+            </div>
+        </form>
+    </div>
+    {% else %}
+    <div class="alert alert-warning mt-5" role="alert">
+        Sorry, you do not have permission to create Rozary.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

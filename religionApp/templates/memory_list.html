@@ -1,0 +1,22 @@
+<!-- memory_list.html -->
+{% extends 'base.html' %}
+{% block content %}
+  <h2>TMCS Memories</h2>
+  <ul>
+    {% for memory in memories %}
+      <li>
+        <a href="{% url 'memory-detail' pk=memory.pk %}">{{ memory.image }}</a>
+        <a href="{% url 'memory-update' pk=memory.pk %}">Edit</a>
+        <a href="{% url 'memory-delete' pk=memory.pk %}">Delete</a>
+        
+        <!-- Display all images for the memory -->
+        <div>
+          {% for image in memory.images.all %}
+            <img src="{{ image.url }}" alt="Memory Image" style="max-width: 100%; height: auto;">
+          {% endfor %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'memory-create' %}">Create New Memory</a>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2 class="mt-4 mb-4">Jumla ya Matumizi ya Juma</h2>
+            {% if matumizi_zote %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Date</th>
+                            <th>Matumizi Tshirt</th>
+                            <th>Visakramenti</th>
+                            <th>Vipeperushi</th>
+                            <th>Matumizi Saloon</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for matumizi in matumizi_zote %}
+                        <tr>
+                            <td>{{ matumizi.day }}</td>
+                            <td>{{ matumizi.date }}</td>
+                            <td>{{ matumizi.matumizi_tshirt|intcomma }}</td>
+                            <td>{{ matumizi.matumizi_visakramenti|intcomma }}</td>
+                            <td>{{ matumizi.matumizi_vipeperushi|intcomma }}</td>
+                            <td>{{ matumizi.matumizi_saloon|intcomma }}</td>
+                            <td>
+                                <a href="{% url 'matumizi-update' matumizi.pk %}"> <i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
+                                <a href="{% url 'matumizi-delete' matumizi.pk %}" class="delete-matumizi"> <i class="fa-solid fa-trash-can mx-2" style="color: #ec0404;"></i></a>                      
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="text-center">
+                    <p>No Matumizi records found.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

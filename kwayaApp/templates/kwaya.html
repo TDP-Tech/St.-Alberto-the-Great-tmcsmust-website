@@ -1,0 +1,181 @@
+<!-- kwaya.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body, html {
+        overflow-x: hidden;
+    }
+
+    /* Adjust font size for smaller screens */
+    @media screen and (max-width: 768px) {
+        .txt-overlay {
+            font-size: 24px; /* Decrease font size for smaller screens */
+        }
+    }
+
+    /* Style for the container of logos */
+    .logo-container {
+        white-space: nowrap; /* Prevent logos from wrapping to new lines */
+        padding: 20px 0; /* Add padding for better aesthetics */
+        overflow: hidden; /* Hide any overflowing content */
+    }
+
+    /* Style for each logo */
+    .logo-item {
+        display: inline-block; /* Display logos in a row */
+        margin-right: 20px; /* Add margin between logos */
+        max-height: 100px; /* Set maximum height for the logos */
+        max-width: 150px; /* Set maximum width for the logos */
+        height: auto; /* Ensure aspect ratio is maintained */
+        animation: slide 10s linear infinite; /* Add animation for sliding */
+    }
+
+    /* Animation for sliding */
+    @keyframes slide {
+        0% {
+            transform: translateX(0); /* Start position */
+        }
+        100% {
+            transform: translateX(-100%); /* End position (slide to the left) */
+        }
+    }
+
+    /* Increase font size for card text */
+    .card-text {
+        font-size: 16px;
+    }
+
+    /* Set equal height for both cards */
+    .card {
+        height: 100%;
+    }
+
+    /* Gradient button styles */
+    .btn-gradient {
+        background: linear-gradient(to right, #00a2ff, #04f755, #09eaf1);
+        color: #fff; /* Text color */
+        border: none;
+    }
+
+    /* Hover effect for gradient buttons */
+    .btn-gradient:hover {
+        opacity: 0.9;
+    }
+
+    .card-title {
+        font-size: 28px;
+    }
+
+    /* CSS for arrow beating animation */
+    @keyframes beat {
+        0% {
+            transform: rotate(0);
+        }
+        50% {
+            transform: rotate(20deg);
+        }
+        100% {
+            transform: rotate(0);
+        }
+    }
+
+    .beating {
+        animation: beat 1s infinite;
+    }
+
+    /* Responsive video iframe */
+    .responsive-video {
+        width: 100%;
+        height: 600px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .responsive-video {
+            height: 300px; /* Adjust height for small screens */
+        }
+
+        .col-sm-8 {
+            max-width: 85%; /* Adjust width for small screens */
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        .responsive-video {
+            height: 200px; /* Further adjust height for extra small screens */
+        }
+
+        .col-xs-10 {
+            max-width: 97%; /* Adjust width for extra small screens */
+        }
+    }
+
+    /* Center the last two cards and limit their maximum width */
+    .card-container {
+        max-width: 900px; /* Adjust max width as needed */
+        margin: 0 auto; /* Center the cards */
+    }
+</style>
+
+<!-- YouTube Video Section -->
+<div class="row mt-3 justify-content-center">
+    <div class="col-md-10 col-sm-8 col-xs-10">
+        <!-- Adjust the width using Bootstrap grid classes -->
+        {% if latest_video %}
+        <iframe class="responsive-video" src="{{ latest_video.embed_code }}" frameborder="0" allowfullscreen></iframe>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Four Videos in One Row -->
+<div class="row mt-5 mx-2 my-2">
+    {% for video in videos %}
+    <div class="col-md-3">
+        <iframe width="100%" height="200" src="{{ video.embed_code }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- View more and Subscribe Section -->
+<div class="row mt-5 justify-content-center">
+    <div class="col-md-auto mb-2 mb-md-0 text-center">
+        <!-- Add margin bottom for small devices -->
+        <a href="https://www.youtube.com/@KwayaYaWatakatifuWoteTMCS-Must/videos" class="btn btn-primary btn-lg">View more videos <i class="fas fa-arrow-right beating"></i></a>
+    </div>
+    <div class="col-md-auto text-center">
+        <a href="https://www.youtube.com/@KwayaYaWatakatifuWoteTMCS-Must" class="btn btn-danger btn-lg">Click to Subscribe <i class="fas fa-duotone fa-bell fa-beat fa-shake" style="color: #14f0e1;"></i></a>
+    </div>
+</div>
+
+<!-- Bootstrap Cards for Praising God and Support Section -->
+<div class="row mt-5 justify-content-center card-container">
+    <!-- Card for Support Section -->
+    <div class="col-md-10 mb-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Support Us</h5>
+                <p class="card-text font-size">If you enjoy our content and wish to see it thrive, consider supporting us. Your generosity fuels our mission and helps us spread the joy of music and praise.</p>
+                <div class="card-text mt-4">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 mb-2 mb-md-0">
+                            <p style="color: #f59714; font-size: 22px;">MOBILE MONEY</p>
+                            <p style="color: #f59714; font-size: 22px;">+255 788 690 903</p>
+                            <p style="color: #f59714; font-size: 22px;"> <strong> NAME:</strong> MAENDELEO YA TMCS MUST</p>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <p style="color: #f59714; font-size: 22px;">NMB BANK ACCOUNT</p>
+                            <p style="color: #f59714; font-size: 22px;">408 100 773 95</p>
+                            <p style="color: #f59714; font-size: 22px;"> <strong> NAME:</strong> MAENDELEO YA TMCS MUST</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="card-text mt-4">
+                    <i class="fas fa-hand-holding-dollar fa-3x" style="color: #15c121; margin-right: 10px;"></i>
+                </p>
+                <a href="#" class="btn btn-gradient col-md-6">Donate Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container col-md-7 pb-5">
+    <h2 style="text-align: center; padding: 10px;"><strong>HISTORIA YA MAISHA YA {{ saint.name_of_saint }}</strong> </h2>
+    <img src="{{ saint.image.url }}" alt="{{ saint.name_of_saint }} Image" style="max-width: 100%; height: auto;">
+    <p class="pt-5"><strong></strong> {{ saint.biography | safe}}</p>
+    <br>
+    {% if user.is_authenticated and user.is_staff %}
+    <a class="btn btn-primary" href="{% url 'saintlife-update' pk=saint.pk %}">Update Saint</a>
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'saintlife-list' %}">Back to saint List</a>
+    <a href="{% url 'saintlife-pdf-download' pk=saint.pk %}" class="btn btn-danger">Download PDF</a>
+  </div>
+{% endblock %}
+

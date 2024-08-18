@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+<style>
+    .address {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .address p {
+        margin: 5px 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .table tbody tr td {
+        padding: 5px;
+        font-size: 14px;
+    }
+</style>
+
+<div class="container col-12">
+    <h2 class="text-center mt-5">JUMUIYA YA WANAFUNZI WAKATOLIKI WA VYUO VIKUU NA VYA KATI TANZANIA (TMCS-MUST)</h2>
+    <div class="row mt-4 justify-content-center">
+        <div class="col-3">
+            <div class="address">
+                <p>JIMBO KUU KATOLIKI LA MBEYA,</p>
+                <p>S.L.P 170,</p>
+                <p>MBEYA</p>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="address">
+                <img src="{% static 'images/saint alberto the great logo.jpeg' %}" alt="Your Logo" width="100px">
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="address">
+                <p>TMCS TAWI LA MUST,</p>
+                <p>S.L.P 131,</p>
+                <p>MBEYA</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="text-center mt-5" style="font-size: 20px;"> RIPORT YA MAPATO NA MATUMIZI YA KAMATI YA MIPANGO NA FEDHA <br> KUANZIA MWEZI JANUARY 2023 MPAKA DECEMBER 2024</p>
+
+<div class="container col-md-8">
+    <div class="container col-md-12 mb-5">
+        <h3 class="text-center">1.0 MAPATO VISAKAMENTI, VIPEPERUSHI & T-SHIRT.</h3>
+        {% if mauzo_data %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>KAMATI</th>
+                    <th>UPATIKANAJI</th>
+                    <th>TAREHE</th>
+                    <th>MAELEZO</th>
+                    <th>KIASI</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mauzo in mauzo_data %}
+                <tr>
+                    {% if forloop.first %}
+                    <td rowspan="{{ rowspan_value }}">KAMATI YA MIPANGO NA FEDHA</td>
+                    <td rowspan="{{ rowspan_value }}">VISAKAMENTI, <br> VIPEPERUSHI, <br> T-SHIRT</td>
+                    {% endif %}
+                    <td rowspan="3">{{ mauzo.date }}</td>
+                    <td>Visakramenti</td>
+                    <td>{{ mauzo.mauzo_visakramenti|intcomma }}</td>
+                </tr>
+                <tr>
+                    <td>Vipeperushi</td>
+                    <td>{{ mauzo.mauzo_vipeperushi|intcomma }}</td>
+                </tr>
+                <tr>
+                    <td>T-shirt</td>
+                    <td>{{ mauzo.mauzo_tshirt|intcomma }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3" rowspan="3"class="text-center px-5 pt-5"></td>
+                    <td> <b> Jumla ya mapato VISAKRAMENTI </b></td>
+                    <td><b>{{ total_mauzo_visakramenti|intcomma }}/=</b></td>
+                </tr>
+                <tr>
+                    <td> <b> Jumla ya mapato VIPEPERUSHI</b></td>
+                    <td><b>{{ total_mauzo_vipeperushi|intcomma }}/=</b></td>
+                </tr>
+                <tr>
+                    <td> <b> Jumla ya mapato T-SHIRT</b></td>
+                    <td><b>{{ total_mauzo_tshirt|intcomma }}/=</b></td>
+                </tr>
+                <tr>
+                    <td class="text-center text-primary" colspan="4"><b style="font-size: 20px;">JUMLA NDOGO YA MAPATO VISAKAMENTI, VIPEPERUSHI & T-SHIRT</b></td>
+                    <td class="text-start text-primary" colspan="1"><b style="font-size: 20px;">{{ jumla_ya_mauzo_yote|intcomma }}/=</b></td>
+                </tr>
+            </tbody>
+        </table>
+        {% else %}
+            <p class="text-center">No data available for MAPATO VISAKAMENTI, VIPEPERUSHI, T-SHIRT.</p>
+        {% endif %}
+    </div>
+    
+    <div class="container col-md-12 mb-5">
+        <h3 class="text-center">2.0 MAPATO SALOON.</h3>
+        {% if mauzo_data %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>KAMATI</th>
+                    <th>UPATIKANAJI</th>
+                    <th>TAREHE</th>
+                    <th>KIASI</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mauzo in mauzo_data %}
+                <tr>
+                    {% if forloop.first %}
+                    <td rowspan="{{ rowspan_value_saloon }}">KAMATI YA MIPANGO NA FEDHA</td>
+                    <td rowspan="{{ rowspan_value_saloon }}">SALOON</td>
+                    {% endif %}
+                    <td >{{ mauzo.date }}</td>
+                    <td >{{ mauzo.mapato_saloon|intcomma }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td class="text-center text-primary" colspan="3"><b style="font-size: 20px;">JUMLA NDOGO YA MAPATO SALOON</b></td>
+                    <td class="text-start text-primary" colspan="1"><b style="font-size: 20px;">{{ total_mapato_saloon|intcomma }}/=</b></td>
+                </tr>
+            </tbody>
+        </table>
+        {% else %}
+            <p class="text-center">No data available for MAPATO SALOON.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

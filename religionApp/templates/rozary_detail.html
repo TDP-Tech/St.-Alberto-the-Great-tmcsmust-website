@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container col-md-7 pb-5">
+    <h2 style="text-align: center; padding: 10px;"><strong>{{ rozary.rozary_name }}</strong> </h2>
+    <img src="{{ rozary.rozary_image.url }}" alt="{{ rozary.rozary_name }} Image" style="max-width: 100%; height: auto;">
+    <p class="pt-5"> {{ rozary.description | safe}}</p>
+    <br>
+    {% if user.is_authenticated and user.is_staff %}
+    <a class="btn btn-primary" href="{% url 'rozary-update' pk=rozary.pk %}">Update rozary</a>
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'rozary-list' %}">Back to rozary List</a>
+    <a href="{% url 'rozary-pdf-download' pk=rozary.pk %}" class="btn btn-danger">Download PDF</a>
+  </div>
+{% endblock %}

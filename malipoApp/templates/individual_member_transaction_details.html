@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<style>
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        .print-section, .print-section * {
+            visibility: visible;
+        }
+        .print-section {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .print-button {
+            display: none;
+        }
+    }
+    .btnright{
+        float: right;
+    }
+    .hidebutton {
+        display: none;
+    }
+    @media screen {
+        .hidebutton {
+            display: inline-block;
+        }
+    }
+    .h-al{
+        text-align: start;
+    }
+    .signature-section {
+        line-height: 0.5; /* Adjust this value as needed */
+    }
+    .stamp-image{
+        width: 100px;
+    }
+</style>
+    {% if user.is_authenticated and user.is_staff and user.is_mhazini_tawi %}
+    <div class="container print-section col-md-8">
+        <div class="row">
+            <h2 class="text-center mt-5">TANZANIA MOVEMENT OF CATHOLIC STUDENTS (TMCS)</h2>
+            <h2 class="text-center">MBEYA ZONE</h2>
+            <div class="row col-md-12 mt-4">
+                <div class="col-md-4 text-center"> 
+                    <img src="{% static 'images/saint alberto the great logo.jpeg' %}" alt="Your Logo" width="100px">
+                </div>
+                <div class="col-md-4"> 
+                    <div class="address text-center">
+                        <p></p>
+                        <p>P.O.BOX 179, MBEYA</p>
+                        <p>RECEIPT</p>
+                        <p><span class="float-center">{% now "d, M Y" %}</span></p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center"> 
+                    <img src="{% static 'images/saint alberto the great logo.jpeg' %}" alt="Your Logo" width="100px">
+                </div>
+            </div>
+        </div>
+
+        {% if transactions %}
+                {% with middle_initial=transactions.0.member.middle_name|slice:":1" %}
+                {% if middle_initial %}
+                    {% with full_name=transactions.0.member.first_name|upper|add:' '|add:middle_initial|upper|add:'. '|add:transactions.0.member.last_name|upper %}
+                        <p class="h-al text-center">Receipt for {{ full_name }}, {{ transactions.0.member.generate_member_id }} </p>
+                    {% endwith %}
+                {% else %}
+                    {% with full_name=transactions.0.member.first_name|upper|add:' '|add:transactions.0.member.last_name|upper %}
+                        <p class="h-al text-center">{{ transactions.0.member.generate_member_id }} Receipt for {{ full_name }} </p>
+                    {% endwith %}
+                {% endif %}
+                {% endwith %}
+            
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Transaction Type</th>
+                        <th>Amount</th>
+                        <th>Transaction Date</th>
+                        <th>Receiver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                        <tr>
+                            <td>{{ transaction.transaction_type }}</td>
+                            <td>{{ transaction.amount|intcomma }}</td>
+                            <td>{{ transaction.transaction_date }}</td>
+                            <td>{{ transaction.created_by.first_name }}  {{ transaction.created_by.last_name }}</td>
+                        </tr>
+                    {% empty %}
+                        <!-- No transactions available -->
+                        <tr>
+                            <td colspan="4" style="text-align: center">No transactions available for this member.</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <!-- Total amount paid row -->
+                        <td><strong>Total Amount Paid:</strong></td>
+                        <td colspan="2"><strong>{{ total_amount_paid|intcomma }}/=</strong></td>
+                        <td><strong>{% now "d M Y, H:i:s" %}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="signature-section mt-5 mb-4 d-flex justify-content-center align-items-center">
+                <div>
+                    <p class="text-center"><b>{{ mhazini_name|upper }}</b></p>
+                    <p class="text-center">_______________</p>
+                    <p class="text-center">Signature</p>
+                    <p class="text-center">(sahihi ya mpokeaji)</p>
+                </div>
+                <div class="ml-4"> <!-- Adjust margin as needed -->
+                    <div class="stamp-container">
+                        <img src="{% static 'images/stamp.PNG' %}" alt="Stamp" class="stamp-image">
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <!-- Custom response when no transactions available -->
+            <p class="h-al text-center">No transactions available for this member.</p>
+        {% endif %}
+        <a href="{% url 'transaction-list' %}" class="btn btn-primary hidebutton mb-4">Back to Transaction List</a>
+        {% if transactions %}
+        <button class="print-button btn btn-primary col-md-3 btnright mb-4" onclick="window.print()">Print</button>
+        {% endif %}
+    </div>
+    {% else %}
+        <div class="container mt-5 col-md-4 text-center">
+            <div class="alert alert-danger" role="alert">
+                You do not have permission to this page.
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

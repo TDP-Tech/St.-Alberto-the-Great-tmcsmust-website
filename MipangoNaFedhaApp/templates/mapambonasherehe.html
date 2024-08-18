@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .custom-card {
+        border-radius: 15px;
+        border: 2px solid #ddd;
+        overflow: hidden;
+    }
+
+    .custom-card img {
+        border-bottom: 2px solid #ddd;
+    }
+
+    .custom-card .card-title i {
+        margin-right: 8px; /* Space after the icon */
+    }
+</style>
+    <div class="container mt-4">
+        <p class="text-center" style="font-size: 2rem; font-weight: lighter;">
+            Sherehe na Mapambo
+        </p>
+        <div class="row mt-4">
+            <!-- Event Decorations -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/mapambo.jpg' %}" class="card-img-top" alt="Event Decorations">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-calendar-alt" style="color: #2196F3;"></i> Event Decorations
+                        </h5>
+                        <p class="card-text flex-grow-1">We offer a range of event decorations to make your celebration unforgettable. From elegant table settings to grand entrance decorations, we ensure every detail enhances your event’s theme and atmosphere.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Party Planning -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/mapambo1.jpg' %}" class="card-img-top" alt="Party Planning">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-gift" style="color: #FF5722;"></i> Party Planning
+                        </h5>
+                        <p class="card-text flex-grow-1">Our party planning services cover everything from concept to execution. We help you design and organize memorable parties, ensuring every aspect aligns with your vision and exceeds your expectations.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Wedding Planning -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/mapambo2.jpg' %}" class="card-img-top" alt="Wedding Planning">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-ring" style="color: #FFC107;"></i> Wedding Planning
+                        </h5>
+                        <p class="card-text flex-grow-1">Make your wedding day perfect with our comprehensive planning services. We assist with everything from venue selection and theme design to coordination on the big day, ensuring a seamless and beautiful celebration.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Corporate Events -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/mapambo3.jpg' %}" class="card-img-top" alt="Corporate Events">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-briefcase" style="color: #4CAF50;"></i> Corporate Events
+                        </h5>
+                        <p class="card-text flex-grow-1">Our services for corporate events include planning and executing conferences, product launches, and team-building activities. We ensure your corporate events are professional, engaging, and aligned with your company’s objectives.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Birthday Parties -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/mapambo4.jpg' %}" class="card-img-top" alt="Birthday Parties">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-birthday-cake" style="color: #E91E63;"></i> Birthday Parties
+                        </h5>
+                        <p class="card-text flex-grow-1">Celebrate birthdays with style using our customized party solutions. We handle everything from decorations and entertainment to catering, ensuring a fun and memorable birthday experience for all ages.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Themed Parties -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/mapambo5.jpg' %}" class="card-img-top" alt="Themed Parties">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-mask" style="color: #9C27B0;"></i> Themed Parties
+                        </h5>
+                        <p class="card-text flex-grow-1">From tropical luau to vintage glam, our themed party services provide everything needed to transform your event into a unique and immersive experience that aligns with your chosen theme.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

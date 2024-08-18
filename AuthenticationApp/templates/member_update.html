@@ -1,0 +1,26 @@
+<!-- member_update.html -->
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated and user.is_registration_committee %}
+        <h2 class="mt-4 text-primary" style="text-align: center;">Update Member</h2>
+        <hr>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table class="table">
+                {{ form.as_table }}
+            </table>
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6 text-center">
+                        <button class="btn btn-success mb-3" type="submit">Update info</button>
+                        <a class="btn btn-secondary mb-3" href="{% url 'member-list' %}">Cancel Updation</a>
+                    </div>
+                </div>
+            </div>            
+        </form>
+        {% else %}
+            <div class="container">
+                <h2 class="mt-5 text-center">Access Denied. You must be logged in with appropriate permissions.</h2>
+            </div>
+        {% endif %}
+{% endblock %}

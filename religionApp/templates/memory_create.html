@@ -1,0 +1,13 @@
+<!-- create_memory.html -->
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container">
+    <h2>Create New Memory</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Memory</button>
+  </form>
+  <a href="{% url 'memory-list' %}">Back to Memories List</a>
+  </div>
+{% endblock %}

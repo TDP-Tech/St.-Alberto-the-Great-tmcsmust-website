@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 col-md-4">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">{{ news_item.title }}</h1>
+            <p class="card-text">{{ news_item.description }}</p>
+            {% if user.is_authenticated and user.is_staff %}
+            <div class="btn-group col-md-3">
+                <a href="{% url 'news-update' news_item.pk %}" class="btn btn-primary">Edit</a>
+            </div>
+            <div class="btn-group col-md-3">
+                <a href="{% url 'news-delete' news_item.pk %}" class="btn btn-danger">Delete</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

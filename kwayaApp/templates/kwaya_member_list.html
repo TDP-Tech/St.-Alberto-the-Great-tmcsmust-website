@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated and user.is_staff %}
+    {% if user.is_mwenyekiti_kwaya or user.is_katibu_kwaya or user.is_mhazini_kwaya %}
+        <div class="row justify-content-center align-items-center" style="padding-bottom: 20px; padding-top: 20px;">
+            <h2 class="col-md-6 text-center">Members Wanakwaya, Saint Alberto The Great.</h2>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-5">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    {% if kwaya_members %}
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>MEMBER ID</th>
+                                    <th>FIRST NAME</th>
+                                    <th>MIDDLE NAME</th>
+                                    <th>LAST NAME</th>
+                                    <th>COURSE</th>
+                                    <th>PHONE NUMBER</th>
+                                    <th>VOICE</th>
+                                    <th>TALENT</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for member in kwaya_members %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ member.generate_member_id }}</td>
+                                    <td>{{ member.first_name }}</td>
+                                    <td>{{ member.middle_name }}</td>
+                                    <td>{{ member.last_name }}</td>
+                                    <td>{{ member.course }}</td>
+                                    <td>{{ member.namba_ya_mwanafunzi }}</td>
+                                    
+                                    {% if member.id in member_voices %}
+                                        {% for member_id, assignments in member_voices.items %}
+                                            {% if member_id == member.id %}
+                                                {% for assignment in assignments %}
+                                                    <td class="text-center"> <b>
+                                                        {% if assignment.voice == 'Soprano' %}
+                                                            I
+                                                        {% elif assignment.voice == 'Alto' %}
+                                                            II
+                                                        {% elif assignment.voice == 'Tenor' %}
+                                                            III
+                                                        {% elif assignment.voice == 'Bass' %}
+                                                            IV
+                                                        {% endif %}
+                                                    </b>
+                                                    </td>
+                                                    <td>{{ assignment.talent }}</td>
+                                                    <td class="text-center">
+                                                        <a href="{% url 'update-voice-assignment' assignment_id=assignment.id %}"><i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
+                                                        <a href="{% url 'delete-voice-assignment' assignment_id=assignment.id %}"><i class="fa-solid fa-trash-can" style="color: #e22222;"></i></a>
+                                                    </td>
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <td colspan="3">Assign Voice <a href="{% url 'create-voice-assignment' member_id=member.id %}"><i class="fa-solid fa-plus-circle"></i></a></td>
+                                    {% endif %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                    <div class="container">
+                        <p class="mt-5 text-center">No members found in Kwaya</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+    {% else %}
+        <div class="row justify-content-center align-items-center">
+            <h2 class="mt-5 text-center">Access Denied for you, you can't get access until permitted</h2>
+        </div>
+    {% endif %}
+{% else %}
+    <div class="row justify-content-center align-items-center">
+        <h2 class="mt-5 text-center">Access Denied. You must be logged in as staff.</h2>
+    </div>
+{% endif %}
+{% endblock %}

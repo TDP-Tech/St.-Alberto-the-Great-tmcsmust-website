@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .front-template {
+        position: relative;
+        text-align: center;
+        color: white;
+    }
+
+    .front-template img {
+        width: 100%;
+        height: auto;
+        max-height: 60vh;
+        object-fit: cover;
+    }
+
+    .about {
+        font-size: 20px;
+    }
+
+    .team,
+    .story {
+        text-align: center;
+        font-size: 40px;
+    }
+
+    .team-p {
+        text-align: center;
+        font-size: 25px;
+        background-color: aqua;
+    }
+    .add-leaders-link{
+        text-decoration: none;
+    }
+</style>
+
+<div class="front-template pt-2">
+    <img src="{% static 'images/about us.PNG' %}" alt="About Us Image">
+</div>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h3 class="story">Our Story</h3>
+            <p class="about">The Tanzania Movement of Catholic Students (TMCS) was founded in [year], with the aim of
+                providing a platform for Catholic students across Tanzania to come together, share their faith, and
+                engage in various activities that promote personal and spiritual growth.</p>
+            <p class="about">Since its inception, TMCS has grown into a vibrant community, organizing regular meetings,
+                retreats, and social events where students can deepen their understanding of Catholicism, build lasting
+                friendships, and contribute positively to society.</p>
+            <p class="about">Through its various initiatives, TMCS has played a significant role in fostering unity
+                among Catholic students, promoting social justice, and empowering young people to become leaders in
+                their communities.</p>
+            <p class="about">Today, TMCS continues to uphold its mission of nurturing the spiritual, intellectual, and
+                social development of its members, while also serving as a beacon of hope and inspiration for Catholic
+                students across Tanzania.</p>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12">
+                <h3 class="story">Our Mission</h3>
+                <p class="about">“ Empower students with a transformative education that integrates Christian values,
+                    fostering a commitment to justice, global collaboration, and personal growth, preparing them to
+                    contribute meaningfully to a diverse and interconnected world.”</p>
+            </div>
+            <div class="col-md-12">
+                <h3 class="story">Our Vision</h3>
+                <p class="about">“ A vibrant educational community where students are inspired to excel academically,
+                    grow spiritually, and engage purposefully in creating positive societal change, guided by the
+                    principles of love, justice, and service.”</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-12">
+            {% if user.is_authenticated and user.is_staff and user.is_mwenyekiti_tawi %}
+            <a class="add-leaders-link btn btn-primary" href="{% url 'leader-add' %}">Add Leaders</a>
+            {% endif %}
+            <h3 class="team">Our Team</h3>
+    
+            <p class="team-p">TMCS National Leaders:</p>
+            <div class="row">
+                {% for leader in national_leaders %}
+                <div class="col-md-3 mb-4">
+                    <div class="text-center">
+                        <img src="{{ leader.image.url }}" alt="{{ leader.leader_name }}" class="img-fluid rounded-circle mb-2" style="width: 150px;">
+                        <h4>{{ leader.leader_name }}</h4>
+                        <p>{{ leader.leader_position }}</p>
+                        <p>Year: {{ leader.start_year }} - {{ leader.end_year }}</p>
+                        <p>Contact: {{ leader.contact_info }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    
+            <p class="team-p">TMCS Zonal Leaders:</p>
+            <div class="row">
+                {% for leader in zonal_leaders %}
+                <div class="col-md-3 mb-4">
+                    <div class="text-center">
+                        <img src="{{ leader.image.url }}" alt="{{ leader.leader_name }}" class="img-fluid rounded-circle mb-2" style="width: 150px;">
+                        <h4>{{ leader.leader_name }}</h4>
+                        <p>{{ leader.leader_position }}</p>
+                        <p>Year: {{ leader.start_year }} - {{ leader.end_year }}</p>
+                        <p>Contact: {{ leader.contact_info }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    
+            <p class="team-p">TMCS-MUST Leaders:</p>
+            <div class="row">
+                {% for leader in branch_leaders %}
+                <div class="col-md-3 mb-4">
+                    <div class="text-center">
+                        <img src="{{ leader.image.url }}" alt="{{ leader.leader_name }}" class="img-fluid rounded-circle mb-2" style="width: 150px;">
+                        <h4>{{ leader.leader_name }}</h4>
+                        <p>{{ leader.leader_position }}</p>
+                        <p>Year: {{ leader.start_year }} - {{ leader.end_year }}</p>
+                        <p>Contact: {{ leader.contact_info }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

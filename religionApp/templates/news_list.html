@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    a.btnlinkbtn {
+        text-decoration: none;
+    }
+
+    .blink-icon {
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+        animation: blink-animation 1s infinite;
+        margin-right: 10px;
+    }
+
+    @keyframes blink-animation {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+    a.btn-link {
+        text-decoration: none;
+    }
+</style>
+<div class="container mt-5 mb-5">
+    <h2>Latest News</h2>
+    <div class="row">
+        {% for news_item in news_items %}
+        <div class="col-md-3 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="news-item">
+                        <div class="blink-icon"></div>
+                        <h5 class="card-title"><i class="fas fa-volume-up" style="color: #63E6BE;"></i> {{ news_item.title }}</h5>
+                        <p class="card-text" id="newsContent">{{ news_item.description }}</p>
+                        <a href="{% url 'news-detail' news_item.pk %}" class="btn btn-link">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:4 and not forloop.last %}
+        </div>
+        <div class="row">
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

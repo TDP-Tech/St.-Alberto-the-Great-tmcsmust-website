@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Member Registration</title>
+        <style>
+            .text-centre{
+                text-align: center;
+                color: #007bff;
+            }
+        </style>
+    </head>
+    <body>
+        {% if user.is_authenticated and user.is_registration_committee %}
+            <div class="container mt-4">
+                <h2 class="mt-2 text-centre">Register Member</h2>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <hr>
+                    </div>
+                </div>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} text-centre text-danger">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    {% csrf_token %}
+
+                    <!-- Personal Information Section -->
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.first_name.id_for_label }}" class="col-sm-10 col-form-label">{{ form.first_name.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.first_name }}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.middle_name.id_for_label }}" class="col-sm-10 col-form-label">{{ form.middle_name.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.middle_name }}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.last_name.id_for_label }}" class="col-sm-10 col-form-label">{{ form.last_name.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.gender.id_for_label }}" class="col-sm-10 col-form-label">{{ form.gender.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.gender }}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.namba_ya_mwanafunzi.id_for_label }}" class="col-sm-10 col-form-label">{{ form.namba_ya_mwanafunzi.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.namba_ya_mwanafunzi }}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.email.id_for_label }}" class="col-sm-10 col-form-label">{{ form.email.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.namba_ya_mzazi.id_for_label }}" class="col-sm-10 col-form-label">{{ form.namba_ya_mzazi.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.namba_ya_mzazi }}
+                            </div>
+                        </div>
+                        <!-- Ubatizo Section -->
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.ubatizo.id_for_label }}" class="col-sm-10 col-form-label">{{ form.ubatizo.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.ubatizo }}
+                            </div>
+                        </div>
+                        
+                        <!-- Kipaimara Section -->
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.kipaimara.id_for_label }}" class="col-sm-10 col-form-label">{{ form.kipaimara.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.kipaimara }}
+                            </div>
+                        </div>
+                        <!-- Ndoa/Daraja Section -->
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.ndoa_au_daraja.id_for_label }}" class="col-sm-10 col-form-label">{{ form.ndoa_au_daraja.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.ndoa_au_daraja }}
+                            </div>
+                        </div>
+                        <!-- Parokia Section -->
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.parokia.id_for_label }}" class="col-sm-10 col-form-label">{{ form.parokia.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.parokia }}
+                            </div>
+                        </div>
+                        <!-- Jimbo Kuu Section -->
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.jimbo_kuu.id_for_label }}" class="col-sm-10 col-form-label">{{ form.jimbo_kuu.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.jimbo_kuu }}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.vyama_vya_kitume.id_for_label }}" class="col-sm-10 col-form-label">{{form.vyama_vya_kitume.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.vyama_vya_kitume }}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.vinginevyo.id_for_label }}" class="col-sm-10 col-form-label">{{ form.vinginevyo.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.vinginevyo }}
+                            </div>
+                        </div>
+                        
+                        <!-- Education Level Section -->
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.elimu_uliyonayo.id_for_label }}" class="col-sm-10 col-form-label">{{ form.elimu_uliyonayo.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.elimu_uliyonayo }}
+                            </div>
+                        </div>
+                        <!-- Course Section -->
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.course.id_for_label }}" class="col-sm-10 col-form-label">{{ form.course.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.course }}
+                            </div>
+                        </div>
+                        <!-- Current Level of Study Section -->
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.level_of_study.id_for_label }}" class="col-sm-10 col-form-label">{{ form.level_of_study.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.level_of_study }}
+                            </div>
+                        </div>
+                        
+                        <!-- Department Section -->
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.department.id_for_label }}" class="col-sm-10 col-form-label">{{ form.department.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.department }}
+                            </div>
+                        </div>
+                        <!-- College Section -->
+                        <div class="form-group col-md-4">
+                            <label for="{{ form.college.id_for_label }}" class="col-sm-10 col-form-label">{{ form.college.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.college }}
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-md-4">
+                            <label for="id_password1" class="col-sm-10 col-form-label">Password:</label>
+                            <div class="col-sm-10">
+                                <input type="password" name="password1" class="form-control" id="id_password1">
+                            </div>
+                        </div>
+                    
+                        <div class="form-group col-md-4">
+                            <label for="id_password2" class="col-sm-10 col-form-label">Confirm Password:</label>
+                            <div class="col-sm-10">
+                                <input type="password" name="password2" class="form-control" id="id_password2">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-md-2">
+                            <label for="{{ form.is_active.id_for_label }}" class="col-sm-10 col-form-label">{{ form.is_active.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.is_active }}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="{{ form.is_staff.id_for_label }}" class="col-sm-10 col-form-label">{{ form.is_staff.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.is_staff }}
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="{{ form.registration_year.id_for_label }}" class="col-sm-10 col-form-label">{{ form.registration_year.label }}</label>
+                            <div class="col-sm-10">
+                                {{ form.registration_year }}
+                            </div>
+                        </div>
+                        
+
+
+                        <div class="container mt-4">
+                            <div class="row justify-content-center align-items-center" style="padding-bottom: 20px; padding-top: 20px;">
+                                <div class="col-12 d-flex flex-column flex-sm-row justify-content-center">
+                                    <div class="mb-2 mb-sm-0 d-flex flex-column flex-sm-row">
+                                        <button type="submit" class="btn btn-primary me-sm-2 mb-2 mb-sm-0">Register Member</button>
+                                        <a class="btn btn-primary" href="{% url 'member-list' %}">Members List</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                </form>
+            </div>
+        {% else %}
+            <div class="container">
+                <h2 class="mt-5 text-center">Access Denied. You must be logged in with appropriate permissions.</h2>
+            </div>
+        {% endif %}
+    </body>
+    </html>
+{% endblock content %}

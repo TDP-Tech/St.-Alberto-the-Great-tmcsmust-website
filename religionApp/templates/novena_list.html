@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .card {
+        min-height: 100%;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .card-img-top {
+        height: 250px;
+        object-fit: cover;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .card-body {
+        padding: 15px;
+    }
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+    .card-text {
+        font-size: 0.9rem;
+        color: #555;
+    }
+    .read-more {
+        font-size: 0.9rem;
+        text-decoration: none;
+        color: #007bff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .read-more:hover {
+        background-color: #007bff;
+        color: white;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+</style>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center mb-4">
+        {% if user.is_authenticated %}
+            {% if user.is_mwenyekiti_tawi or user.is_katibu_tawi %}
+                <a class="btn btn-primary col-md-3" href="{% url 'novena-create' %}">Create Novena</a>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="d-flex justify-content-center mb-4">
+        <form method="GET" action="{% url 'novena-list' %}" class="d-flex col-md-4">
+            <input type="text" name="q" id="search-input" class="form-control me-2" placeholder="Search Novena by Name here..." value="{{ query|default:'' }}" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="row" id="novena-list">
+        {% for novena in novenas %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                <a href="{% url 'novena-detail' pk=novena.pk %}" style="text-decoration: none; color: inherit;">
+                    <div class="card">
+                        <img src="{{ novena.novena_image.url }}" class="card-img-top" alt="{{ novena.novena_name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ novena.novena_name }}</h5>
+                            <p class="card-text">
+                                {% if novena.description|length > 100 %}
+                                    {{ novena.description|safe|slice:":100" }}... 
+                                    <a href="{% url 'novena-detail' pk=novena.pk %}" class="read-more">Read More...</a>
+                                {% else %}
+                                    {{ novena.description|safe }}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search-input').keyup(function() {
+            var query = $(this).val();
+            $.ajax({
+                url: "{% url 'novena-list' %}",
+                data: {
+                    'q': query
+                },
+                success: function(data) {
+                    $('#novena-list').empty();
+                    if (data.length === 0) {
+                        $('#novena-list').append('<div class="no-results">No results found for your search</div>');
+                    } else {
+                        data.forEach(function(novena) {
+                            var card = `
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                                    <a href="/Religion/novenas/${novena.id}/" style="text-decoration: none; color: inherit;">
+                                        <div class="card">
+                                            <img src="${novena.novena_image}" class="card-img-top" alt="${novena.novena_name}">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${novena.novena_name}</h5>
+                                                <p class="card-text">
+                                                    ${novena.description.length > 100 ? novena.description.slice(0, 100) + '...' : novena.description}
+                                                    ${novena.description.length > 100 ? '<a class="read-more" href="/Religion/novenas/' + novena.id + '/">Read More...</a>' : ''}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            `;
+                            $('#novena-list').append(card);
+                        });
+                    }
+                },
+                error: function() {
+                    $('#novena-list').empty();
+                    $('#novena-list').append('<div class="no-results">No results found</div>');
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container col-md-7 mt-5">
+    {% if user.is_authenticated and user.is_staff %}
+    <h2>Create Novena</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.media }}
+      {{ form.as_p }}
+      <div class="row justify-content-center">
+        <button class="btn btn-primary col-md-3 mx-2 mb-2" type="submit">Create Novena</button>
+        <a class="btn btn-primary col-md-3 mb-2" href="{% url 'novena-list' %}">Back to Novena List</a>
+      </div>
+    </form>
+    {% else %}
+    <p class="mt-5">Sorry, you do not have permission to create Rozary.</p>
+    {% endif %}
+  </div>
+{% endblock %}

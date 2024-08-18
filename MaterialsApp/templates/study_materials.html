@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .level {
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .material {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        .info {
+            flex-grow: 1;
+        }
+
+        .download {
+            display: flex;
+            align-items: center;
+        }
+
+        .download img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .top-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .top-button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #09f16d;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .top-buttons {
+                flex-wrap: wrap;
+            }
+            .top-button {
+                margin-bottom: 10px;
+            }
+        }
+        .download a{
+            text-decoration: none;
+        }
+        .h1-material{
+            text-align: center;
+        }
+        .top-button{
+            font-weight: bold;
+        }
+        /* Define styles for pagination */
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination a {
+            color: #09f16d;
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            border: 1px solid #09f16d;
+            margin: 0 4px;
+        }
+
+        .pagination a.active {
+            background-color: #09f16d;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {background-color: #ddd;}
+    </style>
+    
+    <div class="container col-md-10">
+
+        <h1 class="h1-material">Study Materials For All Levels of Studies</h1>
+
+        
+        <div class="top-buttons">
+            <a href="{% url 'all-materials' %}" class="top-button">ALL MATERIALS</a>
+            <a href="{% url 'filter-materials' 'Certificate' %}" class="top-button">CERTIFICATE</a>
+            <a href="{% url 'filter-materials' 'Diploma' %}" class="top-button">DIPLOMA</a>
+            <a href="{% url 'filter-materials' 'Bachelor-Degree' %}" class="top-button">BACHELOR</a>
+            <a href="{% url 'filter-materials' 'Masters' %}" class="top-button">MASTERS</a>
+            <a href="{% url 'filter-materials' 'Doctor-of-Philosophy' %}" class="top-button">PhD</a>
+        </div>
+        <div class="level">
+            <ul>
+                <hr>
+                {% for material in materials %}
+                <li>
+                    <div class="material">
+                        <div class="icon">
+                            <i class="fas fa-duotone fa-bullhorn" style="--fa-primary-color: #09f16d; --fa-secondary-color: #09f16d;"></i>
+                        </div>
+                        <div class="info">
+                            <div class="title">
+                                {{ material.title }}
+                                {{ material.level }}
+                                {% if material.year_of_study == 1 %}
+                                    {{ material.year_of_study }}st year
+                                {% elif material.year_of_study == 2 %}
+                                    {{ material.year_of_study }}nd year
+                                {% elif material.year_of_study == 3 %}
+                                    {{ material.year_of_study }}rd year
+                                {% else %}
+                                    {{ material.year_of_study }}th year
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="title">
+                                {{ material.course }}
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="date"><i class="fas fa-duotone fa-calendar-days" style="--fa-primary-color: #15f5f9; --fa-secondary-color: #15f5f9;"></i>{{ material.date_posted|date:"j M, Y" }}</div>
+                        </div>
+                        <div class="download">
+                            <a href="{{ material.document.url }}"><i class="fa-solid fa-download" style="color: #0c645a;"></i>
+                                <span>Download</span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <hr>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <!-- Pagination -->
+        {% if materials.has_other_pages %}
+        <div class="pagination">
+            {% if materials.has_previous %}
+            <a href="?page=1">&laquo;</a>
+            <a href="?page={{ materials.previous_page_number }}">{{ materials.previous_page_number }}</a>
+            {% endif %}
+            <span class="active">{{ materials.number }}</span>
+            {% if materials.has_next %}
+            <a href="?page={{ materials.next_page_number }}">{{ materials.next_page_number }}</a>
+            <a href="?page={{ materials.paginator.num_pages }}">&raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit Member Transaction</title>
+</head>
+
+<body>
+    {% if user.is_authenticated and user.is_staff and user.is_mhazini_tawi %}
+    <div class="container pt-5">
+        <h1>Edit Member Transaction</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Save Changes</button>
+        </form>
+    </div>
+    {% else %}
+    <div class="container mt-5 col-md-4 text-center">
+        <div class="alert alert-danger" role="alert">
+            You do not have permission to this page.
+        </div>
+    </div>
+    {% endif %}
+</body>
+
+</html>
+
+{% endblock content %}

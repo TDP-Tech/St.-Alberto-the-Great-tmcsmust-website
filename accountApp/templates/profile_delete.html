@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <p>Deleting profile is not allowed. If you delete the Profile you won't see your transaction details.</p>
+    <form method="post">
+        {% csrf_token %}
+        {% if user.is_authenticated and user.is_staff and user.is_registration_committee and user.is_mwenyekiti_tawi or user.is_katibu_tawi or user.is_mhazini_tawi %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        {% endif %}
+        <a href="{% url 'profile-list' %}" class="btn btn-secondary">Back to Profile</a>
+    </form>
+</div>
+{% endblock %}

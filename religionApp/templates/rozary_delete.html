@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  {% if user.is_authenticated and user.is_staff %}
+    <h1>Are you sure you want to delete the Rozary <strong>{{ rozary.rozary_name }}</strong>?</h1>
+    <form method="post">
+      {% csrf_token %}
+      <button class="btn btn-danger" type="submit">Confirm Delete</button>
+    </form>
+    <br>
+    <a class="btn btn-primary" href="{% url 'rozary-detail' pk=rozary.pk %}">Cancel and Back to Rozary Detail</a>
+    <br>
+    <a class="btn btn-primary" href="{% url 'rozary-list' %}">Cancel and Back to Rozaries List</a>
+  {% else %}
+    <p></p>
+    <div class="d-flex justify-content-center">
+      <div class="alert alert-danger col-md-5" role="alert">
+        You need to be logged in to delete Rozary instances.
+      </div>
+    </div>
+    <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+  {% endif %}
+</div>
+{% endblock %}

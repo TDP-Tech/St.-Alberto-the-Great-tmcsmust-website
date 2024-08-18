@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated and user.is_staff %}
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Confirm Delete</h2>
+                    <p class="card-text">Are you sure you want to delete "{{ news_item.title }}"?</p>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Yes, delete</button>
+                        <a href="{% url 'news-list' %}" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container mt-5 col-md-4 text-center">
+    <div class="alert alert-danger" role="alert">
+        You do not have permission to delete this page.
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

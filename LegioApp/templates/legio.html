@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        .a4-paper {
+            width: 210mm;
+            height: 297mm;
+            padding: 12mm 24mm 10mm 24mm;
+            /* padding: top right bottom left; */
+            margin: auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #ddd;
+            font-size: 19px; /* Increased font size */
+            line-height: 1.2; /* Adjust line height */
+        }
+        .a4-paper br {
+            line-height: 1.5; /* Reduce line height for <br> elements */
+        }
+        @media (max-width: 768px) {
+            .a4-paper {
+                width: 100%;
+                height: auto;
+                padding: 20px;
+                font-size: 16px; /* Adjust font size for smaller screens */
+            }
+        }
+    </style>
+
+    <div class="container my-5 mb-5">
+        <!-- Language selection buttons -->
+        <div class="text-center mb-4">
+            <button class="btn btn-secondary" onclick="showLanguage('swahili')">Swahili</button>
+            <button class="btn btn-primary" onclick="showLanguage('english')">English</button>
+        </div>
+
+        <!-- Download buttons -->
+        <div class="text-center mb-4">
+            <button class="btn btn-secondary" id="download-swahili" onclick="downloadContent('swahili')">Download Swahili PDF</button>
+            <button class="btn btn-primary d-none" id="download-english" onclick="downloadContent('english')">Download English PDF</button>
+        </div>
+
+        <div class="a4-paper d-none" id="english-content">
+            <h2 class="text-center">Katena Legions</h2>
+            <p><strong>Antiphon:</strong> Who is she that cometh forth as the morning rising,<br>
+            fair as the moon, bright as the sun,
+            terrible as an army set in battle array?</p>
+            <p><strong> + My soul doth magnify the Lord.</strong><br>
+            And my spirit hath rejoiced in God my Saviour.<br><br>
+            Because He hath regarded the humility of His handmaid;<br>
+            for behold, from henceforth all generations shall call me blessed.<br><br>
+            Because He that is mighty hath done great things to me;<br>
+            and holy is His name.<br><br>
+            And His mercy is from generation unto generations to them that fear Him.<br><br>
+            He hath shewed might in His arm:<br>
+            He hath scattered the proud in the conceit of their heart.<br><br>
+            He hath put down the mighty from their seat,<br>
+            and hath exalted the humble.<br><br>
+            He hath filled the hungry with good things;<br>
+            and the rich He hath sent empty away.<br><br>
+            He hath received Israel His servant,<br>
+            being mindful of His mercy.<br><br>
+            As He spoke to our fathers,<br>
+            to Abraham and to his seed for ever.</p>
+            <p><strong>Glory be to the Father, and to the Son, and to the Holy Spirit,</strong><br>
+            as it was in the beginning, is now, and ever shall be, world without end. <b>Amen.</b></p>
+            <p><strong>Antiphon:</strong> Who is she that cometh forth as the morning rising,<br>
+            fair as the moon, bright as the sun,
+            terrible as an army set in battle array?</p>
+            <p><strong>V.</strong> O Mary, conceived without sin.<br>
+            <strong>R.</strong> Pray for us who have recourse to thee.</p>
+            <p><strong>V.</strong> Let us Pray.</p>
+        </div>
+
+        <div class="a4-paper" id="swahili-content">
+            <h2 class="text-center">Katena ya Legio</h2>
+            <p><strong>Antifona:</strong> Ni nani huyu anayekuja kama asubuhi inavyochomoza,<br>
+            mzuri kama mwezi, angavu kama jua, kutisha kama jeshi lililojipanga kwa vita?</p>
+            <p><strong> + Roho yangu inamtukuza Bwana.</strong><br>
+            Na roho yangu imeshangilia katika Mungu Mwokozi wangu.<br><br>
+            Kwa sababu ameangalia unyenyekevu wa mtumishi wake;<br>
+            maana tazama, tangu sasa vizazi vyote wataniita mbarikiwa.<br><br>
+            Kwa sababu yeye aliye na nguvu amenitendea mambo makuu;<br>
+            na jina lake ni takatifu.<br><br>
+            Na rehema zake ni kutoka kizazi hadi kizazi kwa wale wanaomcha.<br><br>
+            Amefanya nguvu kwa mkono wake:<br>
+            amewatawanya wenye kiburi katika mawazo ya mioyo yao.<br><br>
+            Amewaangusha wakuu kutoka kwenye viti vyao,<br>
+            na amewakweza wanyenyekevu.<br><br>
+            Amewashibisha wenye njaa kwa vitu vizuri;<br>
+            na matajiri amewapeleka mikono mitupu.<br><br>
+            Ameikumbatia Israeli mtumishi wake,<br>
+            akifikiria rehema zake.<br><br>
+            Kama alivyosema na baba zetu,<br>
+            kwa Ibrahimu na uzao wake hata milele.</p>
+            <p><strong>Utukufu kwa Baba, na kwa Mwana, na kwa Roho Mtakatifu,</strong><br>
+            kama mwanzo, sasa na siku zote, ulimwengu usio na mwisho. <b>Amina.</b></p>
+            <p><strong>Antifona:</strong> Ni nani huyu anayekuja kama asubuhi inavyochomoza,<br>
+            mzuri kama mwezi, angavu kama jua, kutisha kama jeshi lililojipanga kwa vita?</p>
+            <p><strong>K: </strong> Ee Maria, uliyechukuliwa bila dhambi.<br>
+            <strong>W: </strong> Tuombee sisi tunaoelekea kwako. <br><br> <b>K: </b>Tuombee </p>
+        </div>
+    </div>
+
+    <!-- Include html2pdf.js from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+    <script>
+        function showLanguage(language) {
+            var englishContent = document.getElementById('english-content');
+            var swahiliContent = document.getElementById('swahili-content');
+            var downloadSwahili = document.getElementById('download-swahili');
+            var downloadEnglish = document.getElementById('download-english');
+            
+            if (language === 'english') {
+                englishContent.classList.remove('d-none');
+                swahiliContent.classList.add('d-none');
+                downloadEnglish.classList.remove('d-none');
+                downloadSwahili.classList.add('d-none');
+            } else if (language === 'swahili') {
+                swahiliContent.classList.remove('d-none');
+                englishContent.classList.add('d-none');
+                downloadSwahili.classList.remove('d-none');
+                downloadEnglish.classList.add('d-none');
+            }
+        }
+
+        function downloadContent(language) {
+            var contentElement;
+            var filename;
+
+            if (language === 'english') {
+                contentElement = document.getElementById('english-content');
+                filename = "katena_legions_english.pdf";
+            } else if (language === 'swahili') {
+                contentElement = document.getElementById('swahili-content');
+                filename = "katena_legio_swahili.pdf";
+            }
+
+            // Check if the content element has any visible text content
+            var content = contentElement.innerText.trim();
+            if (!content) {
+                alert('The selected content is empty and cannot be downloaded.');
+                return;
+            }
+
+            var opt = {
+                filename: filename,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(contentElement).save();
+        }
+    </script>
+{% endblock %}

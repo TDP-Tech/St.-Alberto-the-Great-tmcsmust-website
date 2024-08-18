@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Delete Member Transaction</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Delete Member Transaction</h1>
+        <p>Are you sure you want to delete the transaction for user: <strong>{{ transaction.member }}?</strong> </p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'karismatiki-transaction-list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+
+</html>
+
+{% endblock content %}

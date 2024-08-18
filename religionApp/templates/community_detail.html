@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">{{ community.community_name }}</h2>
+    <div class="row">
+        <div class="col-md-6">
+            {% if community.community_image %}
+                <img src="{{ community.community_image.url }}" class="img-fluid" alt="{{ community.community_name }}">
+            {% else %}
+                <img src="{% static 'images/saint alberto the great logo.jpeg' %}" alt="{{ community.community_name }}">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <p>{{ community.description | safe }}</p>
+            {% if community.patron_saint %}
+            <a href="{% url 'saintlife-detail' community.patron_saint.pk %}" class="btn btn-info">Maisha ya Mtakatifu {{ community.patron_saint.name_of_saint }}</a>
+            {% endif %}
+        </div>
+        
+    </div>
+    <div class="mt-4">
+        
+        <a href="{% url 'community-update' community.pk %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'community-delete' community.pk %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'community-list' %}" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+{% endblock %}

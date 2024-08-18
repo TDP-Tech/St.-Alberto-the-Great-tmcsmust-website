@@ -1,0 +1,90 @@
+<!-- templates/class_members.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+  <h2>Class Members</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">STUDENT ID'S</th>
+        <th scope="col">FIRST NAME</th>
+        <th scope="col">LAST NAME</th>
+        <th scope="col">COURSE</th>
+        <th scope="col">LEVEL OF STUDY</th>
+        <th scope="col">YEARS OF STUDY</th>
+        <th scope="col">STATUS</th> 
+      </tr>
+    </thead>
+    <tbody>
+      {% for member in class_members %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ member.generate_member_id }}</td>
+        <td>{{ member.first_name }}</td>
+        <td>{{ member.last_name }}</td>
+        <td>{{ member.course }}</td>
+        <td>{{ member.level_of_study }}</td>
+        <td>{{ member.years_of_study }} {% if member.years_of_study == 1 %} year{% else %} years{% endif %}</td>
+        <td>
+          {% if member.is_mwenyekiti_tawi %}
+            Mwenyekiti TMCS MUST
+          {% elif member.is_katibu_tawi %}
+            Katibu TMCS MUST
+          {% elif member.is_mhazini_tawi %}
+            Mhazini TMCS MUST
+          {% elif member.is_mwenyekiti_legio %}
+            Mwenyekiti Legio
+          {% elif member.is_katibu_legio %}
+            Katibu Legio
+          {% elif member.is_mhazini_legio %}
+            Mhazini Legio
+          {% elif member.is_mwenyekiti_kwaya %}
+            Mwenyekiti Kwaya
+          {% elif member.is_katibu_kwaya %}
+            Katibu Kwaya
+          {% elif member.is_mhazini_kwaya %}
+            Mhazini Kwaya
+          {% elif member.is_mwenyekiti_karismatiki %}
+            Mwenyekiti Karismatiki
+          {% elif member.is_katibu_karismatiki %}
+            Katibu Karismatiki
+          {% elif member.is_mhazini_karismatiki %}
+            Mhazini Karismatiki
+          {% elif member.is_mwenyekiti_moyo_mtakatifu_wa_Yesu %}
+            Mwenyekiti Moyo Mtakatifu wa Yesu
+          {% elif member.is_katibu_moyo_mtakatifu_wa_Yesu %}
+            Katibu Moyo Mtakatifu wa Yesu
+          {% elif member.is_mhazini_moyo_mtakatifu_wa_Yesu %}
+            Mhazini Moyo Mtakatifu wa Yesu
+          {% elif member.is_kiongozi_wa_darasa %}
+            Kiongozi wa Darasa
+          {% elif member.is_mwenyekiti_litrujia %}
+            Mwenyekiti Litrujia
+          {% elif member.is_katibu_litrujia %}
+            Katibu Litrujia
+          {% elif member.is_mwenyekiti_mipango_na_fedha %}
+            Mwenyekiti Mipango na Fedha
+          {% elif member.is_katibu_mipango_na_fedha %}
+            Katibu Mipango na Fedha
+          {% elif member.is_mhazini_mipango_na_fedha %}
+            Mhazini Mipango na Fedha
+          {% elif member.is_registration_committee %}
+            Registration Committee Member
+          {% else %}
+            Member
+          {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="8">No members found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

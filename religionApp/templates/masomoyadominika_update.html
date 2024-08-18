@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated and user.is_staff %}
+<div class="container mt-5">
+    <h1>Edit MasomoyaDominika</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.media }}
+        <div class="form-group col-md-10">
+            <label for="id_dominika">Dominika:</label>
+            {{ form.dominika }}
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="id_somo_la1">Somo la 1:</label>
+            <br>
+            {{ form.somo_la1 }}
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="id_somo_la2">Somo la 2:</label>
+            <br>
+            {{ form.somo_la2 }}
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="id_injili">Injili:</label>
+            <br>
+            {{ form.injili }}
+        </div>
+        <button type="submit" class="btn btn-primary mb-5">Save the update</button>
+    </form>
+</div>
+{% else %}
+<div class="container mt-5 col-md-4 text-center">
+    <div class="alert alert-danger" role="alert">
+        You do not have permission to access this page.
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

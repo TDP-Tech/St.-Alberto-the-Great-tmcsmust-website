@@ -1,0 +1,20 @@
+{% block content %}
+    <title>{{ novena.novena_name }}</title>
+    <!-- Add your CSS styles here if needed -->
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+        * {
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center; padding: 10px; font-size: 24px;"><strong>{{ novena.novena_name }}</strong></h2>
+    <img src="{{ absolute_image_url }}" alt="{{ novena.novena_name }} Image" style="max-width: 95%; height: auto;">
+    <p style="max-width: 95%; height: auto; font-size: 20px;" class="pt-5"> {{ novena.description | safe}}</p>
+</body>
+{% endblock %}

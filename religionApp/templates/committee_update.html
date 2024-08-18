@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated and user.is_staff %}
+        <div class="container mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+                    <h2>Edit Committee Member</h2>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary btn-block col-md-12">Update Leader</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container mt-5 col-md-4 text-center">
+            <div class="alert alert-danger" role="alert">
+                You do not have permission to access this page to update leader details.
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

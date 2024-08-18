@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .custom-card {
+        border-radius: 15px;
+        border: 2px solid #ddd;
+        overflow: hidden;
+    }
+
+    .custom-card img {
+        border-bottom: 2px solid #ddd;
+    }
+
+</style>
+    <div class="container mt-4">
+        <p class="text-center" style="font-size: 2rem; font-weight: lighter;">
+            Our Architecture Services
+        </p>
+        <div class="row mt-4">
+            <!-- Residential Design -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/Architect design.jpg' %}" class="card-img-top" alt="Residential Design">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-home" style="color: #4CAF50; margin-right: 8px;"></i> Residential Design
+                        </h5>
+                        <p class="card-text flex-grow-1">We create beautiful and functional residential spaces that reflect your personal style and enhance your quality of life. From single-family homes to multi-family residences, our designs are tailored to meet your needs.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Commercial Design -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/arch5.PNG' %}" class="card-img-top" alt="Commercial Design">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-building" style="color: #2196F3; margin-right: 8px;"></i> Commercial Design
+                        </h5>
+                        <p class="card-text flex-grow-1">Our commercial design services focus on creating innovative and functional spaces for businesses. Whether you need office buildings, retail spaces, or restaurants, we ensure your commercial projects are practical and visually appealing.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Landscape Architecture -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/arch6.PNG' %}" class="card-img-top" alt="Landscape Architecture">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-leaf" style="color: #8BC34A; margin-right: 8px;"></i> Landscape Architecture
+                        </h5>
+                        <p class="card-text flex-grow-1">We design outdoor spaces that are both functional and aesthetically pleasing. Our landscape architecture services include garden design, park planning, and the creation of outdoor living areas that harmonize with the natural environment.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Urban Planning -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/Architect design.jpg' %}" class="card-img-top" alt="Urban Planning">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-city" style="color: #FFC107; margin-right: 8px;"></i> Urban Planning
+                        </h5>
+                        <p class="card-text flex-grow-1">Our urban planning services focus on designing and developing urban areas to create vibrant, functional, and sustainable communities. We consider factors like land use, transportation, and public spaces to enhance urban living.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Interior Design -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/arch5.PNG' %}" class="card-img-top" alt="Interior Design">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-couch" style="color: #FF5722; margin-right: 8px;"></i> Interior Design
+                        </h5>
+                        <p class="card-text flex-grow-1">We offer comprehensive interior design services to enhance the functionality and aesthetic appeal of your spaces. From residential interiors to commercial spaces, we tailor designs to meet your specific needs and preferences.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Historical Preservation -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/arch6.PNG' %}" class="card-img-top" alt="Historical Preservation">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-archway" style="color: #795548; margin-right: 8px;"></i> Historical Preservation
+                        </h5>
+                        <p class="card-text flex-grow-1">We specialize in preserving and restoring historical buildings and landmarks. Our services aim to maintain the historical integrity while updating the functionality and safety of these important structures.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Sustainable Design -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/Architect design.jpg' %}" class="card-img-top" alt="Sustainable Design">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-recycle" style="color: #4CAF50; margin-right: 8px;"></i> Sustainable Design
+                        </h5>
+                        <p class="card-text flex-grow-1">Our sustainable design services incorporate eco-friendly practices and materials to promote energy efficiency and environmental responsibility. We aim to create spaces that are both beautiful and kind to the planet.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Architectural Consulting -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 custom-card">
+                    <img src="{% static 'images/arch1.PNG' %}" class="card-img-top" alt="Architectural Consulting">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">
+                            <i class="fas fa-tools" style="color: #607D8B; margin-right: 8px;"></i> Architectural Consulting
+                        </h5>
+                        <p class="card-text flex-grow-1">Our consulting services provide expert advice on architectural design, feasibility, and project management. We assist clients with zoning regulations, design strategies, and implementation plans to ensure successful project outcomes.</p>
+                        <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

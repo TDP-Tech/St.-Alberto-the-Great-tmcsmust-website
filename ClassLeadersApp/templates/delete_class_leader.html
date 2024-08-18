@@ -1,0 +1,15 @@
+<!-- class_leader/classleader_confirm_delete.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Delete Class Leader</h2>
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Confirm">
+        <a href="{% url 'leader_detail' pk=object.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

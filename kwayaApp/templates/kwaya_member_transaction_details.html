@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
+<style>
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        .print-section, .print-section * {
+            visibility: visible;
+        }
+        .print-section {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .print-button {
+            display: none;
+        }
+    }
+    .btnright{
+        float: right;
+    }
+    .hidebutton {
+        display: none;
+    }
+    @media screen {
+        .hidebutton {
+            display: inline-block;
+        }
+    }
+    .h-al{
+        text-align: center;
+    }
+</style>
+{% if user.is_authenticated and user.is_staff and user.is_mhazini_kwaya %}
+    <div class="container col-md-8 print-section mt-5">
+        <h4 class="h-al">Receipt for {{ transactions.0.member }} <span class="float-end">{% now "d, M Y" %}</span> </h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Transaction Type</th>
+                    <th>Amount</th>
+                    <th>Transaction Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.transaction_type }}</td>
+                        <td>{{ transaction.amount|intcomma }}</td>
+                        <td>{{ transaction.transaction_date }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3" style="text-align: center">No transactions available for this member.</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td> <strong>Total Amount Paid:</strong> </td>
+                    <td colspan="1"><strong>{{ total_amount_paid|intcomma }}/=</strong></td>
+                    <td>{% now "d M Y, H:i:s" %} <br> <strong>Date Receipt printed</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="{% url 'kwaya-transaction-list' %}" class="btn btn-primary hidebutton">Back to Transaction List</a>
+        <button class="print-button btn btn-primary col-md-3 btnright" onclick="window.print()">Print</button>
+    </div>
+{% else %}
+    <div class="container">
+        <h2 class="mt-5 text-center">Access Denied. You must be logged in as staff with appropriate permissions.</h2>
+    </div>
+{% endif %}
+{% endblock content %}

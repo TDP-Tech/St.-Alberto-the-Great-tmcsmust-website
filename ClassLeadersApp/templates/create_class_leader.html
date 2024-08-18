@@ -1,0 +1,23 @@
+<!-- templates/class_leader/class_leader_create.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+{% if user.is_authenticated and user.is_staff and user.is_kiongozi_wa_darasa or user.is_katibu_tawi or user.is_mwenyekiti_tawi  %}
+<div class="container mt-5">
+  <h2>Create New Class Leader</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% else %}
+<div class="container mt-5 col-md-6 text-center">
+  <div class="alert alert-danger" role="alert">
+    You do not have permission to access this page.
+  </div>
+</div>
+{% endif %}
+{% endblock %}

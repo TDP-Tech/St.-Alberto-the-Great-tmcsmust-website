@@ -1,0 +1,59 @@
+<!-- member_detail.html -->
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container-fluid">
+        {% if user.is_authenticated and user.is_registration_committee %}
+        <h2 class="pt-5">Member Detail</h2>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><strong>First Name:</strong></td>
+                    <td>{{ member.first_name|upper }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Middle Name:</strong></td>
+                    <td>{{ member.middle_name|upper }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Last Name:</strong></td>
+                    <td>{{ member.last_name|upper }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Gender:</strong></td>
+                    <td>{{ member.gender|lower|capfirst }}</td>
+                </tr>
+                <tr>
+                    <td><strong>NAMBA YA MWANAFUNZI:</strong></td>
+                    <td>{{ member.namba_ya_mwanafunzi }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Email:</strong></td>
+                    <td>{{ member.email }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Course:</strong></td>
+                    <td>{{ member.course }}</td>
+                </tr>
+                <tr>
+                    <td><strong>College:</strong></td>
+                    <td>{{ member.college }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Department:</strong></td>
+                    <td>{{ member.department }}</td>
+                </tr>
+                <tr>
+                    <td><strong>NAMBA YA MZAZI:</strong></td>
+                    <td>{{ member.namba_ya_mzazi }}</td>
+                </tr>
+                <!-- Add other fields as needed -->
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="{% url 'member-list' %}">Back to Member List</a>
+    {% else %}
+        <div class="container">
+            <h2 class="mt-5 text-center">Access Denied. You must be logged in with appropriate permissions.</h2>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}

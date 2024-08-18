@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        {% for member in members_commitee_list %}
+            <div class="col-md-3 mb-4 pt-3">
+                <div class="card text-white bg-primary" style="max-width: 21rem;">
+                    <div class="card-header custom-card text-center bg-info">{{ member.nafasi_ya_uongozi }}</div>
+                    <div class="card-body">
+                        <img src="{{ member.picha_ya_kiongozi.url }}" alt="" class="img-fluid rounded-circle mx-auto d-block" style="max-width: 150px;">
+                        <h6 style="text-align: center; margin-top: 35px; " class="card-title">{{ member.jina_la_kiongozi }}</h6 >
+                        <h6 style="text-align: center; " class="card-title">{{ member.kozi_anayosoma }}</h6 >
+                        <h6 style="text-align: center; " class="card-title">+{{ member.phone_number }}</h6 >
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                </div><div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

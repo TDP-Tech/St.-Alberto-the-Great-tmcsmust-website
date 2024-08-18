@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Community{% endblock %}
+
+{% block content %}
+<div class="container mt-5 col-md-6">
+    <h2 class="mb-4 text-center">Delete Community</h2>
+    <div class="alert alert-danger text-center" role="alert">
+        <p>Are you sure you want to delete "{{ community.community_name }}"?</p>
+    </div>
+    <form method="post" class="d-flex justify-content-center">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger mx-2">Yes, delete</button>
+        <a href="{% url 'community-list' %}" class="btn btn-secondary">No, take me back</a>
+    </form>
+</div>
+{% endblock %}

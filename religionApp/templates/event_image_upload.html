@@ -1,0 +1,20 @@
+<!-- image_upload.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .img-sel{
+        font-size: 26px;
+        padding: 5px;
+    }
+</style>
+<div class="container">
+    <p class="img-sel">Select Images to upload</p>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>
+</div>
+{% endblock %}

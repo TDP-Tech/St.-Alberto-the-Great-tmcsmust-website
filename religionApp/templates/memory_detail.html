@@ -1,0 +1,9 @@
+<!-- memory_detail.html -->
+{% extends 'base.html' %}
+{% block content %}
+  <h2>{{ memory.title }}</h2>
+  <p>{{ memory.description }}</p>
+  <img src="{{ memory.image.url }}" alt="{{ memory.title }}">
+  <a href="{% url 'memory-update' pk=memory.pk %}">Edit</a>
+  <a href="{% url 'memory-delete' pk=memory.pk %}">Delete</a>
+{% endblock %}

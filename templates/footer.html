@@ -1,0 +1,87 @@
+<style>
+    .footer-container {
+        display: flex;
+        justify-content: center;
+        /* Center content horizontally */
+        align-items: center;
+        /* Center content vertically */
+        flex-wrap: wrap;
+        /* Allow content to wrap */
+    }
+
+    .footer-section {
+        flex: 1;
+        /* Equal width for all sections */
+        padding: 0 20px;
+        /* Add spacing between sections */
+    }
+
+    .footer-bottom {
+        text-align: center;
+        /* Center the text in the bottom section */
+    }
+    h3{
+        font-family: "Poppins", sans-serif;
+    }
+</style>
+<footer>
+    <div class="container footer-container text-center">
+        <div class="footer-section text-start">
+            <h3>About Us</h3>
+            <ul>
+                <li><i class="fas fa-angle-right"></i> <a href="{% url 'historia_ya_imcs' %}">IMCS History</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="{% url 'historia_ya_tmcs' %}">TMCS History</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="#">Careers</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="#">Contact Us</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="#">About Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-section text-start">
+            <h3>About Us</h3>
+            <ul>
+                <li><i class="fas fa-angle-right"></i> <a href="{% url 'historia_ya_imcs' %}">IMCS History</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="{% url 'historia_ya_tmcs' %}">TMCS History</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="#">Careers</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="#">Contact Us</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="#">About Us</a></li>
+            </ul>
+        </div>
+        <div class="footer-section text-start">
+            <h3>Products</h3>
+            <ul>
+                <li><i class="fas fa-angle-right"></i> <a href="#">Visakramenti</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="#">T-shirts</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="#">Mapambo</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="#">Muziki wa Nota</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="#">Saloon ya Kike</a></li>
+            </ul>
+        </div>
+        <div class="footer-section text-start">
+            <h3>Connect With Us</h3>
+            <ul>
+                <li><i class="fas fa-angle-right"></i> 
+                    <a href="https://www.facebook.com/profile.php?id=61554688814321&mibextid=NTRm0r7WZyOdZZsz"><i class="fab fa-facebook-f"></i> Facebook</a>
+                </li>
+                <li><i class="fas fa-angle-right"></i> 
+                    <a href="https://www.tiktok.com/@watakatifu_wote_must"><i class="fab fa-tiktok"></i> TikTok</a>
+                </li>
+                <li><i class="fas fa-angle-right"></i> 
+                    <a href="https://www.instagram.com/st.albertthegreat_tmcsmust"><i class="fab fa-instagram"></i> Instagram</a>
+                </li>
+                <li><i class="fas fa-angle-right"></i> 
+                    <a href="https://www.instagram.com/allsaintschoirtmcsmust"><i class="fab fa-instagram"></i> Instagram</a>
+                </li>
+                <li><i class="fas fa-angle-right"></i> 
+                    <a href="https://youtube.com/@KwayaYaWatakatifuWoteTMCS-Must"><i class="fab fa-youtube"></i> Youtube</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p> &copy; TMCSMUST 2024 - <span id="currentYear"></span>. All rights reserved. | Designed and Maintained by TDG</p>
+    </div>
+</footer>
+
+<script>
+    document.getElementById("currentYear").innerHTML = new Date().getFullYear();
+</script>

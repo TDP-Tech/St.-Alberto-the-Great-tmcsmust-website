@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    {% if user.is_authenticated and user.is_staff %}
+    <h1>Confirm Deletion</h1>
+    <p>Are you sure you want to delete "{{ maswalinamajibu.swali }}"?</p>
+    <form action="{% url 'maswalina_delete' pk=MaswaliNaMajibu.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Yes, delete">
+    </form>
+    <a href="{% url 'maswalina_detail' pk=MaswaliNaMajibu.pk %}">Cancel</a>
+    {% else %}
+    <div class="d-flex justify-content-center">
+        <div class="alert alert-danger col-md-5" role="alert">
+            Sorry, you do not have permission to delete this item.
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

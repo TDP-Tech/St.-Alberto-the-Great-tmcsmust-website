@@ -1,0 +1,21 @@
+<!-- member_delete.html -->
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated and user.is_registration_committee and user.is_mwenyekiti_tawi or user.is_katibu_tawi %}
+        <div class="container pt-5">
+            <h3>Are you sure you want to delete Member <strong>{{ member.first_name }} {{ member.last_name }}?</strong> </h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+
+                <button class="btn btn-danger mx-5 col-md-2" type="submit">Delete</button>
+            </form>
+            <a class="btn btn-secondary mx-3 col-md-2" href="{% url 'member-list' %}">Cancel</a>
+        </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <h2 class="mt-5 text-center">Access Denied. You must be logged in with appropriate permissions.</h2>
+        </div>
+    {% endif %}
+{% endblock %}

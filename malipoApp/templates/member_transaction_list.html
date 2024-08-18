@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% load humanize %}
+{% block content %}
+<style>
+    .h-al {
+        text-align: center;
+        padding-top: 20px;
+    }
+</style>
+    {% if user.is_authenticated and user.is_staff and user.is_mhazini_tawi %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="row col-md-12">
+                    <h4 class="h-al">Filter User with the field you want</h4>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form filter_form %}
+                        <div class="text-center">
+                            <button class="btn btn-primary mt-4 mb-5 col-md-5">Filter your request</button>
+                            <a href="{% url 'transaction-list' %}" class="btn btn-primary mt-4 mb-5 col-md-5">Show All  Transaction</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container col-md-3 pt-3">
+            <a href="{% url 'transaction-create' %}"><i class="fa-solid" style="color: #2268e2;">Create New Transaction</i></a>
+        </div>
+        <div class="container">
+            <h4 class="h-al">Malipo ya Ada, Zaka, Tunisha Mfuko na Sherehe na Maafa</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Member Name</th>
+                            <th>Transaction Type</th>
+                            <th>Amount</th>
+                            <th>Transaction Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for transaction in transactions %}
+                            <tr>
+                                <td>{{ transaction.member.first_name }} {{ transaction.member.middle_name }} {{ transaction.member.last_name }}</td>
+                                <td>{{ transaction.transaction_type }}</td>
+                                <td>{{ transaction.amount|intcomma }}</td>
+                                <td>{{ transaction.transaction_date }}</td>
+                                <td>
+                                    <a href="{% url 'individual-member-transactions-details' transaction.member.id %}"><i class="fa-solid fa-eye" style="color: #22e23b;"></i></a>
+                                    <a href="{% url 'transaction-update' transaction.pk %}"><i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
+                                    <a href="{% url 'transaction-delete' transaction.pk %}"><i class="fa-solid fa-trash-can" style="color: #ec0404;"></i></a>                      
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="5" style="text-align: center">No transactions available</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% else %}
+        <div class="container mt-5 col-md-4 text-center">
+            <div class="alert alert-danger" role="alert">
+                You do not have permission to this page.
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock content %}

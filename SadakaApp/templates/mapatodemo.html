@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .address {
+        text-align: center; /* Align content in the center */
+        margin-bottom: 20px;
+    }
+
+    .address p {
+        margin: 5px 0;
+        font-size: 16px;
+        color: #333;
+    }
+    .table tbody tr td {
+        padding: 5px; /* Adjust the padding */
+        font-size: 14px; /* Adjust the font size */
+    }
+
+</style>
+<div class="container col-md-8">
+    <h2 class="text-center mt-5">JUMUIYA YA WANAFUNZI WAKATOLIKI WA VYUO VIKUU NA VYA KATI TANZANIA (TMCS-MUST)</h2>
+    <div class="row mt-4">
+        <div class="col-md-4"> <!-- Changed col-md-4 to col-md-12 for each column -->
+            <div class="address">
+                <p>JIMBO KUU KATOLIKI LA MBEYA,</p>
+                <p>S.L.P 170,</p>
+                <p>MBEYA</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center"> <!-- Changed col-md-4 to col-md-12 -->
+            <img src="{% static 'images/saint alberto the great logo.jpeg' %}" alt="Your Logo" width="100">
+        </div>
+        <div class="col-md-4"> <!-- Changed col-md-4 to col-md-12 -->
+            <div class="address">
+                <p>TMCS TAWI LA MUST,</p>
+                <p>S.L.P 131,</p>
+                <p>MBEYA</p>
+            </div>
+        </div>
+    </div>
+    <p class="text-center mt-5">MAPATO NA MATUMIZI MWEZI JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER AND DECEMBER 2023</p>
+
+    <!-- Add your income form or table here -->
+    <div class="container col-md-12 mt-5">
+        <h3 class="text-center">SALIO REJEA</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>BALANCE</th>
+                    <th>CASH/BANK</th>
+                    <th>AMOUNT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="4">BALANCE MWEZI FEBRUARY 2024</td>
+                    <td>BANK TAWI CRDB</td>
+                    <td>2,523,000 Tsh</td>
+                </tr>
+                <tr>
+                    <td>BANK TAWI NMB</td>
+                    <td>2,523,000 Tsh</td>
+                </tr>
+                <tr>
+                    <td>CASH</td>
+                    <td>2,523,000 Tsh</td>
+                </tr>
+                <tr>
+                    <td>CASH</td>
+                    <td>2,523,000 Tsh</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-right"><b>SALIO HALISI LILILOPO</b></td>
+                    <td><b>10,092,000 Tsh</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+
+<div class="container col-md-12 mt-5">
+    <h3 class="text-center">MAPATO</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>KAMATI</th>
+                <th>UPATIKANAJI</th>
+                <th>TAREHE</th>
+                <th>MAELEZO</th>
+                <th>KIASI</th>
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+            <tr>
+                <td rowspan="33">#1</td>
+                <td rowspan="33">KAMATI KUU</td>
+                <td rowspan="33">SADAKA</td>
+                <td rowspan="2">1 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>200,750 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>180,500 Tsh</td>
+            </tr>
+            <tr>
+                <td rowspan="2">2 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>190,000 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>175,000 Tsh</td>
+            </tr>
+            <tr>
+                <td rowspan="2">3 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>210,300 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>195,200 Tsh</td>
+            </tr>
+        </tbody>
+        <tr>
+            <td colspan="5" class="text-center px-5"><b>Jumla ndogo ya Mapato KAMATI KUU</b></td>
+            <td><b>234,234 Tsh /=</b></td>
+        </tr>
+
+
+        <tbody>
+            <tr>
+                <td rowspan="33">#2</td>
+                <td rowspan="33">MIPANGO NA FEDHA</td>
+                <td rowspan="33">SADAKA</td>
+                <td rowspan="2">1 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>200,750 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>180,500 Tsh</td>
+            </tr>
+            <tr>
+                <td rowspan="2">2 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>190,000 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>175,000 Tsh</td>
+            </tr>
+            <tr>
+                <td rowspan="2">3 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>210,300 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>195,200 Tsh</td>
+            </tr>
+        </tbody>
+        <tr>
+            <td colspan="5" class="text-center px-5"><b>Jumla ndogo ya Mapato kamati ya MIPANGO NA FEDHA</b></td>
+            <td><b>234,234 Tsh /=</b></td>
+        </tr>
+
+
+        <tbody>
+            <tr>
+                <td rowspan="33">#3</td>
+                <td rowspan="33">SHEREHE NA MAAFA</td>
+                <td rowspan="33">SADAKA</td>
+                <td rowspan="2">1 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>200,750 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>180,500 Tsh</td>
+            </tr>
+            <tr>
+                <td rowspan="2">2 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>190,000 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>175,000 Tsh</td>
+            </tr>
+            <tr>
+                <td rowspan="2">3 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>210,300 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>195,200 Tsh</td>
+            </tr>
+        </tbody>
+        <tr>
+            <td colspan="5" class="text-center px-5"><b>Jumla ndogo ya Mapato kamati ya SHEREHE NA MAAFA</b></td>
+            <td><b>234,234 Tsh /=</b></td>
+        </tr>
+
+
+        <tbody>
+            <tr>
+                <td rowspan="33">#4</td>
+                <td rowspan="33">AFYA, USAFI NA MAPAMBO</td>
+                <td rowspan="33">SADAKA</td>
+                <td rowspan="2">1 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>200,750 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>180,500 Tsh</td>
+            </tr>
+            <tr>
+                <td rowspan="2">2 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>190,000 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>175,000 Tsh</td>
+            </tr>
+            <tr>
+                <td rowspan="2">3 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>210,300 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>195,200 Tsh</td>
+            </tr>
+        </tbody>
+        <tr>
+            <td colspan="5" class="text-center px-5"><b>Jumla ndogo ya Mapato kamati ya AFYA, USAFI NA MAPAMBO</b></td>
+            <td><b>234,234 Tsh /=</b></td>
+        </tr>
+
+
+        <tbody>
+            <tr>
+                <td rowspan="33">#5</td>
+                <td rowspan="33">MUZIKI</td>
+                <td rowspan="33">SADAKA</td>
+                <td rowspan="2">1 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>200,750 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>180,500 Tsh</td>
+            </tr>
+            <tr>
+                <td rowspan="2">2 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>190,000 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>175,000 Tsh</td>
+            </tr>
+            <tr>
+                <td rowspan="2">3 Jan 2024</td>
+                <td>Sadaka</td>
+                <td>210,300 Tsh</td>
+            </tr>
+            <tr>
+                <td>Shukrani</td>
+                <td>195,200 Tsh</td>
+            </tr>
+        </tbody>
+        <tr>
+            <td colspan="5" class="text-center px-5"><b>Jumla ndogo ya Mapato kamati ya MUZIKI</b></td>
+            <td><b>234,234 Tsh /=</b></td>
+        </tr>
+    </table>
+</div>
+
+
+</div>
+{% endblock %}

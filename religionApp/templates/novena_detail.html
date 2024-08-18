@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container col-md-7 pb-5 mt-5">
+    <h2 style="text-align: center; padding: 10px; font-size: 35px;"><strong>{{ novena.novena_name }}</strong> </h2>
+    <img src="{{ novena.novena_image.url }}" alt="{{ novena.novena_name }} Image" style="max-width: 100%; height: auto;">
+    <p style="max-width: 100%; height: auto; font-size: 25px;" class="pt-5">{{ novena.description | safe}}</p>
+    <br>
+    {% if user.is_authenticated and user.is_staff %}
+    <a class="btn btn-primary"  href="{% url 'novena-update' pk=novena.pk %}">Update Novena</a>
+    {% endif %}
+    <a class="btn btn-primary" href="{% url 'novena-list' %}">Back to Novena List</a>
+    <a href="{% url 'novena-pdf-download' pk=novena.pk %}" class="btn btn-danger">Download PDF</a>
+  </div>
+{% endblock %}

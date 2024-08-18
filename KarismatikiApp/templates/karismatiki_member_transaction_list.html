@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% load humanize %}
+{% block content %}
+<style>
+    .h-al {
+        text-align: center;
+        padding-top: 20px;
+    }
+</style>
+{% if user.is_authenticated and user.is_staff and user.is_mhazini_karismatiki %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="row col-md-12">
+                <h4 class="h-al">Filter User with the field you want</h4>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% bootstrap_form filter_form %}
+                    <button class="btn btn-primary mt-2 col-md-12 mt-4">Filter your request</button>
+                    <div class="col-md-12 pt-3">
+                        <a href="{% url 'karismatiki-transaction-list' %}" class="btn btn-primary mt-2 col-md-12">Show All
+                            Transaction</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container col-md-3 pt-3">
+        <a href="{% url 'karismatiki-transaction-create' %}" class="btn btn-primary">Create New Transaction</a>
+    </div>
+
+
+    <div class="container">
+        <h4 class="h-al">Malipo ya Ada ya Uanachama KARISMATIKI</h4>
+        <div class="table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th>Member Name</th>
+                        <th>Transaction Type</th>
+                        <th>Amount</th>
+                        <th>Transaction Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.member }}</td>
+                        <td>{{ transaction.transaction_type }}</td>
+                        <td>{{ transaction.amount|intcomma }}</td>
+                        <td>{{ transaction.transaction_date }}</td>
+                        <td>
+                            <a href="{% url 'karismatiki-member-transaction-details' transaction.member.pk %}">
+                                <i class="fa-solid fa-eye" style="color: #22e23b;"></i></a>
+                            <a href="{% url 'karismatiki-transaction-update' transaction.pk %}">
+                                <i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i>
+                            </a>
+                            <a href="{% url 'karismatiki-transaction-delete' transaction.pk %}">
+                                <i class="fa-solid fa-trash-can" style="color: #ec0404;"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" style="text-align: center">No transactions available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% else %}
+    <div class="container">
+        <h2 class="mt-5 text-center">Access Denied. You must be logged in as staff with appropriate permissions.</h2>
+    </div>
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,50 @@
+<!-- image_gallery.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .image-container {
+        position: relative;
+        display: inline-block;
+        overflow: hidden; /* Ensure the title doesn't overflow the image */
+    }
+
+    .image-container img {
+        width: 100%; /* Make sure the image takes the full width of its container */
+        max-width: 280px;
+        max-height: 280px;
+        margin: 10px;
+        display: block;
+    }
+
+    .image-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        background-color: rgba(0, 0, 0, 0.7);
+        text-align: center;
+        padding: 5px;
+        margin: 0;
+        opacity: 0; /* Initially hidden */
+        transition: opacity 0.3s;
+        color: hsl(140, 23%, 97%);
+    }
+
+    .image-container:hover .image-title {
+        opacity: 1; /* Show on hover */
+    }
+    .p-gal{
+        font-size: 30px;
+    }
+</style>
+<p class="p-gal text-center mt-4">TMCS images gallery</p>
+{% for image in images %}
+    <div class="image-container">
+        <img src="{{ image.image.url }}" alt="{{ image.title }}">
+        <p class="image-title">{{ image.title }} <br>{{ image.uploaded_at }}</p>
+    </div>
+{% endfor %}
+{% endblock %}

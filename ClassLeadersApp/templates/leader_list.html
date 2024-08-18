@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-5">
+    {% if user.is_authenticated and user.is_katibu_tawi %}
+      <h2 class="text-center">LIST YA VIONGOZI WA MADARASA</h2>
+        {% if leaders %}
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Course</th>
+                <th>Leader Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for leader in leaders %}
+              <tr>
+                <td>{{ leader.user.generate_member_id }}</td>
+                <td>{{ leader.user.first_name }}</td>
+                <td>{{ leader.user.last_name }}</td>
+                <td>{{ leader.user.course }}</td>
+                <td>{{ leader.user.namba_ya_mwanafunzi }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <div class="alert alert-info text-center" role="alert">
+            No Class Leaders found.
+          </div>
+        {% endif %}
+    {% else %}
+      <div class="container mt-5 col-md-6 text-center">
+        <div class="alert alert-danger" role="alert">
+          You do not have permission to access this page.
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

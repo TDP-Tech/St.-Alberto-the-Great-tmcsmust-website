@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .card {
+        min-height: 100%;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .card-img-top {
+        height: 250px;
+        object-fit: cover;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .card-body {
+        padding: 15px;
+    }
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+    .card-text {
+        font-size: 0.9rem;
+        color: #555;
+    }
+    .read-more {
+        color: #007bff;
+        text-decoration: none;
+    }
+    .read-more:hover {
+        text-decoration: underline;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+</style>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center mb-4">
+        {% if user.is_authenticated %}
+            {% if user.is_mwenyekiti_tawi or user.is_katibu_tawi %}
+                <a class="btn btn-primary col-md-3" href="{% url 'rozary-create' %}">Create Rozary</a>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="d-flex justify-content-center mb-4">
+        <form method="GET" action="{% url 'rozary-list' %}" class="d-flex col-md-4">
+            <input type="text" name="q" id="search-input" class="form-control me-2" placeholder="Search Rozary by Name here..." value="{{ query|default:'' }}" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="row" id="rozary-list">
+        {% for rozary in rozaries %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                <a href="{% url 'rozary-detail' pk=rozary.pk %}" style="text-decoration: none; color: inherit;">
+                    <div class="card">
+                        <img src="{{ rozary.rozary_image.url }}" class="card-img-top" alt="{{ rozary.rozary_name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ rozary.rozary_name }}</h5>
+                            <p class="card-text">
+                                {% if rozary.description|length > 100 %}
+                                    {{ rozary.description|safe|slice:":100" }}... 
+                                    <a class="read-more" href="{% url 'rozary-detail' pk=rozary.pk %}">Read More...</a>
+                                {% else %}
+                                    {{ rozary.description|safe }}
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#search-input').keyup(function() {
+            var query = $(this).val();
+            $.ajax({
+                url: "{% url 'rozary-list' %}",
+                data: {
+                    'q': query
+                },
+                success: function(data) {
+                    $('#rozary-list').empty();
+                    if (data.length === 0) {
+                        $('#rozary-list').append('<div class="no-results">No results found for your search</div>');
+                    } else {
+                        data.forEach(function(rozary) {
+                            var card = `
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+                                    <a href="/rozary/${rozary.id}/" style="text-decoration: none; color: inherit;">
+                                        <div class="card">
+                                            <img src="${rozary.rozary_image}" class="card-img-top" alt="${rozary.rozary_name}">
+                                            <div class="card-body">
+                                                <h5 class="card-title">${rozary.rozary_name}</h5>
+                                                <p class="card-text">
+                                                    ${rozary.description.length > 100 ? rozary.description.slice(0, 100) + '...' : rozary.description}
+                                                    ${rozary.description.length > 100 ? '<a class="read-more" href="/rozary/' + rozary.id + '/">Read More...</a>' : ''}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            `;
+                            $('#rozary-list').append(card);
+                        });
+                    }
+                },
+                error: function() {
+                    $('#rozary-list').empty();
+                    $('#rozary-list').append('<div class="no-results">No results found</div>');
+                }
+            });
+        });
+    });
+</script>
+
+
+{% endblock %}

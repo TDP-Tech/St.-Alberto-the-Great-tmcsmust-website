@@ -1,0 +1,379 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Member Registration</title>
+        <style>
+            .text-centre{
+                text-align: center;
+                color: #007bff;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container mt-4">
+            <h2 class="mt-2 text-centre">Register Member</h2>
+            <div class="row">
+                <div class="col-sm-11">
+                    <hr>
+                </div>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} text-centre text-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                {% csrf_token %}
+
+                <!-- Personal Information Section -->
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.first_name.id_for_label }}" class="col-sm-10 col-form-label">{{ form.first_name.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.first_name }}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.middle_name.id_for_label }}" class="col-sm-10 col-form-label">{{ form.middle_name.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.middle_name }}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.last_name.id_for_label }}" class="col-sm-10 col-form-label">{{ form.last_name.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.gender.id_for_label }}" class="col-sm-10 col-form-label">{{ form.gender.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.gender }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.namba_ya_mwanafunzi.id_for_label }}" class="col-sm-10 col-form-label">{{ form.namba_ya_mwanafunzi.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.namba_ya_mwanafunzi }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.email.id_for_label }}" class="col-sm-10 col-form-label">{{ form.email.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.namba_ya_mzazi.id_for_label }}" class="col-sm-10 col-form-label">{{ form.namba_ya_mzazi.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.namba_ya_mzazi }}
+                        </div>
+                    </div>
+                    <!-- Ubatizo Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.ubatizo.id_for_label }}" class="col-sm-10 col-form-label">{{ form.ubatizo.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.ubatizo }}
+                        </div>
+                    </div>
+                    
+                    <!-- Kipaimara Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.kipaimara.id_for_label }}" class="col-sm-10 col-form-label">{{ form.kipaimara.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.kipaimara }}
+                        </div>
+                    </div>
+                    <!-- Ndoa/Daraja Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.ndoa_au_daraja.id_for_label }}" class="col-sm-10 col-form-label">{{ form.ndoa_au_daraja.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.ndoa_au_daraja }}
+                        </div>
+                    </div>
+                    <!-- Parokia Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.parokia.id_for_label }}" class="col-sm-10 col-form-label">{{ form.parokia.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.parokia }}
+                        </div>
+                    </div>
+                    <!-- Jimbo Kuu Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.jimbo_kuu.id_for_label }}" class="col-sm-10 col-form-label">{{ form.jimbo_kuu.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.jimbo_kuu }}
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.vyama_vya_kitume.id_for_label }}" class="col-sm-10 col-form-label">{{form.vyama_vya_kitume.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.vyama_vya_kitume }}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.vinginevyo.id_for_label }}" class="col-sm-10 col-form-label">{{ form.vinginevyo.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.vinginevyo }}
+                        </div>
+                    </div>
+                    
+                    <!-- Education Level Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.elimu_uliyonayo.id_for_label }}" class="col-sm-10 col-form-label">{{ form.elimu_uliyonayo.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.elimu_uliyonayo }}
+                        </div>
+                    </div>
+                    <!-- Level of Study -->
+                    <div class="form-group col-md-4">
+                        <label for="id_level_of_study" class="col-sm-10 col-form-label">Level of Study:</label>
+                        <div class="col-sm-10">
+                            <select name="level_of_study" id="id_level_of_study" class="form-control">
+                                {% for choice in form.level_of_study.field.choices %}
+                                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Course -->
+                    <div class="form-group col-md-4">
+                        <label for="id_course" class="col-sm-10 col-form-label">Course:</label>
+                        <div class="col-sm-10">
+                            <select name="course" id="id_course" class="form-control"></select>
+                        </div>
+                    </div>
+                    <!-- Department -->
+                    <div class="form-group col-md-4">
+                        <label for="id_department" class="col-sm-10 col-form-label">Department:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="department" id="id_department" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <!-- College -->
+                    <div class="form-group col-md-4">
+                        <label for="id_college" class="col-sm-10 col-form-label">College:</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="college" id="id_college" class="form-control" readonly>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                        <label for="id_password1" class="col-sm-10 col-form-label">Password:</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="password1" class="form-control" id="id_password1">
+                        </div>
+                    </div>
+                
+                    <div class="form-group col-md-4">
+                        <label for="id_password2" class="col-sm-10 col-form-label">Confirm Password:</label>
+                        <div class="col-sm-10">
+                            <input type="password" name="password2" class="form-control" id="id_password2">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-2">
+                        <label for="{{ form.is_active.id_for_label }}" class="col-sm-10 col-form-label">{{ form.is_active.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.is_active }}
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="{{ form.is_staff.id_for_label }}" class="col-sm-10 col-form-label">{{ form.is_staff.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.is_staff }}
+                        </div>
+                    </div>
+                    
+
+
+                    <div class="row justify-content-center align-items-center" style="padding-bottom: 20px; padding-top: 20px;">
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary btn-block">Register Member</button>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-primary btn-block" href="{% url 'member-list' %}">Members List</a>
+                        </div>
+                    </div>
+                    
+            </form>
+        </div>
+
+        <!-- Add jQuery library (you can replace this with a CDN link if needed) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                // Define a mapping of level of study to available courses
+                var coursesByLevel = {
+                    "Doctor of Philosophy": [
+                        "Doctor of Philosophy in Information Science and Engineering",
+                        "Doctor of Philosophy in Mechanical Engineering",
+                        "Doctor of Philosophy in Civil Engineering"
+                    ],
+                    "Postgraduate Diploma": ["Postgraduate Diploma in Technical Education"],
+                    "Masters": [
+                        "Masters of Science in Civil Engineering",
+                        "Master of Engineering in Renewable Energy",
+                        "Masters of Science in Energy Engineering",
+                        "Masters of Science in Information Technology",
+                        "Masters of Engineering in Clean Energy Technology",
+                        "Masters of Biodiversity Conservation"
+                    ],
+                    "Bachelor's Degree": [
+                        "Bachelor of Computer Engineering",
+                        "Bachelor of Electrical and Electronics Engineering",
+                        "Bachelor of Mechanical Engineering",
+                        "Bachelor of Technology in Architecture",
+                        "Bachelor of Civil Engineering",
+                        "Bachelor of Business Administration",
+                        "Bachelor of Laboratory Sciences and Technology",
+                        "Bachelor of Science with Education",
+                        "Bachelor of Engineering in Telecommunication Systems",
+                        "Bachelor of Computer Science",
+                        "Bachelor of Science in Information and Communication Technology",
+                        "Bachelor of Technology in Landscape Architecture",
+                        "Bachelor of Technical Education in Electrical and Electronics Engineering",
+                        "Bachelor of Technical Education in Mechanical Engineering",
+                        "Bachelor of Technical Education in Civil Engineering",
+                        "Bachelor of Technical Education in Architectural Technology",
+                        "Bachelor of Engineering in Data Science",
+                        "Bachelor of Food Science and Technology",
+                        "Bachelor of Science in Natural Resources Conservation",
+                        "Bachelor of Agribusiness Management and Technology"
+                    ],
+                    "Diploma": [
+                        "Diploma in Architecture",
+                        "Diploma in Biomedical Equipment Engineering",
+                        "Diploma in Business Administration",
+                        "Diploma in Civil Engineering",
+                        "Diploma in Computer Engineering",
+                        "Diploma in Electrical and Electronic Engineering",
+                        "Diploma in Electronics and Telecommunication Engineering",
+                        "Diploma in Highway Engineering",
+                        "Diploma in Mechanical Engineering",
+                        "Diploma in Mechatronics Engineering",
+                        "Diploma in Mining Engineering",
+                        "Diploma in Computer Science",
+                        "Diploma in Information and Communication Technology",
+                        "Diploma in Laboratory Science and Technology",
+                        "Diploma in Food Science and Technology",
+                        "Diploma in Agribusiness with Technology",
+                        "Diploma in Mechanical Engineering with Industrial Safety and Occupational Health",
+                        "Diploma of Technical Education in Civil Engineering",
+                        "Diploma of Technical Education in Electrical and Electronics Engineering",
+                        "Diploma of Technical Education in Architectural Technology",
+                        "Diploma of Technical Education in Mechanical Engineering",
+                        "Diploma of Business Administration in Accounting and Finance",
+                        "Diploma of Business Administration in Marketing and Entrepreneurship",
+                        "Diploma in Mechatronic Engineering",
+                        "Diploma in Business Computing",
+                        "Diploma in Automotive and Autoelectrical Engineering"
+                    ],
+                    "Certificate": [
+                        "Certificate in Agribusiness with Technology",
+                        "Certificate in Business Administration"
+                    ]
+                };
+
+                // Function to populate courses based on selected level of study
+                $('#id_level_of_study').change(function() {
+                    var selectedLevel = $(this).val();
+                    var courses = coursesByLevel[selectedLevel] || [];
+                    var options = '';
+                    courses.forEach(function(course) {
+                        options += '<option value="' + course + '">' + course + '</option>';
+                    });
+                    $('#id_course').html(options);
+                });
+
+                // Define a mapping of course to department and college
+                var detailsByCourse = {
+                    "Doctor of Philosophy in Information Science and Engineering": {"department": "Department of Computer Science and Engineering", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Doctor of Philosophy in Mechanical Engineering": {"department": "Department of Mechanical and Industrial Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Doctor of Philosophy in Civil Engineering": {"department": "Department of Civil Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Postgraduate Diploma in Technical Education": {"department": "Department of Technical Education", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Masters of Science in Civil Engineering": {"department": "Department of Civil Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Master of Engineering in Renewable Energy": {"department": "Department of Electrical and Power Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Masters of Science in Energy Engineering": {"department": "Department of Mechanical and Industrial Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Masters of Science in Information Technology": {"department": "Department of Information System and Technology", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Masters of Engineering in Clean Energy Technology": {"department": "Department of Electrical and Power Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Masters of Biodiversity Conservation": {"department": "Department of Earth Sciences", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Bachelor of Computer Engineering": {"department": "Department of Computer Science and Engineering", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Bachelor of Electrical and Electronics Engineering": {"department": "Department of Electrical and Power Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Bachelor of Mechanical Engineering": {"department": "Department of Mechanical and Industrial Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Bachelor of Technology in Architecture": {"department": "Department of Architecture and Art Design", "college": "College of Architecture and Construction Technology (CoACT)"},
+                    "Bachelor of Civil Engineering": {"department": "Department of Civil Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Bachelor of Business Administration": {"department": "Department of Business Management", "college": "College of Humanities and Business Studies (CoHBS)"},
+                    "Bachelor of Laboratory Sciences and Technology": {"department": "Department of Applied Science", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Bachelor of Science with Education": {"department": "Department of Natural Science", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Bachelor of Engineering in Telecommunication Systems": {"department": "Department of Electronics and Telecommunication Engineering", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Bachelor of Computer Science": {"department": "Department of Computer Science and Engineering", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Bachelor of Science in Information and Communication Technology": {"department": "Department of Information System and Technology", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Bachelor of Technology in Landscape Architecture": {"department": "Department of Architecture and Art Design", "college": "College of Architecture and Construction Technology (CoACT)"},
+                    "Bachelor of Technical Education in Electrical and Electronics Engineering": {"department": "Department of Technical Education", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Bachelor of Technical Education in Mechanical Engineering": {"department": "Department of Technical Education", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Bachelor of Technical Education in Civil Engineering": {"department": "Department of Technical Education", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Bachelor of Technical Education in Architectural Technology": {"department": "Department of Technical Education", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Bachelor of Engineering in Data Science": {"department": "Department of Computer Science and Engineering", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Bachelor of Food Science and Technology": {"department": "Department of Food Science and Technology", "college": "College of Agricultural Sciences and Technology (CoAST)"},
+                    "Bachelor of Science in Natural Resources Conservation": {"department": "Department of Natural Resources", "college": "College of Agricultural Sciences and Technology (CoAST)"},
+                    "Bachelor of Agribusiness Management and Technology": {"department": "Department of Agricultural Engineering", "college": "College of Agricultural Sciences and Technology (CoAST)"},
+                    "Diploma in Architecture": {"department": "Department of Construction Management and Technology", "college": "College of Architecture and Construction Technology (CoACT)"},
+                    "Diploma in Biomedical Equipment Engineering": {"department": "Department of Medical Science and Technology", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Diploma in Business Administration": {"department": "Department of Business Management", "college": "College of Humanities and Business Studies (CoHBS)"},
+                    "Diploma in Civil Engineering": {"department": "Department of Civil Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Diploma in Computer Engineering": {"department": "Department of Computer Science and Engineering", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Diploma in Electrical and Electronic Engineering": {"department": "Department of Electrical and Power Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Diploma in Electronics and Telecommunication Engineering": {"department": "Department of Electronics and Telecommunication Engineering", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Diploma in Highway Engineering": {"department": "Department of Civil Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Diploma in Mechanical Engineering": {"department": "Department of Mechanical and Industrial Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Diploma in Mechatronics Engineering": {"department": "Department of Mechanical and Industrial Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Diploma in Mining Engineering": {"department": "Department of Geoscience and Mining Technology", "college": "College of Engineering and Technology (CET)"},
+                    "Diploma in Computer Science": {"department": "Department of Computer Science and Engineering", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Diploma in Information and Communication Technology": {"department": "Department of Information System and Technology", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Diploma in Laboratory Science and Technology": {"department": "Department of Applied Science", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Diploma in Food Science and Technology": {"department": "Department of Food Science and Technology", "college": "College of Agricultural Sciences and Technology (CoAST)"},
+                    "Diploma in Agribusiness with Technology": {"department": "Department of Agricultural Engineering", "college": "College of Agricultural Sciences and Technology (CoAST)"},
+                    "Diploma in Mechanical Engineering with Industrial Safety and Occupational Health": {"department": "Department of Mechanical and Industrial Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Diploma of Technical Education in Civil Engineering": {"department": "Department of Technical Education", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Diploma of Technical Education in Electrical and Electronics Engineering": {"department": "Department of Technical Education", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Diploma of Technical Education in Architectural Technology": {"department": "Department of Technical Education", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Diploma of Technical Education in Mechanical Engineering": {"department": "Department of Technical Education", "college": "College of Science and Technical Education (CoSTE)"},
+                    "Diploma of Business Administration in Accounting and Finance": {"department": "Department of Business Management", "college": "College of Humanities and Business Studies (CoHBS)"},
+                    "Diploma of Business Administration in Marketing and Entrepreneurship": {"department": "Department of Business Management", "college": "College of Humanities and Business Studies (CoHBS)"},
+                    "Diploma in Mechatronic Engineering": {"department": "Department of Mechanical and Industrial Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Diploma in Business Computing": {"department": "Department of Informatics", "college": "College of Information and Communication Technology (CoICT)"},
+                    "Diploma in Automotive and Autoelectrical Engineering": {"department": "Department of Mechanical and Industrial Engineering", "college": "College of Engineering and Technology (CET)"},
+                    "Certificate in Agribusiness with Technology": {"department": "Department of Agricultural Engineering", "college": "College of Agricultural Sciences and Technology (CoAST)"},
+                    "Certificate in Business Administration": {"department": "Department of Business Management", "college": "College of Humanities and Business Studies (CoHBS)"}
+                };
+
+
+                // Function to populate department and college based on selected course
+                $('#id_course').change(function() {
+                    var selectedCourse = $(this).val();
+                    var details = detailsByCourse[selectedCourse] || {};
+                    $('#id_department').val(details.department || '');
+                    $('#id_college').val(details.college || '');
+                });
+            });
+        </script>
+
+    </body>
+    </html>
+{% endblock content %}

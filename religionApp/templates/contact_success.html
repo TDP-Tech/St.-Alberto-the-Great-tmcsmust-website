@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Thank You!</h2>
+                    <p class="card-text text-center">Your message has been successfully submitted. We will get back to you as soon as possible.</p>
+                    <p class="text-center"><a href="{% url 'contact-us' %}" class="btn btn-primary">Return to Contact Us</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

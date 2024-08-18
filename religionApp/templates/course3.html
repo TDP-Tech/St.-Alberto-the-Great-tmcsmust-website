@@ -1,0 +1,431 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Member Registration</title>
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h2 class="mt-5">Register Member</h2>
+            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                {% csrf_token %}
+
+                <!-- Personal Information Section -->
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.first_name.id_for_label }}" class="col-sm-10 col-form-label">{{ form.first_name.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.first_name }}
+                        </div>
+                    </div>
+    
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.middle_name.id_for_label }}" class="col-sm-10 col-form-label">{{ form.middle_name.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.middle_name }}
+                        </div>
+                    </div>
+    
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.last_name.id_for_label }}" class="col-sm-10 col-form-label">{{ form.last_name.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-11">
+                    <label for="{{ form.gender.id_for_label }}" class="col-sm-12 col-form-label">{{ form.gender.label }}</label>
+                    <div>
+                        {{ form.gender }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.namba_ya_mwanafunzi.id_for_label }}" class="col-sm-10 col-form-label">{{ form.namba_ya_mwanafunzi.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.namba_ya_mwanafunzi }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.email.id_for_label }}" class="col-sm-10 col-form-label">{{ form.email.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.namba_ya_mzazi.id_for_label }}" class="col-sm-10 col-form-label">{{ form.namba_ya_mzazi.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.namba_ya_mzazi }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Ubatizo Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.ubatizo.id_for_label }}" class="col-sm-10 col-form-label">{{ form.ubatizo.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.ubatizo }}
+                        </div>
+                    </div>
+    
+                    <!-- Kipaimara Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.kipaimara.id_for_label }}" class="col-sm-10 col-form-label">{{ form.kipaimara.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.kipaimara }}
+                        </div>
+                    </div>
+                    <!-- Ndoa/Daraja Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.ndoa_au_daraja.id_for_label }}" class="col-sm-10 col-form-label">{{ form.ndoa_au_daraja.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.ndoa_au_daraja }}
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+
+                    <!-- Parokia Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.parokia.id_for_label }}" class="col-sm-10 col-form-label">{{ form.parokia.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.parokia }}
+                        </div>
+                    </div>
+                    <!-- Jimbo Kuu Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.jimbo_kuu.id_for_label }}" class="col-sm-10 col-form-label">{{ form.jimbo_kuu.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.jimbo_kuu }}
+                        </div>
+                    </div>
+                    
+                    <!-- Education Level Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.elimu_uliyonayo.id_for_label }}" class="col-sm-10 col-form-label">{{ form.elimu_uliyonayo.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.elimu_uliyonayo }}
+                        </div>
+                    </div>
+                </div>
+
+
+                    <!-- Course Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.course.id_for_label }}" class="col-sm-10 col-form-label">{{ form.course.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.course }}
+                        </div>
+                    </div>
+
+                    <!-- Department Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.department.id_for_label }}" class="col-sm-10 col-form-label">{{ form.department.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.department }}
+                        </div>
+                    </div>
+
+
+                <div class="row">
+                    <!-- Current Level of Study Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.level_of_study.id_for_label }}" class="col-sm-10 col-form-label">{{ form.level_of_study.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.level_of_study }}
+                        </div>
+                    </div>
+
+                    <!-- College Selection Section -->
+                    <div class="form-group col-md-4">
+                        <label for="collegeSelect" class="col-sm-10 col-form-label">Select a College</label>
+                        <div class="col-sm-10">
+                            <select id="collegeSelect" class="form-control" onchange="updateDepartments()">
+                            <option value="">Select a College</option>
+                            <option value="coact">College of Architecture and Construction Technology (CoACT)</option>
+                            <option value="coict">College of Information and Communication Technology (CoICT)</option>
+                            <option value="cet">College of Engineering and Technology (CET)</option>
+                            <option value="coste">College of Science and Techincal Education (CoSTE)</option>
+                            <option value="cohbs">College of Hummanity and Business (CoHBS)</option>
+                            <option value="coast">College of Agricultural Sciences and Technology (CoAST)</option>
+                            <!-- Add options for other colleges -->
+                        </select>
+                        </div>
+                    </div>
+                    <!-- Department Selection Section -->
+                    <div class="form-group col-md-4">
+                        <label for="departmentSelect" class="col-sm-10 col-form-label">Select a Department</label>
+                        <div class="col-sm-10">
+                            <select id="departmentSelect" class="form-control" onchange="updateCourses()">
+                                <option value="">Select a Department</option>
+                            </select>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <!-- Courses Selection Section -->
+                    <div class="form-group col-md-4">
+                        <label for="courseSelect" class="col-sm-10 col-form-label">Select a Course</label>
+                        <div class="col-sm-10">
+                            <select id="courseSelect" class="form-control">
+                                <option value="">Select a Course</option>
+                            </select>
+                        </select>
+                        </div>
+                    </div>
+
+
+                    <!-- Vyama vya Kitume Section -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.vyama_vya_kitume.id_for_label }}" class="col-sm-10 col-form-label">{{ form.vyama_vya_kitume.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.vyama_vya_kitume }}
+                        </div>
+                    </div>
+                    <!-- Vyama vingine -->
+                    <div class="form-group col-md-4">
+                        <label for="{{ form.vinginevyo.id_for_label }}" class="col-sm-10 col-form-label">{{ form.vinginevyo.label }}</label>
+                        <div class="col-sm-10">
+                            {{ form.vinginevyo }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row mt-3">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-primary">Register Member</button>
+                        <a class="btn btn-primary ml-2 mx-5" href="{% url 'member-list' %}">Back to Member List</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script>
+            const departments = {
+                coact: [
+                    "Department of Construction Management and Technology",
+                    "Department of Architecture and Art Design",
+                    "Department of Urban Planning and Real Estate Studies"
+                ],
+                coict: [
+                    "Department of Information System and Technology",
+                    "Department of Computer Science and Engineering",
+                    "Department of Electronics and Telecommunication Engineering",
+                    'Department of Content Engineering and Multimedia Technology',
+                    "Department of Informatics",
+                ],
+                cet: [
+                    "Department of Civil Engineering",
+                    "Department of Geoscience and Mining Technology",
+                    "Department of Electrical and Power Engineering",
+                    "Department of Mechanical and Industrial Engineering",
+                    "Department of Chemical Processing and Environmental Engineering",
+                ],
+                coste: [
+                    "Department of Applied Science",
+                    "Department of Mathematics and Statistics",
+                    "Department of Natural Science",
+                    "Department of Medical Science and Technology",
+                    "Department of Technical Education",
+                    "Department of Earth Sciences"
+                ],
+                cohbs: [
+                    "Department of Business Management",
+                    "Department of Humanities",
+                    "Department of Law"
+                ],
+                coast: [
+                    "Department of Agricultural Engineering",
+                    "Department of Crop Science and Horticulture",	
+                    "Department of Food Science and Technology",	
+                    "Department of Natural Resources",	
+                    "Department of Veterinary Medicine and Animal Science",
+                    "Department of Agronomy and Soil Science"
+                ],
+            };
+    
+            const courses = {
+                // Define courses for CET department similarly
+                "Department of Civil Engineering": [
+                    "Bachelor in Civil Engineering",
+                    "Diploma in Civil Engineering",
+                    "Diploma in Highway Engineering",
+                ],
+                "Department of Geoscience and Mining Technology": [
+                    "Diploma in Mining engineering",
+                ],
+                "Department of Electrical and Power Engineering": [
+                    "Diploma in Electrical and Electronics engineering",
+                    "Bachelor of Electrical and Electronics engineering",
+                ],
+                "Department of Mechanical and Industrial Engineering": [
+                    "Diploma in Mechanical engineering",
+                    "Diploma in Mechanical engineering with Industrial safety and Occupational health",
+                    "Diploma in Mechanical engineering",
+                    "Diploma in Automotive and Auto-electrical engineering",
+                    "Bachelor of Mechanical engineering",
+                    "Master of Science in Energy Engineering",
+                    "Master of Engineering in Renewable Energy",
+                    "Doctor of Philosophy (PhD) in Mechanical Engineering",
+                ],
+                "Department of Chemical Processing and Environmental Engineering": [
+                ],
+                // Add courses for COACT departments
+                "Department of Construction Management and Technology":[
+                    "Diploma in Architecture",
+                    "Bachelor of Technology in Architecture",
+                    "Bachelor of Technology in landscape Architecture"
+                ],
+                "Department of Architecture and Art Design":[
+                ],
+                "Department of Urban Planning and Real Estate Studies":[
+                ],
+
+                // Add courses for COICT departments
+                "Department of Information System and Technology":[
+                    "Diploma in Information and Communication Technology",
+                    "Bachelor of Science in Information and Communication Technology",
+                    "Masters of Science in Information Technology"
+                ],
+                "Department of Computer Science and Engineering":[
+                    "Diploma in Computer Engineering",
+                    "Diploma in Computer Science",
+                    "Bachelor of Computer Engineering",
+                    "Bachelor of Computer Science",
+                    "Bachelor of Engineering in Data Science",
+                    "Doctor of Philosophy in Information Science and Engineering",
+                ],
+                "Department of Electronics and Telecommunication Engineering":[
+                    "Diploma in Electronics and Telecommunication Engineering",
+                    "Bachelor of Engineering in Telecommunication Systems"
+                ],
+                'Department of Content Engineering and Multimedia Technology':[
+                ],
+                "Department of Informatics":[
+                    "Diploma in Business Computing"
+                ],
+
+                // Add courses for COSTE departments
+                "Department of Applied Science":[
+                    "Diploma in Laboratory science and Technology",
+                    "Bachelor of Laboratory science and Technology",
+                ],
+                "Department of Mathematics and Statistics":[
+                    ],
+                "Department of Natural Science":[
+                    "Bachelor of Science with Education Chemistry and Biology	",
+                    "Bachelor of Science with Education Chemistry and Mathematics	",
+                    "Bachelor of Science with Education Chemistry and Physics	",
+                    "Bachelor of Science with Education Physics and Mathematics	",
+                    "Bachelor of Science in Natural Resources Conservation",
+                    ],
+                "Department of Medical Science and Technology":[
+                    "Diploma in Biomedical Equipment Engineering",
+                    ],
+                "Department of Technical Education":[
+                    "Postgraduate Diploma in Technical Education	",
+                    "Bachelor of Technical Education in Electrical and Electronics Engineering	",
+                    "Bachelor of Technical Education in Mechanical Engineering	",
+                    "Bachelor of Technical Education in Civil Engineering	",
+                    "Bachelor of Technical Education in Architectural Technology",
+                    "Diploma in Technical Education in Mechanical Engineering",
+                    "Diploma in Technical Education in Civil Engineering",
+                    "Diploma in Technical Education in Electrical and Electronics Engineering",
+                    "Diploma in Technical Education in Architecture Technology",
+                    ],
+                "Department of Earth Sciences":[
+                    "Masters of Biodiversity Conservation",
+                    "Bachelor of Science in Natural Resources Conservation"
+                    ],
+            
+                // Add courses for COHBS departments
+                "Department of Business Management":[
+                    "Certificate in Business Administration",
+                    "Diploma of Business Administration in Accounting and Finance",
+                    "Diploma of Business Administration in Marketing and Entrepreneurship",
+                    "Bachelor of Business Administration",
+                ],
+                "Department of Humanities":[
+                    ],
+                "Department of Law":[
+                    ],
+
+                // Add courses for COAST departments
+                "Department of Agricultural Engineering":[
+                    "Certificate in Agribusiness with Technology",
+                    "Diploma in Agribusiness with Technology",
+                    "Bachelor in Agribusiness with Technology",
+                ],
+                "Department of Crop Science and Horticulture":[
+                    ]	,
+                "Department of Food Science and Technology":[
+                        "Diploma in food Science and Technology",
+                        "Bachelor in food Science and Technology"
+                    ],
+                "Department of Natural Resources":[
+                    ],
+                "Department of Veterinary Medicine and Animal Science":[
+                    ],
+                "Department of Agronomy and Soil Science":[
+                    ],
+
+            };
+    
+            function updateDepartments() {
+                const collegeSelect = document.getElementById("collegeSelect");
+                const departmentSelect = document.getElementById("departmentSelect");
+                const courseSelect = document.getElementById("courseSelect");
+    
+                const selectedCollege = collegeSelect.value;
+    
+                // Clear the department and course dropdowns
+                departmentSelect.innerHTML = '<option value="">Select a Department</option>';
+                courseSelect.innerHTML = '<option value="">Select a Course</option>';
+    
+                if (selectedCollege) {
+                    const departmentOptions = departments[selectedCollege];
+                    if (departmentOptions) {
+                        departmentOptions.forEach(department => {
+                            const option = document.createElement("option");
+                            option.value = department;
+                            option.text = department;
+                            departmentSelect.appendChild(option);
+                        });
+                    }
+                }
+            }
+    
+            function updateCourses() {
+                const departmentSelect = document.getElementById("departmentSelect");
+                const courseSelect = document.getElementById("courseSelect");
+    
+                const selectedDepartment = departmentSelect.value;
+    
+                // Clear the course dropdown
+                courseSelect.innerHTML = '<option value="">Select a Course</option>';
+    
+                if (selectedDepartment) {
+                    const courseOptions = courses[selectedDepartment];
+                    if (courseOptions) {
+                        courseOptions.forEach(course => {
+                            const option = document.createElement("option");
+                            option.value = course;
+                            option.text = course;
+                            courseSelect.appendChild(option);
+                        });
+                    }
+                }
+            }
+        </script>
+    </body>
+    </html>
+{% endblock content %}

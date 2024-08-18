@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    /* Default styles for larger screens */
+    .profile-image {
+        width: 100%;
+        max-width: 200px;
+        height: 200px; /* Ensure height matches max-width for a perfect circle */
+        border-radius: 50%; /* Make the image a full circle */
+        object-fit: cover; /* Ensure the image fits within the circle without distortion */
+    }
+
+    /* Ensure container is responsive and avoids horizontal scrolling */
+    .container {
+        max-width: 100%; /* Prevent the container from exceeding the viewport width */
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Media query for small devices */
+    @media (max-width: 576px) {
+        .profile-image {
+            max-width: 150px; /* Reduce the image size on small screens */
+            height: 150px; /* Ensure height matches max-width for a perfect circle */
+        }
+
+        .btn-block {
+            font-size: 14px; /* Adjust button font size on small screens */
+        }
+
+        .container {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6 text-center">
+            <h2>Update Profile</h2>
+            <img src="{{ form.instance.image.url }}" class="rounded-circle img-thumbnail mb-3 profile-image" alt="Profile Image">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary btn-block mt-3">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

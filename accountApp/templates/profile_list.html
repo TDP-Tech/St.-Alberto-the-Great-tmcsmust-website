@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    {% if user.is_authenticated and user.is_staff and user.is_mhazini_tawi or user.is_katibu_tawi or user.is_mwenyekiti_tawi %}
+    <h2 class="mb-4">Profiles</h2>
+    <div class="list-group">
+        {% for profile in profiles %}
+        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <a style="text-decoration: none;" href="{% url 'profile-detail' profile.pk %}">{{ profile.user.first_name|upper }} {{ profile.user.middle_name|upper }} {{ profile.user.last_name|upper }}</a>
+            {% if profile.user %}
+                <a href="{% url 'profile-delete' profile.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="container mt-5 col-md-5 text-center">
+        <div class="alert alert-danger" role="alert">
+            You do not have permission to this page.
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

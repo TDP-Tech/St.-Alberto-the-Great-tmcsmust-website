@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    {% it user.is_authenticated and user.is_staff %}
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Confirm Deletion of Masomo ya Dominika</h2>
+                    <p class="card-text">Are you sure you want to delete Masomo ya Dominika with date: {{
+                        masomoyadominika.date }}?</p>
+                    <form action="{% url 'masomoya-dominika-delete' masomoyadominika.pk %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger col-md-3">Delete</button>
+                        <a href="{% url 'masomoya-dominika-list' %}" class="btn btn-secondary col-md-3">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="d-flex justify-content-center">
+        <div class="alert alert-danger col-md-5" role="alert">
+            You do not have permission to delete this Novena.
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!-- delete_confirmation.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>Delete Material</h1>
+    <p>Are you sure you want to delete "{{ material.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'all-materials' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
