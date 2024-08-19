@@ -30,8 +30,40 @@
         font-size: 25px;
         background-color: aqua;
     }
-    .add-leaders-link{
+
+    .leader-card {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 100%; /* Ensure full width on small devices */
+        max-width: 350px; /* Control max width */
+        margin: auto; /* Center the card */
+    }
+
+    .leader-card img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        
+    }
+
+    .add-leaders-link {
         text-decoration: none;
+    }
+
+    /* Swiper styles */
+    .swiper {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
     }
 </style>
 
@@ -70,7 +102,6 @@
                     principles of love, justice, and service.”</p>
             </div>
         </div>
-
     </div>
 
     <div class="row mt-5">
@@ -81,51 +112,99 @@
             <h3 class="team">Our Team</h3>
     
             <p class="team-p">TMCS National Leaders:</p>
-            <div class="row">
-                {% for leader in national_leaders %}
-                <div class="col-md-3 mb-4">
-                    <div class="text-center">
-                        <img src="{{ leader.image.url }}" alt="{{ leader.leader_name }}" class="img-fluid rounded-circle mb-2" style="width: 150px;">
-                        <h4>{{ leader.leader_name }}</h4>
-                        <p>{{ leader.leader_position }}</p>
-                        <p>Year: {{ leader.start_year }} - {{ leader.end_year }}</p>
-                        <p>Contact: {{ leader.contact_info }}</p>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    {% for leader in national_leaders %}
+                    <div class="swiper-slide">
+                        <div class="leader-card">
+                            <img src="{{ leader.image.url }}" alt="{{ leader.leader_name }}">
+                            <h4>{{ leader.leader_name }}</h4>
+                            <p>{{ leader.leader_position }}</p>
+                            <p>Year: {{ leader.start_year }} - {{ leader.end_year }}</p>
+                            <p>Contact: {{ leader.contact_info }}</p>
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+                <div class="swiper-pagination"></div>
             </div>
     
             <p class="team-p">TMCS Zonal Leaders:</p>
-            <div class="row">
-                {% for leader in zonal_leaders %}
-                <div class="col-md-3 mb-4">
-                    <div class="text-center">
-                        <img src="{{ leader.image.url }}" alt="{{ leader.leader_name }}" class="img-fluid rounded-circle mb-2" style="width: 150px;">
-                        <h4>{{ leader.leader_name }}</h4>
-                        <p>{{ leader.leader_position }}</p>
-                        <p>Year: {{ leader.start_year }} - {{ leader.end_year }}</p>
-                        <p>Contact: {{ leader.contact_info }}</p>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    {% for leader in zonal_leaders %}
+                    <div class="swiper-slide">
+                        <div class="leader-card">
+                            <img src="{{ leader.image.url }}" alt="{{ leader.leader_name }}">
+                            <h4>{{ leader.leader_name }}</h4>
+                            <p>{{ leader.leader_position }}</p>
+                            <p>Year: {{ leader.start_year }} - {{ leader.end_year }}</p>
+                            <p>Contact: {{ leader.contact_info }}</p>
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+                <div class="swiper-pagination"></div>
             </div>
     
             <p class="team-p">TMCS-MUST Leaders:</p>
-            <div class="row">
-                {% for leader in branch_leaders %}
-                <div class="col-md-3 mb-4">
-                    <div class="text-center">
-                        <img src="{{ leader.image.url }}" alt="{{ leader.leader_name }}" class="img-fluid rounded-circle mb-2" style="width: 150px;">
-                        <h4>{{ leader.leader_name }}</h4>
-                        <p>{{ leader.leader_position }}</p>
-                        <p>Year: {{ leader.start_year }} - {{ leader.end_year }}</p>
-                        <p>Contact: {{ leader.contact_info }}</p>
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    {% for leader in branch_leaders %}
+                    <div class="swiper-slide">
+                        <div class="leader-card">
+                            <img src="{{ leader.image.url }}" alt="{{ leader.leader_name }}">
+                            <h4>{{ leader.leader_name }}</h4>
+                            <p>{{ leader.leader_position }}</p>
+                            <p>Year: {{ leader.start_year }} - {{ leader.end_year }}</p>
+                            <p>Contact: {{ leader.contact_info }}</p>
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+                <div class="swiper-pagination"></div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper('.swiper', {
+        slidesPerView: 1, /* Default to one card per view */
+        spaceBetween: 30,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        loop: true, // Enable infinite scrolling
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 1,
+                spaceBetween: 30,
+            },
+            1024: {
+                slidesPerView: 1,
+                spaceBetween: 30,
+            },
+            1200: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+            },
+            1400: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+    });
+</script>
 
 {% endblock content %}

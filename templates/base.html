@@ -17,7 +17,10 @@
     <link rel="stylesheet" href="{% static 'css/ckeditorstyle.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
     <!-- Swiper CSS -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
+    <!-- Add Swiper.js CSS and JS -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 </head>
 
@@ -29,10 +32,6 @@
             box-sizing: border-box;
             font-family: "Poppins", sans-serif;
         }
-        /* body, html {
-            overflow-x: hidden;
-        } */
-    
         .bg-success {
             background-color: #28a745 !important;
         }
@@ -376,23 +375,9 @@
                                 </ul>
                             </li>
                         {% endif %}
-
-                        
-                        <!-- <li class="nav-item {% if active_link == 'masomo ya misa' %}active{% endif %}">
-                            <a class="nav-link text-white" href="{% url 'masomoya-dominika-list' %}">Misa</a>
-                        </li>
-                        <li class="nav-item {% if active_link == '' %}active{% endif %}">
-                            <a class="nav-link text-white" href="{% url 'maswalinamajibu-list' %}">Q&A</a>
-                        </li> -->
-
-                        
-
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{% url 'event-image-gallery' %}">Gallery</a>
                         </li>
-                        
-                        
-
                         
                         <!-- ########################### -->
                         <li class="nav-item dropdown">
@@ -434,7 +419,6 @@
                                 </li>
                             </ul>
                         </li>
-
                         <div class="ml-auto">
                             {% if user.is_authenticated %}
                                 <li class="nav-item dropdown">
@@ -456,37 +440,37 @@
                                                 <!-- Handle case where user does not have a profile -->
                                                 <a class="dropdown-item" href="{% url 'profile-create' %}">Create Profile</a>
                                             {% endif %}
-                                        </li>                                    
+                                        </li>
                                         <li><hr class="dropdown-divider"></li>
-                                        
-                                        {% if user.profile and user.vyama_vya_kitume == 'KWAYA' %}
+                        
+                                        {% if user.profile and 'KWAYA' in user.vyama_vya_kitume %}
                                             <li class="nav-item">
                                                 <a class="dropdown-item" href="{% url 'kwaya-individual-transactions' %}">Malipo ya Ada Kwaya</a>
                                             </li>
                                             <li><hr class="dropdown-divider"></li>
                                         {% endif %}
-                                        
-                                        {% if user.profile and user.vyama_vya_kitume == 'KARISMATIKI' %}
+                        
+                                        {% if user.profile and 'KARISMATIKI' in user.vyama_vya_kitume %}
                                             <li class="nav-item">
                                                 <a class="dropdown-item" href="{% url 'karismatiki-individual-transactions' %}">Malipo ya Ada Karismatiki</a>
                                             </li>
                                             <li><hr class="dropdown-divider"></li>
                                         {% endif %}
-                                        
-                                        {% if user.profile and user.vyama_vya_kitume == 'LEGIO MARIA' %}
+                        
+                                        {% if user.profile and 'LEGIO MARIA' in user.vyama_vya_kitume %}
                                             <li class="nav-item">
                                                 <a class="dropdown-item" href="{% url 'legio-individual-transactions' %}">Malipo ya Ada Legio Maria</a>
                                             </li>
                                             <li><hr class="dropdown-divider"></li>
                                         {% endif %}
-                                        
-                                        {% if user.profile and user.vyama_vya_kitume == 'MOYO MTAKATIFU WA YESU' %}
+                        
+                                        {% if user.profile and 'MOYO MTAKATIFU WA YESU' in user.vyama_vya_kitume %}
                                             <li class="nav-item">
                                                 <a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-individual-transactions' %}">Malipo ya Ada Moyo Mtakatifu wa Yesu</a>
                                             </li>
                                             <li><hr class="dropdown-divider"></li>
                                         {% endif %}
-                                        
+                        
                                         <!-- Add other links based on user's role -->
                                         {% if user.profile %}
                                         <li class="nav-item">
@@ -506,7 +490,7 @@
                                 </li>
                             {% endif %}
                         </div>
-                         
+                        
                     {% else %}
                         <li class="nav-item {% if active_link == 'Login' %}active{% endif %}">
                             <a class="nav-link text-white" href="{% url 'login' %}">Login</a>

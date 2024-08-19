@@ -1,5 +1,6 @@
 from django import forms
-from .models import TmcsMember
+# from multiselectfield import MultiSelectField  # Ensure you have this package installed
+from .models import TmcsMember, VYAMA_VYA_KITUME
 
 class TmcsMemberForm(forms.ModelForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
@@ -63,7 +64,7 @@ class TmcsMemberForm(forms.ModelForm):
             'department': forms.Select(attrs={'class': 'form-control'}),
             'college': forms.Select(attrs={'class': 'form-control'}),
             'level_of_study': forms.Select(attrs={'class': 'form-control'}),
-            'vyama_vya_kitume': forms.Select(attrs={'class': 'form-control'}),
+            'vyama_vya_kitume': forms.SelectMultiple(attrs={'class': 'form-control select-multiple'}),
             'vinginevyo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Acha wazi kama hakuna'}),
             'is_staff': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),

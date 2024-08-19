@@ -12,6 +12,13 @@
                 text-align: center;
                 color: #007bff;
             }
+            /* Custom styles for multi-select */
+            .form-select {
+                height: auto;
+                max-height: 200px; /* Adjust as needed */
+                overflow-y: auto; /* Allows scrolling */
+            }
+
         </style>
     </head>
     <body>
@@ -119,11 +126,16 @@
                         </div>
 
                         <div class="form-group col-md-4">
-                            <label for="{{ form.vyama_vya_kitume.id_for_label }}" class="col-sm-10 col-form-label">{{form.vyama_vya_kitume.label }}</label>
+                            <label for="vyama_vya_kitume" class="col-sm-10 col-form-label">{{ form.vyama_vya_kitume.label }}</label>
                             <div class="col-sm-10">
-                                {{ form.vyama_vya_kitume }}
+                                <select id="vyama_vya_kitume" name="vyama_vya_kitume" multiple class="form-select">
+                                    {% for value, display in form.vyama_vya_kitume.field.choices %}
+                                        <option value="{{ value }}">{{ display }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                         </div>
+                        
                         
                         <div class="form-group col-md-4">
                             <label for="{{ form.vinginevyo.id_for_label }}" class="col-sm-10 col-form-label">{{ form.vinginevyo.label }}</label>
@@ -223,6 +235,32 @@
                 <h2 class="mt-5 text-center">Access Denied. You must be logged in with appropriate permissions.</h2>
             </div>
         {% endif %}
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const selectElement = document.getElementById('vyama_vya_kitume');
+                const options = selectElement.options;
+        
+                selectElement.addEventListener('mousedown', function(e) {
+                    e.preventDefault();
+        
+                    const option = e.target;
+                    if (option.tagName === 'OPTION') {
+                        option.selected = !option.selected;
+                        option.classList.toggle('selected');
+                    }
+        
+                    return false;
+                });
+            });
+        </script>
+        <style>
+            .select-multiple option.selected {
+                background-color: #d1d1d1;
+                color: #000;
+            }
+        </style>
+        
     </body>
     </html>
 {% endblock content %}

@@ -2,7 +2,7 @@ from django.db import models
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, UserManager
-
+from multiselectfield import MultiSelectField
 
 # Choices for Gender field
 GENDER_CHOICES = [
@@ -555,7 +555,8 @@ class TmcsMember(AbstractBaseUser, PermissionsMixin):
     # Academic Level
     level_of_study = models.CharField(max_length=20, verbose_name='Level unayosoma', choices=LEVEL_OF_STUDY_CHOICES)
     # Apostolic Associations
-    vyama_vya_kitume = models.CharField(max_length=100, blank=True, verbose_name='Utume', choices=VYAMA_VYA_KITUME)
+    # vyama_vya_kitume = models.CharField(max_length=100, blank=True, verbose_name='Utume', choices=VYAMA_VYA_KITUME)
+    vyama_vya_kitume = MultiSelectField(max_length=100, blank=True, verbose_name='Utume', choices=VYAMA_VYA_KITUME)
     vinginevyo = models.CharField(max_length=100, blank=True, verbose_name='Vinginevyo')
     tarehe_aliyosajiliwa = models.DateTimeField(auto_now_add=True)
     # Years of Study

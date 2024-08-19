@@ -37,32 +37,33 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
-        .contact-info{
+        .contact-info {
             text-decoration: none;
+            color: #4CAF50;
+        }
+        .contact-info:hover {
+            text-decoration: underline;
         }
     </style>
 
-
-
-<div class="container">
-    <h2>Contact Us</h2>
-    <p>Thank you for your interest in contacting us. Please use the form below or the provided contact information to get in touch with us.</p>
-    
-    <form action="{% url 'contact-us' %}" method="post">
-        {% csrf_token %}
-        <label for="user_name">Name</label>
-        <input type="text" id="user_name" name="user_name" required>
-    
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-    
-        <label for="message">Message</label>
-        <textarea id="message" name="message" required></textarea>
-    
-        <input type="submit" value="Submit">
-    </form>
-    
-
-    <p>You can also reach us via G-mail at <a class="contact-info" href="mailto:tmcsmust@gmail.com">tmcsmust@gmail.com</a> or by phone at <a class="contact-info" href="tel:+255757900133">+255757900133</a>.
-</div>
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p>Thank you for your interest in contacting us. Please use the form below or the provided contact information to get in touch with us.</p>
+        
+        <form action="{% url 'contact-us' %}" method="post">
+            {% csrf_token %}
+            <label for="user_name">Name</label>
+            <input type="text" id="user_name" name="user_name" required>
+        
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+        
+            <input type="submit" value="Submit">
+        </form>
+        
+        <p>You can also reach us via G-mail at <a class="contact-info" href="mailto:tmcsmust@gmail.com">tmcsmust@gmail.com</a> or by phone at <a class="contact-info" href="tel:+255757900133">+255757900133</a>.</p>
+    </div>
 {% endblock %}
