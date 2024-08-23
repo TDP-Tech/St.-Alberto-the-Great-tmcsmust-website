@@ -65,7 +65,7 @@ def legio_member_transaction_details(request, member_pk):
 
 from .models import TmcsMember
 def legio_member_list(request):
-    legio_members = TmcsMember.objects.filter(vyama_vya_kitume='LEGIO MARIA')
+    legio_members = TmcsMember.objects.filter(vyama_vya_kitume__icontains='LEGIO MARIA')
     return render(request, 'legio_member_list.html', {'legio_members': legio_members})
 
 

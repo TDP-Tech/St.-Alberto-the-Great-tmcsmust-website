@@ -19,7 +19,7 @@ class KarismatikiMemberTransactionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Filter members who are part of the Karismatiki group
-        self.fields['member'].queryset = TmcsMember.objects.filter(vyama_vya_kitume='KARISMATIKI')
+        self.fields['member'].queryset = TmcsMember.objects.filter(vyama_vya_kitume__icontains='KARISMATIKI')
 
 
 class KarismatikiMemberTransactionFilterForm(forms.Form):

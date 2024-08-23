@@ -6,10 +6,10 @@ TRANSACTION_CHOICES = (
 )
 
 VOICE_CHOICES = (
-    ('Soprano', 'Soprano'),
-    ('Alto', 'Alto'),
-    ('Tenor', 'Tenor'),
-    ('Bass', 'Bass'),
+    ('Soprano', 'Soprano (I)'),
+    ('Alto', 'Alto (II)'),
+    ('Tenor', 'Tenor (III)'),
+    ('Bass', 'Bass (IV)'),
 )
 
 TALENT_CHOICES = (

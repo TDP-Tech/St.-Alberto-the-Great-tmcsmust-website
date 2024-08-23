@@ -19,7 +19,7 @@ class KwayaMemberTransactionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Filter members who are part of the KWAYA group
-        self.fields['member'].queryset = TmcsMember.objects.filter(vyama_vya_kitume='KWAYA')
+        self.fields['member'].queryset = TmcsMember.objects.filter(vyama_vya_kitume__icontains='KWAYA')
 
 
 class KwayaMemberTransactionFilterForm(forms.Form):

@@ -20,7 +20,7 @@ class LegioMemberTransactionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Filter members who are part of the LEGIO MARIA group
-        self.fields['member'].queryset = TmcsMember.objects.filter(vyama_vya_kitume='LEGIO MARIA')
+        self.fields['member'].queryset = TmcsMember.objects.filter(vyama_vya_kitume__icontains='LEGIO MARIA')
 
 
 class LegioMemberTransactionFilterForm(forms.Form):

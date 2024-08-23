@@ -65,7 +65,7 @@ def karismatiki_member_transaction_details(request, member_pk):
 
 from .models import TmcsMember
 def karismatiki_member_list(request):
-    karismatiki_members = TmcsMember.objects.filter(vyama_vya_kitume='KARISMATIKI')
+    karismatiki_members = TmcsMember.objects.filter(vyama_vya_kitume__icontains='KARISMATIKI')
     return render(request, 'karismatiki_member_list.html', {'karismatiki_members': karismatiki_members})
 
 

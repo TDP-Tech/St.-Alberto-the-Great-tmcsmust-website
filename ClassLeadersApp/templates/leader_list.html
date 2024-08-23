@@ -4,35 +4,83 @@
 {% block content %}
   <div class="container mt-5">
     {% if user.is_authenticated and user.is_katibu_tawi %}
-      <h2 class="text-center">LIST YA VIONGOZI WA MADARASA</h2>
-        {% if leaders %}
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Student ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Course</th>
-                <th>Leader Phone</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for leader in leaders %}
-              <tr>
-                <td>{{ leader.user.generate_member_id }}</td>
-                <td>{{ leader.user.first_name }}</td>
-                <td>{{ leader.user.last_name }}</td>
-                <td>{{ leader.user.course }}</td>
-                <td>{{ leader.user.namba_ya_mwanafunzi }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+      <h2 class="text-center">
+        {% if role %}
+          LIST YA VIONGOZI WA {{ role | upper }}
         {% else %}
-          <div class="alert alert-info text-center" role="alert">
-            No Class Leaders found.
-          </div>
+          LIST YA VIONGOZI WA MADARASA
         {% endif %}
+      </h2>
+      {% if leaders %}
+        <table class="table table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th>S/No</th>
+              <th>FIRST NAME</th>
+              <th>LAST NAME</th>
+              <th>COURSE</th>
+              <th>CONTACTS</th>
+              <th>LEADER STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for leader in leaders %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ leader.first_name|upper }}</td>
+              <td>{{ leader.last_name|upper }}</td>
+              <td>{{ leader.course }}</td>
+              <td>{{ leader.namba_ya_mwanafunzi }}</td>
+              <td>
+                {% if leader.is_mwenyekiti_tawi %} Mwenyekiti Tawi
+                {% elif leader.is_katibu_tawi %} Katibu Tawi
+                {% elif leader.is_mhazini_tawi %} Mhazini Tawi
+                {% elif leader.is_mwenyekiti_kwaya %} Mwenyekiti Kwaya
+                {% elif leader.is_katibu_kwaya %} Katibu Kwaya
+                {% elif leader.is_mhazini_kwaya %} Mhazini Kwaya
+                {% elif leader.is_mwenyekiti_legio %} Mwenyekiti Legio
+                {% elif leader.is_katibu_legio %} Katibu Legio
+                {% elif leader.is_mhazini_legio %} Mhazini Legio
+                {% elif leader.is_mwenyekiti_karismatiki %} Mwenyekiti Karismatiki
+                {% elif leader.is_katibu_karismatiki %} Katibu Karismatiki
+                {% elif leader.is_mhazini_karismatiki %} Mhazini Karismatiki
+                {% elif leader.is_mwenyekiti_moyo_mtakatifu_wa_Yesu %} Mwenyekiti Moyo Mtakatifu wa Yesu
+                {% elif leader.is_katibu_moyo_mtakatifu_wa_Yesu %} Katibu Moyo Mtakatifu wa Yesu
+                {% elif leader.is_mhazini_moyo_mtakatifu_wa_Yesu %} Mhazini Moyo Mtakatifu wa Yesu
+                {% elif leader.is_kiongozi_wa_darasa %} Kiongozi wa Darasa
+                {% elif leader.is_mwenyekiti_litrujia %} Mwenyekiti Litrujia
+                {% elif leader.is_katibu_litrujia %} Katibu Litrujia
+                {% elif leader.is_mwenyekiti_mipango_na_fedha %} Mwenyekiti Mipango na Fedha
+                {% elif leader.is_katibu_mipango_na_fedha %} Katibu Mipango na Fedha
+                {% elif leader.is_mhazini_mipango_na_fedha %} Mhazini Mipango na Fedha
+                {% elif leader.is_mwenyekiti_mas_media %} Mwenyekiti Mas Media
+                {% elif leader.is_katibu_mas_media %} Katibu Mas Media
+                {% elif leader.is_mhazini_mas_media %} Mhazini Mas Media
+                {% elif leader.is_mwenyekiti_sherehe_na_maafa %} Mwenyekiti Sherehe na Maafa
+                {% elif leader.is_katibu_sherehe_na_maafa %} Katibu Sherehe na Maafa
+                {% elif leader.is_mhazini_sherehe_na_maafa %} Mhazini Sherehe na Maafa
+                {% elif leader.is_mwenyekiti_michezo_na_burudani %} Mwenyekiti Michezo na Burudani
+                {% elif leader.is_katibu_michezo_na_burudani %} Katibu Michezo na Burudani
+                {% elif leader.is_mhazini_michezo_na_burudani %} Mhazini Michezo na Burudani
+                {% elif leader.is_mwenyekiti_muziki %} Mwenyekiti Muziki
+                {% elif leader.is_katibu_muziki %} Katibu Muziki
+                {% elif leader.is_mhazini_muziki %} Mhazini Muziki
+                {% elif leader.is_mwenyekiti_elimu_ushauri_na_nidhamu %} Mwenyekiti Elimu, Ushauri na Nidhamu
+                {% elif leader.is_katibu_elimu_ushauri_na_nidhamu %} Katibu Elimu, Ushauri na Nidhamu
+                {% elif leader.is_mhazini_elimu_ushauri_na_nidhamu %} Mhazini Elimu, Ushauri na Nidhamu
+                {% elif leader.is_registration_committee %} Registration Committee
+                {% else %} Member
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div class="alert alert-info text-center" role="alert">
+          No leaders found for the selected role.
+        </div>
+      {% endif %}
     {% else %}
       <div class="container mt-5 col-md-6 text-center">
         <div class="alert alert-danger" role="alert">

@@ -7,23 +7,21 @@
 <div class="container-fluid mt-5">
   <h2>Class Members</h2>
   <table class="table table-bordered">
-    <thead>
+    <thead class="table-dark">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">STUDENT ID'S</th>
+        <th scope="col">S/No</th>
         <th scope="col">FIRST NAME</th>
         <th scope="col">LAST NAME</th>
         <th scope="col">COURSE</th>
         <th scope="col">LEVEL OF STUDY</th>
         <th scope="col">YEARS OF STUDY</th>
-        <th scope="col">STATUS</th> 
+        <th scope="col">LEADERSHIP STATUS</th> 
       </tr>
     </thead>
     <tbody>
       {% for member in class_members %}
       <tr>
         <th scope="row">{{ forloop.counter }}</th>
-        <td>{{ member.generate_member_id }}</td>
         <td>{{ member.first_name }}</td>
         <td>{{ member.last_name }}</td>
         <td>{{ member.course }}</td>

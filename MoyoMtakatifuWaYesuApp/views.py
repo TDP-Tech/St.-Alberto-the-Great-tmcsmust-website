@@ -66,7 +66,7 @@ def moyomtakatifuwaYesu_member_transaction_details(request, member_pk):
 
 
 def moyomtakatifuwaYesu_member_list(request):
-    moyomtakatifuwaYesu_members = TmcsMember.objects.filter(vyama_vya_kitume='MOYO MTAKATIFU WA YESU')
+    moyomtakatifuwaYesu_members = TmcsMember.objects.filter(vyama_vya_kitume__icontains='MOYO MTAKATIFU WA YESU')
     return render(request, 'moyomtakatifuwaYesu_member_list.html', {'moyomtakatifuwaYesu_members': moyomtakatifuwaYesu_members})
 
 

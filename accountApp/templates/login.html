@@ -3,9 +3,7 @@
 {% block content %}
     <style>
         /* Centering container */
-        body{
-            background: #f0faff;
-        }
+
         .container {
             display: flex;
             align-items: center;
@@ -41,7 +39,7 @@
         }
 
         .form header {
-            font-size: 30px;
+            font-size: 20px;
             text-align: center;
             color: #fff;
             font-weight: 600;
@@ -136,7 +134,7 @@
 <div class="container">
     <section class="wrapper">
         <div class="form signin">
-            <header>Login</header>
+            <header>Login to TMCS-MUST</header>
             <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}

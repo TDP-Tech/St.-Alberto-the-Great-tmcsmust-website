@@ -1,14 +1,18 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/saint alberto the great logo.ico' %}" type="image/x-icon">
     <title>TMCS MUST | St. Alberto The Great</title>
     <!-- #### icons link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- django select 2 links -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -16,15 +20,7 @@
     <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
     <link rel="stylesheet" href="{% static 'css/ckeditorstyle.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
-    <!-- Swiper CSS -->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
-    <!-- Add Swiper.js CSS and JS -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-</head>
-
-<body>
     <style>
         /* Import Google font - Poppins */
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
@@ -32,506 +28,358 @@
             box-sizing: border-box;
             font-family: "Poppins", sans-serif;
         }
-        .bg-success {
-            background-color: #28a745 !important;
-        }
-        .dropdown-menu-list {
-            border-radius: 0;
+        /* Remove border from dropdown menus */
+        .dropdown-menu {
             border: none;
-            padding: 0.5em;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.23);
         }
-        .dropdown-menu-list ul {
-            list-style: none;
-            padding: 0;
+        /* Style for dropdown items */
+        .dropdown-menu a {
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: #212529;
         }
-        .dropdown-menu-list li a {
-            color: gray;
-            padding: 0.5em 1em;
+
+        .dropdown-menu a:hover {
+            background-color: #f8f9fa;
         }
-        .dropdown-menu-list li:first-child a {
-            font-weight: bold;
-            font-size: 1.2em;
-            color: #516BEB;
-            text-transform: uppercase;
+
+        /* Align dropdown menu to the left */
+        .navbar-nav .dropdown-menu {
+            left: 0;
+            right: auto;
         }
-        .dropdown-menu-list{
-            border-radius: 4px;
+
+        /* Ensure navbar links are aligned to the left */
+        .navbar-nav {
+            margin-left: 0;
         }
-        @media screen  and (min-width:993px) {
-            .dropdown-list:hover .dropdown-menu-list{
-                display: flex;
+
+        .navbar-collapse {
+            justify-content: flex-start;
+        }
+
+        /* Optionally, remove any padding on the navbar to ensure it aligns perfectly with the left edge */
+        .navbar {
+            padding-left: 10px;
+        }
+
+        /* Center the logo and navigation items */
+        .navbar .navbar-brand img {
+            height: 40px; /* Adjust this value as needed */
+        }
+
+        .navbar-nav .nav-link {
+            padding-top: 0.5rem;
+            padding-bottom: 1.3rem;
+        }
+
+        /* Hover effect for dropdowns on larger screens */
+        @media (min-width: 992px) {
+            .navbar-nav .dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
             }
-            .dropdown-menu-list.show{
-                display: flex;
-            }
         }
-    
-        @media screen and (max-width: 992px) {
-            .dropdown-menu-list.show {
-                position: relative;
-                z-index: 9999;
-                background-color: #fff;
-                border-radius: 5px;
-                padding: 0.5em;
-                box-shadow: 0 3px 6px rgba(0,0,0,0.23);
-                margin-top: 0.5em;
-                max-height: 300px;
-                overflow-y: scroll;
+
+        /* Ensure navbar links align to the left on small screens */
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                width: 100%;
+                text-align: left;
+            }
+            .navbar-nav .nav-item {
+                width: 100%;
             }
         }
     </style>
-    
-    
-    <!-- <div class="container"> -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top" style="padding-left: 10px;">
-            <a class="navbar-brand" href="{% url 'welcome_page' %}"><img style="width: 30px; height: 30px;" src="{% static 'images/saint alberto the great logo.jpeg' %}" alt="Image description"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    {% if user.is_authenticated %}
-                        {% if user.is_registration_committee %}
-                            <li class="nav-item {% if active_link == 'members' %}active{% endif %}">
-                                <a class="nav-link text-white" href="{% url 'register-member' %}">Registration</a>
-                            </li>
-                        {% endif %}
-                        {% if user.is_authenticated and user.is_staff and user.is_mhazini_tawi %}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownTransactions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Mhazini Tawi
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownTransactions">
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'transaction-create' %}">Create Member Transaction</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'transaction-list' %}">Members Transaction List</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'sadaka-create' %}">Tunza Taarifa ya Sadaka</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'sadaka-list' %}">List ya Sadaka zote</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        {% endif %}
+</head>
+<body>
 
-                        <li class="nav-item {% if active_link == 'jumuiya' %}active{% endif %}">
-                            <a class="nav-link text-white" href="{% url 'community-list' %}">Community</a>
-                        </li>
-                        
+<nav class="navbar navbar-expand-lg navbar-light bg-light align-items-center">
+    <a class="navbar-brand" href="{% url 'welcome_page' %}">
+        <img src="{% static 'images/saint alberto the great logo.ico' %}" alt="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        <i class="fas fa-times" style="display: none;"></i> <!-- X icon -->
+    </button>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownTransactions" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Halmashauri Kuu
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownTransactions">
-                                <li class="nav-item">
-                                    <a class="dropdown-item" aria-current="page" href="{% url 'leader-list' %}">Viongozi wote wa Halmashauri Kuu</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" aria-current="page" href="{% url 'leader-list' %}">Kamati Kuu</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" aria-current="page" href="{% url 'leader-list' %}">Kamati ya Mas-Media</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" aria-current="page" href="{% url 'leader-list' %}">Kamati ya Kwaya</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" aria-current="page" href="{% url 'leader-list' %}">Kamati ya Sherehe na Maafa</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" aria-current="page" href="{% url 'leader-list' %}">Kamati ya Mipango na Fedha</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" aria-current="page" href="{% url 'leader-list' %}">Kamati ya Muziki</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" aria-current="page" href="{% url 'leader-list' %}">Kamati ya Michezo, Sanaa na Burudani</a>
-                                </li>
-                            </ul>
-                        </li>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+                {% if user.is_registration_committee %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'register-member' %}">Registration</a>
+                </li>
+                {% endif %}
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Sala zote
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li class="nav-item {% if active_link == 'rozary' %}active{% endif %}">
-                                        <a class="dropdown-item" href="{% url 'rozary-list' %}">Rosary</a>
-                                    </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item {% if active_link == 'novena' %}active{% endif %}">
-                                    <a class="dropdown-item" href="{% url 'novena-list' %}">Novena</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item {% if active_link == 'maisha ya watakatifu' %}active{% endif %}">
-                                        <a class="dropdown-item" href="{% url 'saintlife-list' %}">Saint's life</a>
-                                    </li>
-                            </ul>
-                        </li>
+                {% if user.is_authenticated and user.is_staff and user.is_mhazini_tawi %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-expanded="false">
+                        Treasurer
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'transaction-create' %}">Create Member Transaction</a></li>
+                        <li><a class="dropdown-item" href="{% url 'transaction-list' %}">Members Transaction List</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sadaka-create' %}">Tunza Taarifa ya Sadaka</a></li>
+                        <li><a class="dropdown-item" href="{% url 'sadaka-list' %}">List ya Sadaka zote</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'community-list' %}">Community</a>
+                </li>
 
 
-                        <li class="nav-item dropdown dropdown-list">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Vyama vya Kitume
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-list" aria-labelledby="navbarDropdown">
-                                <ul>
-                                    <li>
-                                        <a class="dropdown-item" href="#">KWAYA</a>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'kwaya' %}">Home page</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'kwaya-transaction-create' %}">Create Transaction</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'kwaya-transaction-list' %}">Transaction List</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'kwaya-member-list' %}">Kwaya Members</a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a class="dropdown-item" href="#">LEGIO MARIA</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'legio-maria' %}">Home page</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'legio-transaction-create' %}">Create Transaction</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'legio-transaction-list' %}">Transaction List</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'legio-member-list' %}">Legio Members</a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a class="dropdown-item" href="#">KARISMATIKI</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'karismatiki' %}">Home page</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'karismatiki-transaction-create' %}">Create Transaction</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'karismatiki-transaction-list' %}">Transaction List</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'karismatiki-member-list' %}">Karismatiki Members</a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <a class="dropdown-item" href="#">MOYO MTAKATIFU WA YESU</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu' %}">Home page</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-transaction-create' %}">Create Transaction</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-transaction-list' %}">Transaction List</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-member-list' %}">Moyo Mtakatifu Members</a>
-                                    </li>
-                                </ul>
-                                    <ul>
-                                        <li>
-                                            <a class="dropdown-item" href="#">WATUMISHI WA ALTARE</a>
-                                        </li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu' %}">Home page</a>
-                                        </li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-transaction-create' %}">Create Transaction</a>
-                                        </li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-transaction-list' %}">Transaction List</a>
-                                        </li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-member-list' %}">Moyo Mtakatifu Members</a>
-                                        </li>
-                                    </ul>
-                            </div>
-                        </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-expanded="false">
+                        Leaders
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'kamati-kuu' %}">Kamati Kuu</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'litrujia' %}">Kamati ya Litrujia</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'mipango-na-fedha' %}">Kamati ya Mipango na Fedha</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'mas-media' %}">Kamati ya Media</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'sherehe-na-maafa' %}">Kamati ya Sherehe na Maafa</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'michezo-na-burudani' %}">Kamati ya Michezo na Burudani</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'muziki' %}">Kamati ya Muziki</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'elimu-ushauri-na-nidhamu' %}">Kamati ya elimu, Ushauri na Nidhamu</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'kwaya' %}">Kamati ya Kwaya</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'registration-committee' %}">Kamati ya Mapokezi</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'legio' %}">Viongozi wa Legio Maria</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'karismatiki' %}">Viongozi wa Karismatiki</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'moyo-mtakatifu-wa-Yesu' %}">Viongozi wa Moyo Mtakatifu wa Yesu</a></li>
+                        <li><a class="dropdown-item" href="{% url 'leader_list' 'kiongozi-wa-darasa' %}">Viongozi wa Madarasa</a></li>
+                    </ul>
+                </li>
 
-                        {% if user.is_authenticated and user.is_staff and user.is_mwenyekiti_mipango_na_fedha or user.is_katibu_mipango_na_fedha or user.is_mhazini_mipango_na_fedha %}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    M/Fedha
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'mapato-na-matumizi' %}">Jumla ya Mapato na Matumizi</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'mauzo-create' %}">Create Mapato</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'mauzo-list' %}">Mapato Transaction List</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'report-ya-mapato-kamati-ya-mipango-na-fedha' %}">Report ya Mapato</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'matumizi-create' %}">Create Matumizi</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'matumizi-list' %}">Matumizi Transaction List</a>
-                                    </li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li class="nav-item">
-                                        <a class="dropdown-item" href="{% url 'report-ya-matumizi-kamati-ya-mipango-na-fedha' %}">Report ya Matumizi</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        {% endif %}
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'event-image-gallery' %}">Gallery</a>
-                        </li>
-                        
-                        <!-- ########################### -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Historia
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li class="nav-item">
-                                    <a class="dropdown-item" href="{% url 'historia_ya_tmcs' %}">TMCS history</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" href="{% url 'historia_ya_imcs' %}">IMCS history</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item {% if active_link == 'all-materials' %}active{% endif %}">
-                            <a class="nav-link text-white" href="{% url 'all-materials' %}">Materials</a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'chat-messages' %}">ChatRoom</a>
-                        </li> -->
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                About
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li class="nav-item">
-                                    <a class="dropdown-item" href="{% url 'welcome_page' %}#title-grey">Services</a>
-                                </li>                                
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" href="{% url 'about-us' %}">About Us</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li class="nav-item">
-                                    <a class="dropdown-item" href="{% url 'contact-us' %}">Contact Us</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <div class="ml-auto">
-                            {% if user.is_authenticated %}
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {% if user.profile %}
-                                            <img src="{{ user.profile.image.url }}" class="rounded-circle" alt="Profile Image" style="width: 30px; height: 30px;">
-                                            {{ user.profile.displayname }}
-                                        {% else %}
-                                            <!-- Display default image -->
-                                            <img src="{% static 'images/avatar.jpg' %}" class="rounded-circle" alt="Default Profile Image" style="width: 30px; height: 30px;">
-                                            {{ user.first_name }} <!-- Display user's first name as fallback -->
-                                        {% endif %}
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li>
-                                            {% if user.profile %}
-                                                <a class="dropdown-item" href="{% url 'profile-update' pk=request.user.profile.pk %}">Edit Profile</a>
-                                            {% else %}
-                                                <!-- Handle case where user does not have a profile -->
-                                                <a class="dropdown-item" href="{% url 'profile-create' %}">Create Profile</a>
-                                            {% endif %}
-                                        </li>
-                                        <li><hr class="dropdown-divider"></li>
-                        
-                                        {% if user.profile and 'KWAYA' in user.vyama_vya_kitume %}
-                                            <li class="nav-item">
-                                                <a class="dropdown-item" href="{% url 'kwaya-individual-transactions' %}">Malipo ya Ada Kwaya</a>
-                                            </li>
-                                            <li><hr class="dropdown-divider"></li>
-                                        {% endif %}
-                        
-                                        {% if user.profile and 'KARISMATIKI' in user.vyama_vya_kitume %}
-                                            <li class="nav-item">
-                                                <a class="dropdown-item" href="{% url 'karismatiki-individual-transactions' %}">Malipo ya Ada Karismatiki</a>
-                                            </li>
-                                            <li><hr class="dropdown-divider"></li>
-                                        {% endif %}
-                        
-                                        {% if user.profile and 'LEGIO MARIA' in user.vyama_vya_kitume %}
-                                            <li class="nav-item">
-                                                <a class="dropdown-item" href="{% url 'legio-individual-transactions' %}">Malipo ya Ada Legio Maria</a>
-                                            </li>
-                                            <li><hr class="dropdown-divider"></li>
-                                        {% endif %}
-                        
-                                        {% if user.profile and 'MOYO MTAKATIFU WA YESU' in user.vyama_vya_kitume %}
-                                            <li class="nav-item">
-                                                <a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-individual-transactions' %}">Malipo ya Ada Moyo Mtakatifu wa Yesu</a>
-                                            </li>
-                                            <li><hr class="dropdown-divider"></li>
-                                        {% endif %}
-                        
-                                        <!-- Add other links based on user's role -->
-                                        {% if user.profile %}
-                                        <li class="nav-item">
-                                            <a class="dropdown-item" href="{% url 'individual-transactions' %}">Tmcs Member Transactions</a>
-                                        </li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <!-- Add class members link for users belonging to the same course -->
-                                        {% if user.profile and user.course %}
-                                            <li class="nav-item">
-                                                <a class="dropdown-item" href="{% url 'class-members' %}">Class Members</a>
-                                            </li>
-                                            <li><hr class="dropdown-divider"></li>
-                                        {% endif %}
-                                        {% endif %}
-                                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                                    </ul>                                        
-                                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown2" role="button" aria-expanded="false">
+                        Sala
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <li><a class="dropdown-item" href="{% url 'rozary-list' %}">Rosary</a></li>
+                        <li><a class="dropdown-item" href="{% url 'novena-list' %}">Novena</a></li>
+                        <li><a class="dropdown-item" href="{% url 'saintlife-list' %}">Saint's life</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown2" role="button" aria-expanded="false">
+                        Ministries
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <!-- Kwaya Section -->
+                        <li><a class="dropdown-item" href="#"><b>KWAYA</b></a></li>
+                        <li><a class="dropdown-item" href="{% url 'kwaya' %}">Home page</a></li>
+                        <li><a class="dropdown-item" href="{% url 'kwaya-transaction-create' %}">Create Transaction</a></li>
+                        <li><a class="dropdown-item" href="{% url 'kwaya-transaction-list' %}">Transaction List</a></li>
+                        <li><a class="dropdown-item" href="{% url 'kwaya-member-list' %}">Kwaya Members</a></li>
+                
+                        <!-- Legio Maria Section -->
+                        <li><a class="dropdown-item" href="#"><b>LEGIO MARIA</b></a></li>
+                        <li><a class="dropdown-item" href="{% url 'legio-maria' %}">Home page</a></li>
+                        <li><a class="dropdown-item" href="{% url 'legio-transaction-create' %}">Create Transaction</a></li>
+                        <li><a class="dropdown-item" href="{% url 'legio-transaction-list' %}">Transaction List</a></li>
+                        <li><a class="dropdown-item" href="{% url 'legio-member-list' %}">Legio Members</a></li>
+                
+                        <!-- Karismatiki Section -->
+                        <li><a class="dropdown-item" href="#"><b>KARISMATIKI</b></a></li>
+                        <li><a class="dropdown-item" href="{% url 'karismatiki' %}">Home page</a></li>
+                        <li><a class="dropdown-item" href="{% url 'karismatiki-transaction-create' %}">Create Transaction</a></li>
+                        <li><a class="dropdown-item" href="{% url 'karismatiki-transaction-list' %}">Transaction List</a></li>
+                        <li><a class="dropdown-item" href="{% url 'karismatiki-member-list' %}">Karismatiki Members</a></li>
+                
+                        <!-- Moyo Mtakatifu wa Yesu Section -->
+                        <li><a class="dropdown-item" href="#"><b>MOYO MTAKATIFU WA YESU</b></a></li>
+                        <li><a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu' %}">Home page</a></li>
+                        <li><a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-transaction-create' %}">Create Transaction</a></li>
+                        <li><a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-transaction-list' %}">Transaction List</a></li>
+                        <li><a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-member-list' %}">Moyo Mtakatifu Members</a></li>
+                
+                        <!-- Watumishi wa Altare Section -->
+                        <li><a class="dropdown-item" href="#"><b>WATUMISHI WA ALTARE</b></a></li>
+                        <li><a class="dropdown-item" href="#">Home page</a></li>
+                        <li><a class="dropdown-item" href="#">Create Transaction</a></li>
+                        <li><a class="dropdown-item" href="#">Transaction List</a></li>
+                        <li><a class="dropdown-item" href="#">Watumishi Members</a></li>
+                    </ul>
+                    
+                </li>
+                
+
+                {% if user.is_authenticated and user.is_staff and user.is_mwenyekiti_mipango_na_fedha or user.is_katibu_mipango_na_fedha or user.is_mhazini_mipango_na_fedha %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown2" role="button" aria-expanded="false">
+                        M/Fedha
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <li><a class="dropdown-item" href="{% url 'mapato-na-matumizi' %}">Jumla ya Mapato na Matumizi</a></li>
+                        <li><a class="dropdown-item" href="{% url 'mauzo-create' %}">Create Mapato</a></li>
+                        <li><a class="dropdown-item" href="{% url 'mauzo-list' %}">Mapato Transaction List</a></li>
+                        <li><a class="dropdown-item" href="{% url 'report-ya-mapato-kamati-ya-mipango-na-fedha' %}">Report ya Mapato</a></li>
+                        <li><a class="dropdown-item" href="{% url 'matumizi-create' %}">Create Matumizi</a></li>
+                        <li><a class="dropdown-item" href="{% url 'matumizi-list' %}">Matumizi Transaction List</a></li>
+                        <li><a class="dropdown-item" href="{% url 'report-ya-matumizi-kamati-ya-mipango-na-fedha' %}">Report ya Matumizi</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'event-image-gallery' %}">Gallery</a>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown2" role="button" aria-expanded="false">
+                        History
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <li><a class="dropdown-item" href="{% url 'historia_ya_tmcs' %}">TMCS history</a></li>
+                        <li><a class="dropdown-item" href="{% url 'historia_ya_imcs' %}">IMCS history</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'all-materials' %}">Materials</a>
+                </li>
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown2" role="button" aria-expanded="false">
+                        About
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <li><a class="dropdown-item" href="{% url 'welcome_page' %}#title-grey">Services</a></li>
+                        <li><a class="dropdown-item" href="{% url 'about-us' %}">About Us</a></li>
+                        <li><a class="dropdown-item" href="{% url 'contact-us' %}">Contact Us</a></li>
+                    </ul>
+                </li>
+
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {% if user.profile %}
+                                <img src="{{ user.profile.image.url }}" class="rounded-circle" alt="Profile Image" style="width: 30px; height: 30px;">
+                                {{ user.profile.displayname }}
+                            {% else %}
+                                <img src="{% static 'images/avatar.jpg' %}" class="rounded-circle" alt="Default Profile Image" style="width: 30px; height: 30px;">
+                                {{ user.first_name }}
                             {% endif %}
-                        </div>
-                        
-                    {% else %}
-                        <li class="nav-item {% if active_link == 'Login' %}active{% endif %}">
-                            <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
-                        </li>
-                    {% endif %}
-                    <!-- ############## -->
-                </ul>
-            </div>
-        </nav>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                {% if user.profile %}
+                                    <a class="dropdown-item" href="{% url 'profile-update' pk=request.user.profile.pk %}">Edit Profile</a>
+                                {% else %}
+                                    <a class="dropdown-item" href="{% url 'profile-create' %}">Create Profile</a>
+                                {% endif %}
+                            </li>
 
-        
-        <div style="padding-top: 50px;">
-            {% block content%}
-    
-            {% endblock content %}
-        </div>
+                            {% if user.profile and 'KWAYA' in user.vyama_vya_kitume %}
+                            <li>
+                                <a class="dropdown-item" href="{% url 'kwaya-individual-transactions' %}">Malipo ya Ada Kwaya</a>
+                            </li>
+                            {% endif %}
 
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- </div> -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Get all dropdown items
-            const dropdownItems = document.querySelectorAll('.nav-item.dropdown');
-    
-            // Add event listeners to each dropdown item
-            dropdownItems.forEach(item => {
-                // Get the dropdown menu associated with the current item
-                const dropdownMenu = item.querySelector('.dropdown-menu');
-    
-                // Add event listener to show the dropdown menu on hover
-                item.addEventListener('mouseenter', () => {
-                    dropdownMenu.classList.add('show');
-                });
-    
-                // Add event listener to hide the dropdown menu when mouse leaves
-                item.addEventListener('mouseleave', () => {
-                    dropdownMenu.classList.remove('show');
-                });
+                            {% if user.profile and 'KARISMATIKI' in user.vyama_vya_kitume %}
+                            <li>
+                                <a class="dropdown-item" href="{% url 'karismatiki-individual-transactions' %}">Malipo ya Ada Karismatiki</a>
+                            </li>
+                            {% endif %}
+
+                            {% if user.profile and 'LEGIO MARIA' in user.vyama_vya_kitume %}
+                            <li>
+                                <a class="dropdown-item" href="{% url 'legio-individual-transactions' %}">Malipo ya Ada Legio Maria</a>
+                            </li>
+                            {% endif %}
+
+                            {% if user.profile and 'MOYO MTAKATIFU WA YESU' in user.vyama_vya_kitume %}
+                            <li>
+                                <a class="dropdown-item" href="{% url 'moyomtakatifuwaYesu-individual-transactions' %}">Malipo ya Ada Moyo Mtakatifu wa Yesu</a>
+                            </li>
+                            {% endif %}
+
+                            {% if user.profile %}
+                            <li>
+                                <a class="dropdown-item" href="{% url 'individual-transactions' %}">Tmcs Member Transactions</a>
+                            </li>
+                            
+                            {% if user.course %}
+                            <li>
+                                <a class="dropdown-item" href="{% url 'class-members' %}">Class Members</a>
+                            </li>
+                            {% endif %}
+                            {% endif %}
+                            
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'login' %}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+{% block content %}
+{% endblock content %}
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script>
+    // JavaScript to handle dropdown toggle and closing
+    document.addEventListener('click', function (event) {
+        const isDropdownToggle = event.target.matches('.dropdown-toggle');
+        if (!isDropdownToggle) {
+            // Close all dropdowns when clicking outside of them
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                menu.classList.remove('show');
             });
-        });
-    </script>
+        }
+    });
 
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            // Close any other open dropdowns
+            document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                if (menu !== this.nextElementSibling) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            // Toggle the clicked dropdown
+            const dropdownMenu = this.nextElementSibling;
+            dropdownMenu.classList.toggle('show');
+        });
+    });
+
+    // JavaScript to toggle between hamburger and X icons
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    navbarToggler.addEventListener('click', function () {
+        const icon = this.querySelector('.navbar-toggler-icon');
+        const closeIcon = this.querySelector('.fa-times');
+
+        if (icon.style.display === 'none') {
+            icon.style.display = 'block';
+            closeIcon.style.display = 'none';
+        } else {
+            icon.style.display = 'none';
+            closeIcon.style.display = 'block';
+        }
+    });
+
+</script>
+
+</body>
 </html>

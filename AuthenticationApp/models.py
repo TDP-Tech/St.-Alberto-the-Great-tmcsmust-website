@@ -283,7 +283,6 @@ VYAMA_VYA_KITUME = [
     ('KWAYA','KWAYA'),
     ('MOYO MTAKATIFU WA YESU','MOYO MTAKATIFU WA YESU'),
     ('WATUMISHI WA ALTARE','WATUMISHI WA ALTARE'),
-    ('WASOMA MASOMO','CHAMA CHA WASOMA MASOMO'),
 ]
 
 KAMATI = [
@@ -503,7 +502,7 @@ class CustomUserManager(UserManager):
         extra_fields.setdefault('is_katibu_litrujia', True)
         return self._create_user(email, first_name, password, **extra_fields)
     
-    ############################
+    ############# MIPANGO NA FEDHA ###############
     def create_mwenyekiti_mipango_na_fedha(self, email=None, first_name=None, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', False)
@@ -520,6 +519,96 @@ class CustomUserManager(UserManager):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', False)
         extra_fields.setdefault('is_mhazini_mipango_na_fedha', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+    ############## MASS MEDIA ##############
+    def create_mwenyekiti_mas_media(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_mwenyekiti_mas_media', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+
+    def create_katibu_mas_media(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_katibu_mas_media', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+    
+    def create_mhazini_mas_media(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_mhazini_mas_media', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+    ############# SHEREHE NA MAAFA###############
+    def create_mwenyekiti_sherehe_na_maafa(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_mwenyekiti_sherehe_na_maafa', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+
+    def create_katibu_sherehe_na_maafa(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_katibu_sherehe_na_maafa', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+    
+    def create_mhazini_sherehe_na_maafa(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_mhazini_sherehe_na_maafa', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+    ############ MICHEZO NA BURUDANI ################
+    def create_mwenyekiti_michezo_na_burudani(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_mwenyekiti_michezo_na_burudani', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+
+    def create_katibu_michezo_na_burudani(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_katibu_michezo_na_burudani', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+    
+    def create_mhazini_michezo_na_burudani(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_mhazini_michezo_na_burudani', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+    ############# MUZIKI ###############
+    def create_mwenyekiti_muziki(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_mwenyekiti_muziki', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+
+    def create_katibu_muziki(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_katibu_muziki', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+    
+    def create_mhazini_muziki(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_mhazini_muziki', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+    ############# ELIMU USHAURI NA NIDHAMU ###############
+    def create_mwenyekiti_elimu_ushauri_na_nidhamu(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_mwenyekiti_elimu_ushauri_na_nidhamu', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+
+    def create_katibu_elimu_ushauri_na_nidhamu(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_katibu_elimu_ushauri_na_nidhamu', True)
+        return self._create_user(email, first_name, password, **extra_fields)
+    
+    def create_mhazini_elimu_ushauri_na_nidhamu(self, email=None, first_name=None, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_mhazini_elimu_ushauri_na_nidhamu', True)
         return self._create_user(email, first_name, password, **extra_fields)
     ######## REGISTRATION COMMITEE ###########
     def create_registration_committee(self, email=None, first_name=None, password=None, **extra_fields):
@@ -596,6 +685,31 @@ class TmcsMember(AbstractBaseUser, PermissionsMixin):
     is_mwenyekiti_mipango_na_fedha = models.BooleanField(default=False)
     is_katibu_mipango_na_fedha = models.BooleanField(default=False)
     is_mhazini_mipango_na_fedha = models.BooleanField(default=False)
+    ###
+    ###
+    is_mwenyekiti_mas_media = models.BooleanField(default=False)
+    is_katibu_mas_media = models.BooleanField(default=False)
+    is_mhazini_mas_media = models.BooleanField(default=False)
+    ###
+    ###
+    is_mwenyekiti_sherehe_na_maafa = models.BooleanField(default=False)
+    is_katibu_sherehe_na_maafa = models.BooleanField(default=False)
+    is_mhazini_sherehe_na_maafa = models.BooleanField(default=False)
+    ###
+    ###
+    is_mwenyekiti_michezo_na_burudani = models.BooleanField(default=False)
+    is_katibu_michezo_na_burudani = models.BooleanField(default=False)
+    is_mhazini_michezo_na_burudani = models.BooleanField(default=False)
+    ###
+    ###
+    is_mwenyekiti_muziki = models.BooleanField(default=False)
+    is_katibu_muziki = models.BooleanField(default=False)
+    is_mhazini_muziki = models.BooleanField(default=False)
+    ###
+    ###
+    is_mwenyekiti_elimu_ushauri_na_nidhamu = models.BooleanField(default=False)
+    is_katibu_elimu_ushauri_na_nidhamu = models.BooleanField(default=False)
+    is_mhazini_elimu_ushauri_na_nidhamu = models.BooleanField(default=False)
     ###
     is_registration_committee = models.BooleanField(default=False)
     

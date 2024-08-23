@@ -20,7 +20,7 @@ class MoyomtakatifuwaYesuMemberTransactionForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Filter members who are part of the MOYO MTAKATIFU WA YESU group
-        self.fields['member'].queryset = TmcsMember.objects.filter(vyama_vya_kitume='MOYO MTAKATIFU WA YESU')
+        self.fields['member'].queryset = TmcsMember.objects.filter(vyama_vya_kitume__icontains='MOYO MTAKATIFU WA YESU')
 
 class MoyomtakatifuwaYesuMemberTransactionFilterForm(forms.Form):
     member_name = forms.CharField(label='Member Name', required=False)

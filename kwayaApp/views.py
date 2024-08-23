@@ -74,7 +74,7 @@ def kwaya_member_transaction_details(request, member_pk):
 
 
 def kwaya_member_list(request):
-    kwaya_members = TmcsMember.objects.filter(vyama_vya_kitume='KWAYA')
+    kwaya_members = TmcsMember.objects.filter(vyama_vya_kitume__icontains='KWAYA')
     # Fetching assigned voices for Kwaya members
     voice_assignments = KwayaVoiceAssignment.objects.filter(member__in=kwaya_members)
     # Creating a dictionary to store assigned voices for each member
