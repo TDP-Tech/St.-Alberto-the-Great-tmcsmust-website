@@ -5,21 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{% static 'images/saint alberto the great logo.ico' %}" type="image/x-icon">
-    <title>TMCS MUST | St. Alberto The Great</title>
-    <!-- #### icons link -->
+    <title>TMCS MUST | St. Albert The Great</title>
+    <!-- #### icons link
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- django select 2 links -->
+     django select 2 links
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/htmx.js"></script>
     <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
     <link rel="stylesheet" href="{% static 'css/ckeditorstyle.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script> -->
+
+    <!-- Non-critical CSS loaded with preload -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="{% static 'css/ckeditorstyle.css' %}" as="style" onload="this.rel='stylesheet'">
+
+    <!-- Async/Deferred JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+    <script src="https://unpkg.com/htmx.org/dist/htmx.js" defer></script>
+    <script src="https://unpkg.com/hyperscript.org@0.9.12" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js" defer></script>
+
 
     <style>
         /* Import Google font - Poppins */
@@ -108,8 +118,14 @@
         <ul class="navbar-nav">
             {% if user.is_authenticated %}
                 {% if user.is_registration_committee %}
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'register-member' %}">Registration</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-expanded="false">
+                        Members
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'register-member' %}">Registration</a></li>
+                        <li><a class="dropdown-item" href="{% url 'member-list' %}">Members List</a></li>
+                    </ul>
                 </li>
                 {% endif %}
 
@@ -157,7 +173,7 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown2" role="button" aria-expanded="false">
-                        Sala
+                        Devotions
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
                         <li><a class="dropdown-item" href="{% url 'rozary-list' %}">Rosary</a></li>
@@ -259,20 +275,23 @@
                         <li><a class="dropdown-item" href="{% url 'contact-us' %}">Contact Us</a></li>
                     </ul>
                 </li>
-
+                <!-- needs to be removed later  -->
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
+                </li>
 
                 {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown2" role="button" aria-expanded="false">
                             {% if user.profile %}
-                                <img src="{{ user.profile.image.url }}" class="rounded-circle" alt="Profile Image" style="width: 30px; height: 30px;">
+                                <img src="{{ user.profile.image.url }}" class="rounded-circle" alt="Profile" style="width: 30px; height: 30px;">
                                 {{ user.profile.displayname }}
                             {% else %}
-                                <img src="{% static 'images/avatar.jpg' %}" class="rounded-circle" alt="Default Profile Image" style="width: 30px; height: 30px;">
+                                <img src="{% static 'images/avatar.webp' %}" class="rounded-circle" alt="Profile" style="width: 30px; height: 30px;">
                                 {{ user.first_name }}
                             {% endif %}
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
                             <li>
                                 {% if user.profile %}
                                     <a class="dropdown-item" href="{% url 'profile-update' pk=request.user.profile.pk %}">Edit Profile</a>
@@ -317,7 +336,9 @@
                             {% endif %}
                             {% endif %}
                             
-                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                            </li>
                         </ul>
                     </li>
                 {% endif %}
@@ -325,6 +346,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'login' %}">Login</a>
                 </li>
+                
             {% endif %}
         </ul>
     </div>

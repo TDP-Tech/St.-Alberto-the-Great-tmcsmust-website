@@ -101,14 +101,14 @@
                         data.forEach(function(rozary) {
                             var card = `
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-                                    <a href="/rozary/${rozary.id}/" style="text-decoration: none; color: inherit;">
+                                    <a href="/Religion/rozaries/${rozary.id}/" style="text-decoration: none; color: inherit;">
                                         <div class="card">
                                             <img src="${rozary.rozary_image}" class="card-img-top" alt="${rozary.rozary_name}">
                                             <div class="card-body">
                                                 <h5 class="card-title">${rozary.rozary_name}</h5>
                                                 <p class="card-text">
                                                     ${rozary.description.length > 100 ? rozary.description.slice(0, 100) + '...' : rozary.description}
-                                                    ${rozary.description.length > 100 ? '<a class="read-more" href="/rozary/' + rozary.id + '/">Read More...</a>' : ''}
+                                                    ${rozary.description.length > 100 ? '<a class="read-more" href="/Religion/rozaries/' + rozary.id + '/">Read More...</a>' : ''}
                                                 </p>
                                             </div>
                                         </div>

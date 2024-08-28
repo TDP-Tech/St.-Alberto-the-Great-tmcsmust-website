@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.css">
+
 <style>
     .front-template {
         position: relative;
@@ -48,7 +51,6 @@
         object-fit: cover;
         border-radius: 50%;
         margin-bottom: 15px;
-        
     }
 
     .add-leaders-link {
@@ -65,10 +67,59 @@
         display: flex;
         justify-content: center;
     }
+
+    .front-template img {
+        filter: brightness(70%);
+    }
+
+    .welcome-message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .welcome-message h1 {
+        font-size: 5vw; /* Adjusts based on the viewport width */
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        margin-bottom: 10px;
+    }
+
+    .welcome-message p {
+        font-size: 2.5vw; /* Adjusts based on the viewport width */
+        font-weight: 300;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    @media (max-width: 768px) {
+        .welcome-message h1 {
+            font-size: 6vw; /* Larger font size on smaller screens */
+        }
+
+        .welcome-message p {
+            font-size: 3vw; /* Larger font size on smaller screens */
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .welcome-message h1 {
+            font-size: 4vw; /* Slightly smaller font size on very large screens */
+        }
+
+        .welcome-message p {
+            font-size: 2vw; /* Slightly smaller font size on very large screens */
+        }
+    }
 </style>
 
 <div class="front-template pt-2">
-    <img src="{% static 'images/about us.PNG' %}" alt="About Us Image">
+    <img src="{% static 'images/about-image.PNG' %}" alt="About Us Image">
+    <!-- <div class="welcome-message">
+        <h1>Welcome to TMCS MUST</h1>
+        <p>Empowering Catholic Students Across Tanzania</p>
+    </div> -->
 </div>
 
 <div class="container">
@@ -112,7 +163,7 @@
             <h3 class="team">Our Team</h3>
     
             <p class="team-p">TMCS National Leaders:</p>
-            <div class="swiper">
+            <div class="swiper swiper-national-leaders">
                 <div class="swiper-wrapper">
                     {% for leader in national_leaders %}
                     <div class="swiper-slide">
@@ -128,9 +179,10 @@
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-    
+            
+            {% if zonal_leaders %}
             <p class="team-p">TMCS Zonal Leaders:</p>
-            <div class="swiper">
+            <div class="swiper swiper-zonal-leaders">
                 <div class="swiper-wrapper">
                     {% for leader in zonal_leaders %}
                     <div class="swiper-slide">
@@ -146,9 +198,11 @@
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-    
+            {% endif %}
+            
+            {% if branch_leaders %}
             <p class="team-p">TMCS-MUST Leaders:</p>
-            <div class="swiper">
+            <div class="swiper swiper-branch-leaders">
                 <div class="swiper-wrapper">
                     {% for leader in branch_leaders %}
                     <div class="swiper-slide">
@@ -164,46 +218,124 @@
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
 
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.js"></script>
+
 <!-- Initialize Swiper -->
 <script>
-    var swiper = new Swiper('.swiper', {
-        slidesPerView: 1, /* Default to one card per view */
-        spaceBetween: 30,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-        },
-        loop: true, // Enable infinite scrolling
-        breakpoints: {
-            640: {
-                slidesPerView: 1,
-                spaceBetween: 20,
+    document.addEventListener('DOMContentLoaded', function() {
+        var swiperNationalLeaders = new Swiper('.swiper-national-leaders', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-national-leaders .swiper-pagination',
+                clickable: true,
             },
-            768: {
-                slidesPerView: 1,
-                spaceBetween: 30,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
             },
-            1024: {
-                slidesPerView: 1,
-                spaceBetween: 30,
+            loop: true,
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                },
+                1200: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1400: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
             },
-            1200: {
-                slidesPerView: 2,
-                spaceBetween: 30,
+        });
+
+        var swiperZonalLeaders = new Swiper('.swiper-zonal-leaders', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-zonal-leaders .swiper-pagination',
+                clickable: true,
             },
-            1400: {
-                slidesPerView: 3,
-                spaceBetween: 30,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
             },
-        },
+            loop: true,
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                },
+                1200: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1400: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
+
+        var swiperBranchLeaders = new Swiper('.swiper-branch-leaders', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-branch-leaders .swiper-pagination',
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            loop: true,
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                },
+                1200: {
+                    slidesPerView: 2,
+                    spaceBetween: 30,
+                },
+                1400: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
     });
 </script>
 

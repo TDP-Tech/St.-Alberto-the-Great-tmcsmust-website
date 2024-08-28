@@ -1,8 +1,24 @@
-<!-- member_list.html -->
 {% extends 'base.html' %}
 {% block content %}
+<style>
+    body, html {
+            overflow-x: hidden;
+        }
+        
+    .table-responsive {
+    overflow-x: auto;
+    margin: 0 auto; /* Center the table within the container */
+}
+
+.container {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+</style>
     {% if user.is_authenticated and user.is_registration_committee or user.is_authenticated and user.is_mwenyekiti_tawi or user.is_authenticated and user.is_registration_committee and user.is_katibu_tawi or user.is_authenticated and user.is_registration_committee and user.is_mhazini_tawi %}
-        <div class="row justify-content-center align-items-center" style="padding-bottom: 20px; padding-top: 30px;">
+        <div class="row justify-content-center align-items-center px-2" style="padding-bottom: 20px; padding-top: 30px;">
             <h2 class="col-md-4">Member List</h2>
             <div class="col-md-2">
                 <a class="btn btn-primary btn-block" href="{% url 'register-member' %}">Register Member</a>
@@ -11,10 +27,10 @@
 
         <!-- Search Form -->
         <div class="d-flex justify-content-center mb-4">
-        <form class="d-flex" method="GET">
-            <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search" value="{{ request.GET.q }}">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+            <form class="d-flex" method="GET">
+                <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search" value="{{ request.GET.q }}">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
 
         <div class="container">
@@ -31,46 +47,48 @@
             </div>
         </div>
         
-        <table class="table table-bordered col-sm-12">
-            <thead>
-                <tr>
-                    <th>TMCS MEMBER ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Course</th>
-                    <th>Years of Study</th>
-                    <th>Phone Number</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for member in members reversed %}
+        <!-- Responsive Table Wrapper with no padding to prevent scroll -->
+        <div class="table-responsive">
+            <table class="table table-bordered col-12">
+                <thead class="table-dark">
                     <tr>
-                        <td>{{ member.generate_member_id }}</td>
-                        <td>{{ member.first_name }}</td>
-                        <td>{{ member.last_name }}</td>
-                        <td>{{ member.course }}</td>
-                        <td>{{ member.years_of_study }} 
-                            {% if member.years_of_study == 1 %}
-                                year
-                            {% else %}
-                                years
-                            {% endif %}
-
-                        </td>
-                        <td>{{ member.namba_ya_mwanafunzi }}</td>
-                        <td>{{ member.email }}</td>
-                        <!-- Add other fields as needed -->
-                        <td>
-                            <a href="{% url 'member-detail' pk=member.pk %}"><i class="fa-solid fa-eye" style="color: #48e222;"></i></a>
-                            <a href="{% url 'member-update' pk=member.pk %}"><i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
-                            <a href="{% url 'member-delete' pk=member.pk %}"><i class="fa-solid fa-trash-can" style="color: #ec0404;"></i></a>
-                        </td>
+                        <th>TMCS MEMBER ID</th>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>COURSE</th>
+                        <th>YEARS OF STUDY</th>
+                        <th>PHONE NUMBER</th>
+                        <th>EMAIL</th>
+                        <th>ACTIONS</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for member in members reversed %}
+                        <tr>
+                            <td>{{ member.generate_member_id }}</td>
+                            <td>{{ member.first_name }}</td>
+                            <td>{{ member.last_name }}</td>
+                            <td>{{ member.course }}</td>
+                            <td>{{ member.years_of_study }} 
+                                {% if member.years_of_study == 1 %}
+                                    year
+                                {% else %}
+                                    years
+                                {% endif %}
+                            </td>
+                            <td>{{ member.namba_ya_mwanafunzi }}</td>
+                            <td>{{ member.email }}</td>
+                            <td>
+                                <a href="{% url 'member-detail' pk=member.pk %}"><i class="fa-solid fa-eye" style="color: #48e222;"></i></a>
+                                <a href="{% url 'member-update' pk=member.pk %}"><i class="fa-solid fa-pen-to-square" style="color: #2268e2;"></i></a>
+                                {% if user.is_superuser %}
+                                <a href="{% url 'member-delete' pk=member.pk %}"><i class="fa-solid fa-trash-can" style="color: #ec0404;"></i></a>
+                                {% endif %}                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% else %}
         <div class="container">
             <h2 class="mt-5 text-center">Access Denied. You must be logged in with appropriate permissions.</h2>

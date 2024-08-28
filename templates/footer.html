@@ -27,60 +27,50 @@
 <footer>
     <div class="container footer-container text-center">
         <div class="footer-section text-start">
-            <h3>About Us</h3>
+            <h3>About</h3>
             <ul>
                 <li><i class="fas fa-angle-right"></i> <a href="{% url 'historia_ya_imcs' %}">IMCS History</a></li>
                 <li><i class="fas fa-angle-right"></i> <a href="{% url 'historia_ya_tmcs' %}">TMCS History</a></li>
-                <li><i class="fas fa-angle-right"></i> <a href="#">Careers</a></li>
-                <li><i class="fas fa-angle-right"></i> <a href="#">Contact Us</a></li>
-                <li><i class="fas fa-angle-right"></i> <a href="#">About Us</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="{% url 'contact-us' %}">Contact Us</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="{% url 'about-us' %}">About Us</a></li>
             </ul>
         </div>
         <div class="footer-section text-start">
-            <h3>About Us</h3>
+            <h3>Services</h3>
             <ul>
-                <li><i class="fas fa-angle-right"></i> <a href="{% url 'historia_ya_imcs' %}">IMCS History</a></li>
-                <li><i class="fas fa-angle-right"></i> <a href="{% url 'historia_ya_tmcs' %}">TMCS History</a></li>
-                <li><i class="fas fa-angle-right"></i> <a href="#">Careers</a></li>
-                <li><i class="fas fa-angle-right"></i> <a href="#">Contact Us</a></li>
-                <li><i class="fas fa-angle-right"></i> <a href="#">About Us</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="{% url 'mipango-home' %}">Visakramenti</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="{% url 'mipango-home' %}">T-shirts</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="{% url 'mapambo' %}">Mapambo</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="{% url 'kwaya' %}">Muziki wa Nota</a></li>
+                <li><i class="fas fa-angle-right"></i> <a href="{% url 'saloon' %}">Saloon ya Kike</a></li>
             </ul>
         </div>
         <div class="footer-section text-start">
-            <h3>Products</h3>
-            <ul>
-                <li><i class="fas fa-angle-right"></i> <a href="#">Visakramenti</a></li>
-                <li><i class="fas fa-angle-right"></i> <a href="#">T-shirts</a></li>
-                <li><i class="fas fa-angle-right"></i> <a href="#">Mapambo</a></li>
-                <li><i class="fas fa-angle-right"></i> <a href="#">Muziki wa Nota</a></li>
-                <li><i class="fas fa-angle-right"></i> <a href="#">Saloon ya Kike</a></li>
-            </ul>
-        </div>
-        <div class="footer-section text-start">
-            <h3>Connect With Us</h3>
+            <h3>Connect with Us</h3>
             <ul>
                 <li><i class="fas fa-angle-right"></i> 
-                    <a href="https://www.facebook.com/profile.php?id=61554688814321&mibextid=NTRm0r7WZyOdZZsz"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="https://www.facebook.com/profile.php?id=61554688814321&mibextid=NTRm0r7WZyOdZZsz" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a>
                 </li>
                 <li><i class="fas fa-angle-right"></i> 
-                    <a href="https://www.tiktok.com/@watakatifu_wote_must"><i class="fab fa-tiktok"></i> TikTok</a>
+                    <a href="https://www.tiktok.com/@watakatifu_wote_must" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i> TikTok</a>
                 </li>
                 <li><i class="fas fa-angle-right"></i> 
-                    <a href="https://www.instagram.com/st.albertthegreat_tmcsmust"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://www.instagram.com/st.albertthegreat_tmcsmust" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
                 </li>
                 <li><i class="fas fa-angle-right"></i> 
-                    <a href="https://www.instagram.com/allsaintschoirtmcsmust"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://www.instagram.com/allsaintschoirtmcsmust" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
                 </li>
                 <li><i class="fas fa-angle-right"></i> 
-                    <a href="https://youtube.com/@KwayaYaWatakatifuWoteTMCS-Must"><i class="fab fa-youtube"></i> Youtube</a>
+                    <a href="https://youtube.com/@KwayaYaWatakatifuWoteTMCS-Must" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
                 </li>
             </ul>
         </div>
     </div>
     <div class="footer-bottom">
-        <p> &copy; TMCSMUST 2024 - <span id="currentYear"></span>. All rights reserved. | Designed and Maintained by TDG</p>
+        <p> &copy; TMCSMUST 2024 - <span id="currentYear"></span>. All rights reserved. | Designed and Maintained by <a href="https://github.com/TDP-Tech?tab=repositories" target="_blank" rel="noopener noreferrer">TDG</a></p>
     </div>
 </footer>
+
 
 <script>
     document.getElementById("currentYear").innerHTML = new Date().getFullYear();

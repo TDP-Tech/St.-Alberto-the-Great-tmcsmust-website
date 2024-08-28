@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-p%svrndl8tie(vshq!$s))93d5*unw#4z+bzx2cc+mmr!liwyx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['awesome-morning-36269.pktriot.net', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['eager-shape-40883.pktriot.net', 'localhost', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://awesome-morning-36269.pktriot.net',]
+CSRF_TRUSTED_ORIGINS = ['https://eager-shape-40883.pktriot.net',]
 
 # Application definition
 

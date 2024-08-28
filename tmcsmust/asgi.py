@@ -13,8 +13,10 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 from channels.auth import AuthMiddlewareStack
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULES', 'a_core.settings')
+# Correct environment variable for settings
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tmcsmust.settings')
 
+# Initialize Django ASGI application early to ensure the AppRegistry is populated correctly.
 django_asgi_app = get_asgi_application()
 
 from ChatApp import routing
@@ -25,4 +27,3 @@ application = ProtocolTypeRouter({
         AuthMiddlewareStack(URLRouter(routing.websocket_urlpatterns))
     ),
 })
-
